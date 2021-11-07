@@ -3,7 +3,9 @@ import Navigation from "../components/Navigation";
 import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
-
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
 
 
 function MyApp({ Component, pageProps }) {
