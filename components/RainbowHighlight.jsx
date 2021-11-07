@@ -1,12 +1,12 @@
 import React from "react";
 import { RoughNotation } from "react-rough-notation";
 
-export const RainbowHighlight = ({ color, children }) => {
-  const animationDuration = Math.floor(50 * children.length);
+export const RainbowHighlight = ({ color, type, children }) => {
+  const animationDuration = Math.floor(70 * children.length);
 
   return (
     <RoughNotation
-      type="highlight"
+      type={type}
       multiline={true}
       padding={[0, 1]}
       iterations={1}
