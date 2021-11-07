@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <script
           src="https://kit.fontawesome.com/0888d5f4dd.js"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
       </Head>
       <ThemeProvider attribute="class" enableSystem={false}>
