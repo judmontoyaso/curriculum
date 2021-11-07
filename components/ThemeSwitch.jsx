@@ -12,7 +12,8 @@ const ThemeSwitch = () => {
     <button
       aria-label="Toggle Dark Mode"
       type="button"
-      className="w-9 h-9 p-1 ml-1 mr-1 rounded sm:ml-12 "
+      className="w-9 h-9 p-1 ml-1 mr-1 rounded-lg
+      dark:border-yellow-600 border-blue-500 sm:ml-12 border-2 "
       onClick={() =>
         setTheme(
           theme === "dark" || resolvedTheme === "dark" ? "light" : "dark"
@@ -23,7 +24,7 @@ const ThemeSwitch = () => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="text-gray-900 hover:text-blue-300 dark:text-gray-100 dark:hover:text-yellow-500"
+        className="text-blue-500 dark:text-yellow-500"
       >
         {mounted && (theme === "dark" || resolvedTheme === "dark") ? (
           <path

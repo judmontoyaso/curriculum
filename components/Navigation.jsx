@@ -14,23 +14,14 @@ const Navigation = () => {
       <ThemeSwitch />
 
       <button
-        className="float-right pr-3 pl-3 pt-1 dark:hover:text-blue-400 hover:text-green-500 rounded-sm lg:hidden text-black ml-auto outline-none justify-end dark:text-white"
+        className="float-right pr-3 pl-3 pt-1  rounded-sm lg:hidden  ml-auto outline-none justify-end "
         onClick={handleClick}
       >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
+        <i
+          className={`fas fa-${
+            !active ? "hamburger" : "hotdog"
+          } fa-2x text-black dark:text-white dark:hover:text-blue-400 hover:text-green-500`}
+        ></i>
       </button>
 
       <div

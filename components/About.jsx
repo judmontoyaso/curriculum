@@ -12,7 +12,7 @@ const About = () => {
         <div className="lg:space-x-5 lg:flex lg:flex-row item-center lg:-mx-4 flex flex-col-reverse text-center lg:text-left">
           <div className="lg:px-4 lg:mt-12 ">
             <h1 className="text-xl font-bold text-gray-900 lg:text-3xl dark:text-white">
-              Hola!, mi nombre es{" "}
+              Hola!,  mi nombre es{" "}
               <RainbowHighlight color={colors[3]} type={"underline"}>
                 {" "}
                 Juan David{" "}
