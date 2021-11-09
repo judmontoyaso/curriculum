@@ -28,21 +28,20 @@ const About = () => {
                 Soy un{" "}
                 <RainbowHighlight color={colors[0]} type={"highlight"}>
                   {" "}
-                  Ingeniero{" "}
-                </RainbowHighlight>
-                orientado a la calidad. Soy una persona positiva,
+                  Ingeniero
+                </RainbowHighlight>{" "}
+                orientado a la calidad. Soy una persona positiva,{" "}
                 <RainbowHighlight color={colors[1]} type={"highlight"}>
-                  proactiva
-                </RainbowHighlight>
-                , comprometida y responsable. Tengo conocimientos en
-                biotecnología y en{" "}
+                  proactiva,
+                </RainbowHighlight>{" "}
+                comprometida y responsable. Tengo conocimientos en biotecnología
+                y en{" "}
                 <RainbowHighlight color={colors[3]} type={"highlight"}>
-                  desarrollo web
-                </RainbowHighlight>
-                , me apasiona el manejo de herramientas tecnológicas que
-                permitan aprovechar la eficiencia en el manejo de la
-                información. Mi objetivo profesional esta enfocado en integrarme
-                en un{" "}
+                  desarrollo web,
+                </RainbowHighlight>{" "}
+                me apasiona el manejo de herramientas tecnológicas que permitan
+                aprovechar la eficiencia en el manejo de la información. Mi
+                objetivo profesional esta enfocado en integrarme en un{" "}
                 <RainbowHighlight color={colors[0]} type={"highlight"}>
                   equipo de trabajo
                 </RainbowHighlight>

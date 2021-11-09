@@ -44,7 +44,7 @@ const Navigation = () => {
               <span className="">Proyectos</span>
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/contact">
             <a className="lg:mr-8 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded-2xl text-black font-bold  items-center justify-center dark:hover:text-blue-300 dark:hover:border-blue-400  hover:border-b-2   hover:text-green-400 hover:border-green-500 dark:text-white">
               <span className="">Contacto</span>
             </a>
