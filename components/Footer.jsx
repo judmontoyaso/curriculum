@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 
 const Footer = () => {
@@ -13,7 +15,7 @@ const Footer = () => {
               target="_blank"
               rel="noreferrer"
             >
-              LinkedIn
+              <FontAwesomeIcon icon={faLinkedin} size="2x" />
             </a>
 
             <a
@@ -22,7 +24,7 @@ const Footer = () => {
               target="_blank"
               rel="noreferrer"
             >
-              GitHub
+              <FontAwesomeIcon icon={faGithub} size="2x" />
             </a>
           </div>
           <p>Built with Next.js, Tailwind and Vercel</p>

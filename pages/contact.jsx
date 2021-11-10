@@ -6,16 +6,9 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
 const Contact = () => {
-  
-  
   const numStr = "000000" + ((Math.random() * 1000000) | 0);
   const numero = numStr.substring(numStr.length - 6);
   const [contactNumber, setContactNumber] = useState(numero);
-
-
-  
- 
-
 
   function SendEmail(object) {
     emailjs
@@ -46,9 +39,9 @@ const Contact = () => {
     },
 
     validationSchema: Yup.object({
-      nombre: Yup.string().required("El nombre es obligatorio"),
-      email: Yup.string().required("El email es obligatorio"),
-      mensaje: Yup.string().required("El mensaje  es obligatorio"),
+      nombre: Yup.string().required("No olvides escribir tu nombe"),
+      email: Yup.string().required("Escribe tu email para poder responderte"),
+      mensaje: Yup.string().required("Escribe algún mensaje"),
     }),
 
     onSubmit: async (valores) => {
@@ -70,10 +63,10 @@ const Contact = () => {
   return (
     <div className="flex justify-center">
       <form
-        className="flex w-full max-w-sm space-x-3"
+        className="flex w-full max-w-sm space-x-3 lg:w-full lg:max-w-max"
         onSubmit={formik.handleSubmit}
       >
-        <div className="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">
+        <div className="w-full max-w-2xl lg:max-w-full px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow-2xl dark:bg-gray-800 transition-colors duration-1000 dark:shadow-inner">
           <div className="mb-6 text-3xl font-light text-center text-gray-800 dark:text-white">
             Contactame!
           </div>
@@ -83,7 +76,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="nombre"
-                  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
                   placeholder="Nombre"
                   value={formik.values.nombre}
                   onChange={formik.handleChange}
@@ -92,7 +85,7 @@ const Contact = () => {
               </div>
               {formik.touched.nombre && formik.errors.nombre ? (
                 <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                  <p className="front-bold">Error</p>
+                  <p className="front-bold">Ups!</p>
                   <p>{formik.errors.nombre}</p>
                 </div>
               ) : null}
@@ -100,9 +93,9 @@ const Contact = () => {
             <div className="col-span-2 lg:col-span-1">
               <div className=" relative ">
                 <input
-                  type="text"
+                  type="email"
                   id="email"
-                  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-300  focus:border-transparent"
                   placeholder="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
@@ -111,7 +104,7 @@ const Contact = () => {
               </div>
               {formik.touched.email && formik.errors.email ? (
                 <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                  <p className="front-bold">Error</p>
+                  <p className="front-bold">Ups!</p>
                   <p>{formik.errors.email}</p>
                 </div>
               ) : null}
@@ -119,7 +112,7 @@ const Contact = () => {
             <div className="col-span-2">
               <label className="text-gray-700" htmlFor="name">
                 <textarea
-                  className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-300  focus:border-transparent"
                   id="mensaje"
                   placeholder="Ingresa tu comentario"
                   name="mensaje"
@@ -130,13 +123,13 @@ const Contact = () => {
                   onBlur={formik.handleBlur}
                 ></textarea>
               </label>
+              {formik.touched.mensaje && formik.errors.mensaje ? (
+                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                  <p className="front-bold">Ups!</p>
+                  <p>{formik.errors.mensaje}</p>
+                </div>
+              ) : null}
             </div>
-            {formik.touched.mensaje && formik.errors.mensaje ? (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="front-bold">Error</p>
-                <p>{formik.errors.mensaje}</p>
-              </div>
-            ) : null}
 
             <input
               type="hidden"

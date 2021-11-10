@@ -25,19 +25,19 @@ const ThemeSwitch = () => {
       <div className="rounded-full h-6 w-6 bg-gray-200 dark:transform dark:translate-x-7 dark:absolute duration-700 absolute"></div>
       {mounted && (theme === "dark" || resolvedTheme === "dark") ? (
         <>
-          <FontAwesomeIcon icon={faSun} size="" className="text-yellow-400" />
+          <FontAwesomeIcon icon={faSun} size="1x" className="text-yellow-400" />
           <FontAwesomeIcon
             icon={faMoon}
-            size=""
+            size="1x"
             className="text-blue-500 ml-4"
           />
         </>
       ) : (
         <div className="">
-          <FontAwesomeIcon icon={faSun} size="" className="text-yellow-400" />
+          <FontAwesomeIcon icon={faSun} size="1x" className="text-yellow-400" />
           <FontAwesomeIcon
             icon={faMoon}
-            size=""
+            size="1x"
             className="text-blue-700  ml-4"
           />
         </div>
