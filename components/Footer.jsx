@@ -27,7 +27,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faGithub} size="2x" />
             </a>
           </div>
-          <p>Built with Next.js, Tailwind and deploy on Vercel</p>
+          <p className="text-xs">Built with Next.js, Tailwind and deploy on Vercel</p>
         </div>
       </div>
     </div>

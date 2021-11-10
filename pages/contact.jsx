@@ -67,7 +67,7 @@ const Contact = () => {
         className="flex w-3/4 max-w-sm space-x-3 lg:w-full lg:max-w-max"
         onSubmit={formik.handleSubmit}
       >
-        <div className="w-full max-w-2xl lg:max-w-full px-5 py-10 m-auto mt-10 bg-white rounded-xl shadow-2xl dark:bg-gray-800 transition-colors duration-1000 dark:shadow-inner">
+        <div className="w-full max-w-full lg:max-w-full px-5 py-10 m-auto mt-10 bg-white rounded-xl shadow-2xl dark:bg-gray-800 transition-colors duration-1000 dark:shadow-inner">
           <div className="mb-10 text-3xl font-light text-center text-gray-800 dark:text-white">
             <span className="font-semibold ">¡ Contáctame !</span>
           </div>
