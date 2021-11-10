@@ -21,7 +21,12 @@ const Contact = () => {
       .then(
         (result) => {
           console.log(result.text);
-          Swal.fire("Enviado!", "El mensaje se ha enviado", "success");
+
+          Swal.fire(
+            "Enviado!",
+            "Gracias por escribirme, me pondré en contácto pronto",
+            "success"
+          );
           formik.resetForm();
         },
         (error) => {
@@ -49,26 +54,22 @@ const Contact = () => {
 
       try {
         SendEmail(valores);
-        console.log(numero);
-
-        console.log(valores);
       } catch (error) {
         console.log(error);
       }
 
       console.log("enviando");
-      console.log(valores);
     },
   });
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center ">
       <form
-        className="flex w-full max-w-sm space-x-3 lg:w-full lg:max-w-max"
+        className="flex w-3/4 max-w-sm space-x-3 lg:w-full lg:max-w-max"
         onSubmit={formik.handleSubmit}
       >
-        <div className="w-full max-w-2xl lg:max-w-full px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow-2xl dark:bg-gray-800 transition-colors duration-1000 dark:shadow-inner">
-          <div className="mb-6 text-3xl font-light text-center text-gray-800 dark:text-white">
-            Contactame!
+        <div className="w-full max-w-2xl lg:max-w-full px-5 py-10 m-auto mt-10 bg-white rounded-xl shadow-2xl dark:bg-gray-800 transition-colors duration-1000 dark:shadow-inner">
+          <div className="mb-10 text-3xl font-light text-center text-gray-800 dark:text-white">
+            <span className="font-semibold ">¡ Contáctame !</span>
           </div>
           <div className="grid max-w-xl grid-cols-2 gap-4 m-auto">
             <div className="col-span-2 lg:col-span-1">
@@ -84,7 +85,7 @@ const Contact = () => {
                 />
               </div>
               {formik.touched.nombre && formik.errors.nombre ? (
-                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                <div className="my-2 bg-red-100 border-l-4 border-red-500  rounded-2xl text-red-700 p-4">
                   <p className="front-bold">Ups!</p>
                   <p>{formik.errors.nombre}</p>
                 </div>
@@ -103,7 +104,7 @@ const Contact = () => {
                 />
               </div>
               {formik.touched.email && formik.errors.email ? (
-                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                <div className="my-2 bg-red-100 border-l-4 border-red-500 rounded-2xl text-red-700 p-4">
                   <p className="front-bold">Ups!</p>
                   <p>{formik.errors.email}</p>
                 </div>
@@ -124,7 +125,7 @@ const Contact = () => {
                 ></textarea>
               </label>
               {formik.touched.mensaje && formik.errors.mensaje ? (
-                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                <div className="my-2 bg-red-100 border-l-4 border-red-500 rounded-2xl text-red-700 p-4">
                   <p className="front-bold">Ups!</p>
                   <p>{formik.errors.mensaje}</p>
                 </div>
@@ -139,7 +140,7 @@ const Contact = () => {
             <div className="col-span-2 text-right">
               <button
                 type="submit"
-                className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                className="py-2 px-4  bg-indigo-600 hover:bg-green-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-xl "
               >
                 Enviar
               </button>
