@@ -1,20 +1,30 @@
 import React from "react";
+import GetLatestRepos from "../components/GithubRepo";
+import axios from "axios";
+import GithubRepoCard from "../components/GithubRepoCard";
+import GithubRepo from "../components/GithubRepo";
 
 const project = () => {
-  return <div>   <div className="">
-  <main className="bg-white relative overflow-hidden h-screen">
- 
-    <div className="container mx-auto h-screen pt-32 md:pt-0 px-6 z-10 flex items-center justify-between">
-      <div className="container mx-auto px-6 flex flex-col-reverse lg:flex-row justify-between items-center relative">
-        <div className="w-full mb-16 md:mb-8 text-center lg:text-left">
-          <h1 className="font-light font-sans text-center lg:text-left text-5xl lg:text-8xl mt-12 md:mt-0 text-gray-700">
-          Lo siento, sitio en construcción
-          </h1>
-        </div>
+  return (
+    <div className="text-center">
+      <h1 className="text-xl font-bold text-gray-900 lg:text-3xl dark:text-white">
+        Proyectos
+      </h1>
+      <div className="lg:mr-28 lg:ml-28 text-justify lg:mt-10 lg:mb-14 mt-10 mb-14 mr-10 ml-10">
+        <span className="font-semibold text-gray-600 dark:text-gray-400 text-lg">
+          <p>
+            En esta sección encontraras los ultimos proyectos personales en los
+            que he trabajado, incluyendo este sitio web.
+          </p>{" "}
+          Si deseas ver el repositorio da click en la flecha y te llevara a
+          github.
+        </span>
+
+        <hr className="mt-8  border-gray-300 dark:border-gray-700" />
       </div>
+      <GithubRepo></GithubRepo>
     </div>
-  </main>
-</div></div>;
+  );
 };
 
 export default project;
