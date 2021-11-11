@@ -7,7 +7,7 @@ import GithubRepo from "../components/GithubRepo";
 const project = () => {
   return (
     <div className="text-center">
-      <h1 className="text-xl font-bold text-gray-900 lg:text-3xl dark:text-white">
+      <h1 className="text-xl font-bold text-gray-900 lg:text-3xl dark:text-white mt-10">
         Proyectos
       </h1>
       <div className="lg:mr-28 lg:ml-28 text-justify lg:mt-10 lg:mb-14 mt-10 mb-14 mr-10 ml-10">
