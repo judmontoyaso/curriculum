@@ -44,7 +44,7 @@ const Contact = () => {
     },
 
     validationSchema: Yup.object({
-      nombre: Yup.string().required("No olvides escribir tu nombe"),
+      nombre: Yup.string().required("No olvides escribir tu nombre"),
       email: Yup.string().required("Escribe tu email para poder responderte"),
       mensaje: Yup.string().required("Escribe algún mensaje"),
     }),
