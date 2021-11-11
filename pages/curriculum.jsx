@@ -203,15 +203,15 @@ const curriculum = () => {
                 </ul>
               </div>
 
-              <div class="font-light text-lg px-1 mb-12">
-                <h2 class="text-xl font-semibold mb-4 mt-10 ">Educación</h2>
+              <div className="font-light text-lg px-1 mb-12">
+                <h2 className="text-xl font-semibold mb-4 mt-10 ">Educación</h2>
                 <div className="flex align-middle ">
                   <FontAwesomeIcon
                     icon={faCheckCircle}
                     className="text-green-500 mt-2 mr-2"
                   />
                   <div>
-                    <h3 class="font-semibold ">Ingeniería biológica</h3>
+                    <h3 className="font-semibold ">Ingeniería biológica</h3>
                     <p className="font-semibold text-gray-700">
                       Universidad Nacional de Colombia
                     </p>
@@ -223,7 +223,7 @@ const curriculum = () => {
                     className="text-green-500 mt-2 mr-2"
                   />
                   <div>
-                    <h3 class="font-semibold ">
+                    <h3 className="font-semibold ">
                       Desarrollo de aplicaciones web
                     </h3>
                     <p className="font-semibold text-gray-700">
@@ -233,21 +233,187 @@ const curriculum = () => {
                 </div>
               </div>
 
-              <div class="font-light text-lg px-2 mb-12">
-                <h2 class="text-xl font-semibold mb-4">Idiomas</h2>
+              <div className="font-light text-lg px-2 mb-12">
+                <h2 className="text-xl font-semibold mb-4">Idiomas</h2>
                 <div className="flex align-middle ">
                   <FontAwesomeIcon
                     icon={faCheckCircle}
                     className="text-green-500 mt-1 mr-2"
                   />
-                  <h3 class="font-semibold text-gray-700">Español</h3>
+                  <h3 className="font-semibold text-gray-700">Español</h3>
                 </div>
                 <div className="flex align-middle  ">
                   <FontAwesomeIcon
                     icon={faCheckCircle}
                     className="text-green-500 mt-1 mr-2"
                   />
-                  <h3 class="font-semibold text-gray-700">Inglés</h3>
+                  <h3 className="font-semibold text-gray-700">Inglés</h3>
+                </div>
+              </div>
+            </div>
+            <div className="content w-full p-12">
+              <div id="profile" className="prose">
+                <h2 className="section-headline">Perfil</h2>
+                <p>
+                  Ingeniero orientado a la calidad. Soy una persona positiva,
+                  proactiva, autodidacta y responsable. Tengo conocimientos en
+                  biotecnología y en desarrollo web, me apasiona el manejo de
+                  herramientas tecnológicas que permitan aprovechar la
+                  eficiencia en el manejo de la información.
+                </p>
+                <p>
+                  I am highly motivated in expanding my horizons day by day for
+                  better performance, testing and user experience.
+                </p>
+              </div>
+              <hr className="mt-8 mb-12" />
+              <div id="experience" className="prose">
+                <h2 className="section-headline">Experience</h2>
+                <div>
+                  <h3>Example Inc</h3>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Jul.&nbsp;2019:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      Fullstack Developer
+                    </div>
+                  </section>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Task:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </section>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Description:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </div>
+                  </section>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Tools:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      <span className="rounded-xl bg-gray-300 px-3">Vue</span>
+                      <span className="rounded-xl bg-gray-300 px-3">Vuex</span>
+                      <span className="rounded-xl bg-gray-300 px-3">Bootstrap</span>
+                      <span className="rounded-xl bg-gray-300 px-3">Docker</span>
+                      <span className="rounded-xl bg-gray-300 px-3">Git</span>
+                      <span className="rounded-xl bg-gray-300 px-3">Bitbucket</span>
+                      <span className="rounded-xl bg-gray-300 px-3">Jira</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <hr className="mt-8 mb-12" />
+              <div id="projects" className="prose">
+                <h2 className="section-headline">Projects</h2>
+                <div className="mb-16">
+                  <h3 id="chrisko-headline">Chrisko.io</h3>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Personal blog:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      My blog is the center of my online presence. Here, I share
+                      posts about what I've learnt, tutorials and my thoughts on
+                      web development in general.
+                    </div>
+                  </section>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Deployed to:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      <a
+                        href="https://chrisko.io"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        chrisko.io
+                      </a>
+                    </div>
+                  </section>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Code on:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      <a
+                        href="https://github.com/christiankozalla/nextjs-blog"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub/nextjs-blog
+                      </a>
+                    </div>
+                  </section>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Features:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      <ul>
+                        <li>Static generation</li>
+                        <li>Blog content written in Markdown</li>
+                        <li>Counter for pageviews and likes</li>
+                        <li>My latest tweets</li>
+                        <li>Featured images made with Inkscape</li>
+                        <li>SEO</li>
+                      </ul>
+                    </div>
+                  </section>
+
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2">
+                      Built with:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full">
+                      <span className="rounded-xl bg-gray-300 px-3">Next.js</span>
+                      <span className="rounded-xl bg-gray-300 px-3">CSS</span>
+                      <span className="rounded-xl bg-gray-300 px-3">
+                        styled-jsx
+                      </span>
+                      <span className="rounded-xl bg-gray-300 px-3">DynamoDB</span>
+                      <span className="rounded-xl bg-gray-300 px-3">Vercel</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <hr className="mt-8 mb-12" />
+              <div id="projects" className="prose">
+                <h2 className="section-headline">Expand my skills</h2>
+                <div className="mb-16">
+                  <h4 id="expand-knowledge-headline">
+                    I'd like to expand my skills and knowledge in several fields
+                  </h4>
+                  <ul>
+                    <li>TypeScript</li>
+                    <li>Testing, e.g. with Mocha, Chai, Jest</li>
+                    <li>Web Components, e.g. with StencilJS, LitElement</li>
+                    <li>
+                      Prototyping and Wireframing, e.g. with Figma, Adobe XD
+                    </li>
+                    <li>Scalable Vector Graphics</li>
+                    <li>Databases</li>
+                    <li>Mobile development</li>
+                    <li>
+                      Backend development, e.g. learn additional language like
+                      Go, Python, PHP, Ruby, Java, Rust
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
