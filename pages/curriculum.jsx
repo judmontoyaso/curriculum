@@ -261,7 +261,7 @@ const curriculum = () => {
             <div className="content w-full p-12">
               <div id="profile" className="prose">
                 <div className="border-l-4 dark:border-green-300 border-blue-300">
-                  <h2 className=" font-semibold text-2xl mb-6 ml-5">Perfil</h2>
+                  <h2 className=" font-semibold text-2xl mb-10 ml-5">Perfil</h2>
                 </div>
                 <p>
                   Ingeniero orientado a la calidad. Soy una persona empatica,
@@ -278,7 +278,7 @@ const curriculum = () => {
               <hr className="mt-8 mb-12 border-gray-300 dark:border-gray-700 " />
               <div id="experience" className="prose">
                 <div className="border-l-4 dark:border-green-300 border-blue-300">
-                  <h2 className=" mb-6 font-semibold  text-2xl ml-5">
+                  <h2 className=" mb-10 font-semibold  text-2xl ml-5">
                     Experiencia
                   </h2>
                 </div>
@@ -351,7 +351,7 @@ const curriculum = () => {
                     </div>
                   </section>
                 </div>
-                <hr className="mt-16 mb-12 ml-40 mr-40 lg:ml-48 lg:mr-48 border-gray-300 dark:border-gray-700" />
+                <hr className="mt-16 mb-12 ml-30 mr-30 lg:ml-48 lg:mr-48 border-gray-300 dark:border-gray-700" />
                 <div>
                   <h3 className="mb-3">Koba Colombia S.A.S</h3>
                   <section className="mb-6">
@@ -408,7 +408,7 @@ const curriculum = () => {
               <hr className="mt-8 mb-12 border-gray-300 dark:border-gray-700" />
               <div id="projects" className="prose">
                 <div className="border-l-4 dark:border-green-300 border-blue-300">
-                  <h2 className=" mb-5 text-2xl ml-5">
+                  <h2 className=" mb-10 text-2xl ml-5">
                     Proyecto de investigación
                   </h2>
                 </div>
