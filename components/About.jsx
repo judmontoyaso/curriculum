@@ -3,11 +3,15 @@ import Image from "next/image";
 import profile from "/public/profile.jpg";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
+import { Particle } from "./Particle";
+
 
 const About = () => {
   const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
+ 
   return (
     <div className="container px-4 mx-auto">
+      <Particle/>
       <RoughNotationGroup show={true}>
         <div className="lg:space-x-5 lg:flex lg:flex-row item-center lg:-mx-4 flex flex-col-reverse text-center lg:text-left">
           <div className="lg:px-4 lg:mt-12 ">

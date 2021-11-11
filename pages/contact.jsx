@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import emailjs, { send } from "emailjs-com";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { Particle } from "../components/Particle";
 
 const Contact = () => {
   const numStr = "000000" + ((Math.random() * 1000000) | 0);
@@ -63,6 +64,9 @@ const Contact = () => {
   });
   return (
     <div className="flex justify-center ">
+      <Particle />
+      <div className="flex w-3/4 max-w-sm space-x-3 lg:w-full lg:max-w-max"></div>
+
       <form
         className="flex w-3/4 max-w-sm space-x-3 lg:w-full lg:max-w-max"
         onSubmit={formik.handleSubmit}
