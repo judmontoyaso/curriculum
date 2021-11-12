@@ -86,6 +86,10 @@ export async function getStaticPaths() {
   );
   const posts = await devDotToPosts.json();
 
+  if (typeof posts === undefined) {
+    return "....";
+  }
+
   return {
     paths: posts.map((post) => {
       return {

@@ -59,6 +59,9 @@ export const getStaticProps = async () => {
   );
 
   const res = await devDotToPosts.json();
+  if (typeof res === undefined) {
+    return "....";
+  }
 
   return {
     props: {
