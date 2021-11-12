@@ -47,8 +47,8 @@ export default function BlogCard({
           </div>
         </div>
         <div className="px-6 pt-4 pb-2">
-          {tagList.map((tag) => (
-            <span className=" py-1  rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+          {tagList.map((tag, id) => (
+            <span key={id} className=" py-1  rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
               #{tag}
             </span>
           ))}
