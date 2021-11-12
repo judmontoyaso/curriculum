@@ -13,17 +13,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHotdog } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
-import ActiveLink from "./ActiveRoute";
+import { useTheme } from "next-themes";
+import ActiveRoute from "./ActiveRoute";
+import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 
 const Navigation = () => {
   const [active, setActive] = useState(false);
-
+  const { theme } = useTheme();
   const handleClick = () => {
     setActive(!active);
   };
-
+  const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
   return (
-    <nav className="sticky top-0 z-20 py-2 bg-white md:py-4 md:mb-6  dark:bg-black  transition-all duration-1000">
+    <nav className="sticky top-0 z-20 py-2 bg-gray-200 md:py-4 md:mb-6  dark:bg-black  transition-all duration-1000">
       <ThemeSwitch />
 
       <button
@@ -43,27 +45,37 @@ const Navigation = () => {
         }   w-full lg:inline-flex lg:flex-grow lg:w-auto lg:float-right`}
       >
         <div className=" lg:inline-flex lg:flex-row lg:ml-auto lg:mr-10 lg:w-auto w-full lg:items-center items-end  flex flex-col lg:h-auto  lg:sticky absolute dark:bg-black dark:bg-opacity-80 bg-white lg:bg-transparent lg:dark:bg-transparent bg-opacity-80  transition-color duration-1000">
-          <ActiveLink href="/">
-            <FontAwesomeIcon icon={faUserCircle} />
-            <span className="lg:ml-2 ml-4 ">Perfil</span>
-          </ActiveLink>
-          <ActiveLink href="/curriculum">
+          <ActiveRoute href="/">
+            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
+              <FontAwesomeIcon icon={faUserCircle} />
+              <span className="lg:ml-2 ml-5 ">Perfil</span>
+            </RoughNotation>
+          </ActiveRoute>
+          <ActiveRoute href="/curriculum">
+            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
               <FontAwesomeIcon icon={faFileAlt} />
               <span className="lg:ml-2 ml-5">Curriculum</span>
-            
-          </ActiveLink>
-          <ActiveLink href="/project">
+            </RoughNotation>
+          </ActiveRoute>
+          <ActiveRoute href="/project">
+            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
               <FontAwesomeIcon icon={faLaptopCode} />
-              <span className="lg:ml-2 ml-4">Proyectos</span>
-          </ActiveLink>
-          <ActiveLink href="/blog">
+              <span className="lg:ml-2 ml-5">Proyectos</span>
+            </RoughNotation>
+          </ActiveRoute>
+          <ActiveRoute href="/blog">
+            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
               <FontAwesomeIcon icon={faPiedPiper} />
+
               <span className="lg:ml-2 ml-5">Blog</span>
-          </ActiveLink>
-          <ActiveLink href="/contact">
+            </RoughNotation>
+          </ActiveRoute>
+          <ActiveRoute href="/contact">
+            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
               <FontAwesomeIcon icon={faPaperPlane} />
               <span className="lg:ml-2 ml-5">Contacto</span>
-          </ActiveLink>
+            </RoughNotation>
+          </ActiveRoute>
         </div>
       </div>
     </nav>
