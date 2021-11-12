@@ -69,7 +69,7 @@ export default function Post({ devDotToPost }) {
 
 export const getStaticProps = async ({ params }) => {
   const devDotToPost = await fetch(
-    `https://dev.to/api/articles/${process.env.DEV_USERNAME}/${params.slug}`
+    `https://dev.to/api/articles/juanmontoya/${params.slug}`
   );
   const res = await devDotToPost.json();
 
@@ -82,7 +82,7 @@ export const getStaticProps = async ({ params }) => {
 
 export async function getStaticPaths() {
   const devDotToPosts = await fetch(
-    `https://dev.to/api/articles?username=${process.env.DEV_USERNAME}`
+    `https://dev.to/api/articles?username=juanmontoya`
   );
   const posts = await devDotToPosts.json();
 

@@ -55,7 +55,7 @@ export default function Blog({ devDotToPosts }) {
 
 export const getStaticProps = async () => {
   const devDotToPosts = await fetch(
-    `https://dev.to/api/articles?username=${process.env.DEV_USERNAME}`
+    `https://dev.to/api/articles?username=juanmontoya`
   );
 
   const res = await devDotToPosts.json();
