@@ -32,7 +32,7 @@ export default function BlogCard({
 
   return (
     <Link as={`/blog/posts/${slug}`} href="/blog/posts/[slug]">
-      <article className="cursor-pointer h-full rounded-2xl shadow-xl p-2 dark:shadow-xl bg-gray-200 bg-opacity-90 dark:bg-gray-800 text-justify  ease-in-out hover:-translate-y-1 duration-700">
+      <article className="rounded-2xl shadow-xl p-3 dark:shadow-xl bg-gray-200 bg-opacity-90 dark:bg-gray-800 text-justify hover:scale-105 ease-in-out hover:-translate-y-1 duration-700">
         <div className="p-6 flex-1">
           <div className="border-l-4 border-green-400 pl-3 dark:border-indigo-400 transition-colors duration-1000">
             <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">
@@ -48,7 +48,10 @@ export default function BlogCard({
         </div>
         <div className="px-6 pt-4 pb-2">
           {tagList.map((tag, id) => (
-            <span key={id} className=" py-1  rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+            <span
+              key={id}
+              className=" py-1  rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400"
+            >
               #{tag}
             </span>
           ))}
