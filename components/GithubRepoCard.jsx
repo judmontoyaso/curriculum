@@ -1,4 +1,3 @@
-import GithubRepo from "./GithubRepo";
 
 const GithubRepoCard = ({ latestRepo }) => {
   return (

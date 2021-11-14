@@ -1,24 +1,19 @@
 import React from "react";
-import { Line, Circle } from "rc-progress";
-import ProgressBar from "progress";
 import { ProgresBar } from "../components/ProgresBar";
 import Image from "next/image";
 import profile from "/public/profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBattleNet,
-  faFontAwesome,
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import {
-  faCheck,
   faCheckCircle,
   faEnvelope,
   faFilePdf,
   faHome,
   faMobileAlt,
-  faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { saveAs } from "file-saver";
 

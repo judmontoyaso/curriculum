@@ -1,7 +1,4 @@
 import React from "react";
-import GetLatestRepos from "../components/GithubRepo";
-import axios from "axios";
-import GithubRepoCard from "../components/GithubRepoCard";
 import GithubRepo from "../components/GithubRepo";
 
 const project = () => {

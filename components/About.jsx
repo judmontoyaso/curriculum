@@ -5,13 +5,13 @@ import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
 import { Particle } from "./Particle";
 
-
 const About = () => {
   const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
- 
+//////////////
+
   return (
     <div className="container px-4 mx-auto">
-      <Particle/>
+      <Particle />
       <RoughNotationGroup show={true}>
         <div className="lg:space-x-5 lg:flex lg:flex-row item-center lg:-mx-4 flex flex-col-reverse text-center lg:text-left">
           <div className="lg:px-4 lg:mt-12 ">
@@ -28,7 +28,7 @@ const About = () => {
               </RoughNotation>
             </h1>
             <div className="mt-6 text-gray-800 dark:text-white">
-              <p className="mb-4">
+              <p className="mb-4 text-justify">
                 Soy un{" "}
                 <RainbowHighlight color={colors[0]} type={"highlight"}>
                   {" "}
@@ -44,13 +44,16 @@ const About = () => {
                   desarrollo web,
                 </RainbowHighlight>{" "}
                 me apasiona el manejo de herramientas tecnológicas que permitan
-                aprovechar la eficiencia en el manejo de la información. Mi
-                objetivo profesional esta enfocado en integrarme en un{" "}
-                <RainbowHighlight color={colors[0]} type={"highlight"}>
-                  equipo de trabajo
-                </RainbowHighlight>
-                , donde pueda aportar desde mi formación y que me permita crecer
-                profesionalmente.
+                aprovechar la eficiencia en el manejo de la información.
+                <p className="mb-4 text-justify">
+                  {" "}
+                  Mi objetivo profesional esta enfocado en integrarme en un{" "}
+                  <RainbowHighlight color={colors[0]} type={"highlight"}>
+                    equipo de trabajo
+                  </RainbowHighlight>
+                  , donde pueda aportar desde mi formación y que me permita
+                  crecer profesionalmente.
+                </p>
               </p>
             </div>
           </div>
