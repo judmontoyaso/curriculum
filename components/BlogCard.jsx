@@ -32,7 +32,7 @@ export default function BlogCard({
 
   return (
     <Link as={`/blog/posts/${slug}`} href="/blog/posts/[slug]">
-      <article className="rounded-2xl shadow-xl p-3 dark:shadow-xl bg-gray-200 bg-opacity-90 dark:bg-gray-800 text-justify hover:scale-105 ease-in-out hover:-translate-y-1 duration-700">
+      <article className="rounded-2xl shadow-xl lg:p-3 p-2 dark:shadow-xl bg-gray-200 bg-opacity-90 dark:bg-gray-800 text-justify hover:scale-105 ease-in-out hover:-translate-y-1 duration-700">
         <div className="p-6 flex-1">
           <div className="border-l-4 border-green-400 pl-3 dark:border-indigo-400 transition-colors duration-1000">
             <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">
@@ -57,7 +57,7 @@ export default function BlogCard({
           ))}
         </div>
 
-        <div className="flex items-center flex-wrap px-6 py-4">
+        <div className="flex items-center flex-wrap px-2 py-4 ">
           <a className="text-blue-500 inline-flex items-center md:mb-2 lg:mb-0  cursor-pointer">
             Continua leyendo
             <FontAwesomeIcon
