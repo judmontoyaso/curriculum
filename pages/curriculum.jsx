@@ -113,7 +113,9 @@ const curriculum = () => {
               </div>
 
               <div className="font-light text-lg px-2 mb-12">
-                <h2 className="text-xl font-semibold mb-4">Habilidades</h2>
+                <h2 className="text-xl font-semibold mb-4">
+                  Habilidades en desarrollo
+                </h2>
                 <ul className="list-none">
                   <li className="mb-5">
                     <ProgresBar habilidad="HTML5/CSS3" porcentaje="90" />
@@ -128,6 +130,9 @@ const curriculum = () => {
                     <ProgresBar habilidad="Python" porcentaje="70" />
                   </li>
                   <li className="mb-5">
+                    <ProgresBar habilidad="C#" porcentaje="70" />
+                  </li>
+                  <li className="mb-5">
                     <ProgresBar habilidad="Java" porcentaje="60" />
                   </li>
                   <li className="mb-5">
@@ -135,12 +140,13 @@ const curriculum = () => {
                   </li>
                   <li>
                     <div className="mb-4 mt-10 text-xl font-semibold">
-                      Herramientas desarrollo web
+                      Herramientas
                     </div>
                     <p className="leading-8 grid grid-cols-3">
                       <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400">
                         Nextjs
                       </span>
+
                       <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400 ">
                         Vercel
                       </span>
@@ -233,6 +239,18 @@ const curriculum = () => {
                     </p>
                   </div>
                 </div>
+                <div className="flex align-middle mt-4 ">
+                  <FontAwesomeIcon
+                    icon={faCheckCircle}
+                    className="text-green-500 dark:text-green-300 mt-2 mr-2"
+                  />
+                  <div>
+                    <h3 className="font-semibold ">Análitica de datos</h3>
+                    <p className="font-semibold text-gray-700">
+                      CENCALA / Tus hábilidades son oportunidades 2021
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div className="font-light text-lg px-2 mb-12">
@@ -278,10 +296,73 @@ const curriculum = () => {
                   </h2>
                 </div>
                 <div>
+                  <h3 className="mb-3">Q10 Soluciones</h3>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2 lg:border-r-2 lg:border-gray-300 lg:dark:border-gray-600">
+                      Noviembre 2021
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10">
+                      Desarrollador Front-End
+                    </div>
+                  </section>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2 lg:border-r-2 lg:border-gray-300 lg:dark:border-gray-600 ">
+                      Tareas:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10">
+                      <lu>
+                        <li>
+                          Mantenimiento de la página web empresarial y de
+                          asociados.
+                        </li>
+                        <li>Posicionamiento SEO en Google.</li>
+                        <li>Desarrollo de campañas de email marketing</li>
+                        <li>
+                          Diseño de dashboards de monitoreo empresarial en
+                          PowerBI
+                        </li>
+                        <li>ETL de datos con Power BI</li>
+                        <li>Apoyo al área de mercadeo como creativo</li>
+                      </lu>
+                    </div>
+                  </section>
+                  <section className="mb-6">
+                    <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2 lg:border-r-2 lg:border-gray-300 lg:dark:border-gray-600 ">
+                      Habilidades:
+                    </div>
+                    <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        HTML
+                      </span>
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        CSS
+                      </span>
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        Javascript
+                      </span>
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        C#
+                      </span>
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        Análisis de datos
+                      </span>
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        Creatividad
+                      </span>
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        Comunicación asertiva
+                      </span>
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        SEO
+                      </span>
+                    </div>
+                  </section>
+                </div>
+                <div>
                   <h3 className="mb-3">Compañia de galletas Noel</h3>
                   <section className="mb-6">
                     <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2 lg:border-r-2 lg:border-gray-300 lg:dark:border-gray-600">
-                      Octube 2021 - Diciembre 2021
+                      Octube 2020 - Diciembre 2020
                     </div>
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10">
                       Operario de producción
@@ -326,7 +407,7 @@ const curriculum = () => {
                       Tareas:
                     </div>
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10">
-                      brindar servicio y atención a los clientes, atención a los
+                      Brindar servicio y atención a los clientes, atención a los
                       proveedores, manejo de caja registradora, control de
                       personal, verificación de estándares en productos y
                       servicios y control de inventarios.
