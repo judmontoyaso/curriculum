@@ -40,7 +40,7 @@ const curriculum = () => {
               <div className="px-2 mb-12  ">
                 <div className="text-center mb-4">
                   <Image
-                    src={profile}
+                    src={proefile3}
                     alt="Profile"
                     priority={true}
                     className="rounded-full"
@@ -332,24 +332,15 @@ const curriculum = () => {
                     </div>
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
                       <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        HTML
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        CSS
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Javascript
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        C#
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
                         Análisis de datos
                       </span>
                       <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
                         Creatividad
                       </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                      <span
+                        className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400"
+                        style={{ lineBreak: "anywhere" }}
+                      >
                         Comunicación asertiva
                       </span>
                       <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
