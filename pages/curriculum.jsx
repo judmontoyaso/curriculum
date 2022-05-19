@@ -46,7 +46,7 @@ const curriculum = () => {
                     className="rounded-full"
                     width={180}
                     height={190}
-                    placeholder="blur"                    
+                    placeholder="blur"
                   />
                 </div>
                 <h1 className="text-center text-3xl font-semibold mb-2">
@@ -330,19 +330,18 @@ const curriculum = () => {
                     <div className="lg:inline-block lg:w-3/12 lg:align-top italic mb-2 lg:border-r-2 lg:border-gray-300 lg:dark:border-gray-600 ">
                       Habilidades:
                     </div>
+
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
+                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                        Desarrollo web
+                      </span>
                       <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
                         Análisis de datos
                       </span>
                       <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
                         Creatividad
                       </span>
-                      <span
-                        className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400"
-                        style={{ lineBreak: "anywhere" }}
-                      >
-                        Comunicación asertiva
-                      </span>
+
                       <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
                         SEO
                       </span>
