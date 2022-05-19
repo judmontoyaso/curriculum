@@ -1,7 +1,7 @@
 import React from "react";
 import { ProgresBar } from "../components/ProgresBar";
 import Image from "next/image";
-import profile from "/public/profile.jpg";
+import profile3 from "/public/profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBattleNet,
@@ -40,7 +40,7 @@ const curriculum = () => {
               <div className="px-2 mb-12  ">
                 <div className="text-center mb-4">
                   <Image
-                    src={proefile3}
+                    src={profile3}
                     alt="Profile"
                     priority={true}
                     className="rounded-full"
