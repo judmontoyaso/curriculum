@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
 import emailjs, { send } from "emailjs-com";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
@@ -17,7 +18,7 @@ const Contact = () => {
         "formulario_contacto_cv",
         "template_5243rb1",
         object,
-        "user_DD9uUMu5CFcOAGZ2Ah34m"
+        "N6pIVzH5Sti9MeJbI"
       )
       .then(
         (result) => {
@@ -31,6 +32,11 @@ const Contact = () => {
           formik.resetForm();
         },
         (error) => {
+          Swal.fire(
+            "Error",
+            "Ocurrio un error, por favor intente más tarde",
+            "error"
+          );
           console.log(error.text);
         }
       );

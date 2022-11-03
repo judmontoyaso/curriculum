@@ -16,8 +16,32 @@ import {
   faMobileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { saveAs } from "file-saver";
+import ContenedorHabilidad from "../components/ContenedorHabilidad";
 
 const curriculum = () => {
+  const habilidadesPrincipales = [
+    "NextJs",
+    "Angular",
+    "ASP",
+    "Vercel",
+    "GraphQL",
+    "Tailwind",
+    "Mongo",
+    "SQL",
+    "PowerBI",
+    "Excel",
+    "Git",
+  ];
+  const habilidadesBiotecnologia = [
+    "Gestión de calidad",
+    "Fermentación",
+    "Bioinformática",
+    "Fisicoquimica",
+    "Microbiología",
+    "Procesos biotecnológicos",
+    "Ciencias de los alimentos",
+    " NTC - ISO 9001",
+  ];
   const saveFile = () => {
     //Para obtener archivos pdf, se obtiene un link de archivo codificado en base 64 y descargarlo como pdf
     saveAs(
@@ -143,34 +167,10 @@ const curriculum = () => {
                       Herramientas
                     </div>
                     <p className="leading-8 grid grid-cols-3">
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400">
-                        Nextjs
-                      </span>
-
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400 ">
-                        Vercel
-                      </span>
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        GraphQL
-                      </span>
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Tailwind
-                      </span>
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Mongo
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        SQL
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        PowerBI
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Excel
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Git
-                      </span>
+                      {habilidadesPrincipales.map((habilidad) => (
+                        
+                        <ContenedorHabilidad Habilidad={habilidad} />
+                      ))}
                     </p>
                   </li>
 
@@ -179,33 +179,9 @@ const curriculum = () => {
                       Habilidades en biotecnología
                     </div>
                     <p className="leading-8 grid grid-cols-1">
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400">
-                        NTC - ISO 9001
-                      </span>
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400 ">
-                        Ciencias de los alimentos
-                      </span>
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Procesos biotecnológicos
-                      </span>
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Microbiología
-                      </span>
-                      <span className="rounded-xl bg-gray-300 dark:bg-gray-500 px-3 mr-2  mb-2 hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Fisicoquimica
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Biología molecular
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Bioinformática
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Fermentación
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Gestión de calidad
-                      </span>
+                      {habilidadesBiotecnologia.map((habilidad) => (
+                        <ContenedorHabilidad Habilidad={habilidad} />
+                      ))}
                     </p>
                   </li>
                 </ul>
@@ -332,19 +308,10 @@ const curriculum = () => {
                     </div>
 
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Desarrollo web
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Análisis de datos
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Creatividad
-                      </span>
-
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        SEO
-                      </span>
+                      <ContenedorHabilidad Habilidad={"Desarrollo Web"} />
+                      <ContenedorHabilidad Habilidad={"Análisis de datos"} />
+                      <ContenedorHabilidad Habilidad={"Creatividad"} />
+                      <ContenedorHabilidad Habilidad={"SEO"} />
                     </div>
                   </section>
                 </div>
@@ -408,12 +375,8 @@ const curriculum = () => {
                       Habilidades:
                     </div>
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Servicio al cliente
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Ventas
-                      </span>
+                      <ContenedorHabilidad Habilidad={"Servicio al cliente"} />
+                      <ContenedorHabilidad Habilidad={"Ventas"} />
                     </div>
                   </section>
                 </div>
@@ -458,15 +421,11 @@ const curriculum = () => {
                       Habilidades:
                     </div>
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        NTC - ISO 9001
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Gestión de calidad
-                      </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
-                        Microbiología
-                      </span>
+                      <ContenedorHabilidad Habilidad={"NTC - ISO 9001"} />
+
+                      <ContenedorHabilidad Habilidad={"Gestión de calidad"} />
+
+                      <ContenedorHabilidad Habilidad={"Gestión de calidad"} />
                     </div>
                   </section>
                 </div>
