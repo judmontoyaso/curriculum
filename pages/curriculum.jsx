@@ -17,6 +17,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { saveAs } from "file-saver";
 import ContenedorHabilidad from "../components/ContenedorHabilidad";
+import ContenedorHabilidadSolo from "../components/ContenedorHabilidadSolo";
 
 const curriculum = () => {
   const habilidadesPrincipales = [
@@ -168,8 +169,9 @@ const curriculum = () => {
                     </div>
                     <p className="leading-8 grid grid-cols-3">
                       {habilidadesPrincipales.map((habilidad) => (
-                        
-                        <ContenedorHabilidad Habilidad={habilidad} />
+                        <span key={habilidad} className="rounded-xl bg-gray-300 dark:bg-gray-500 px-4  mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400 cursor-pointer">
+                          {habilidad}
+                        </span>
                       ))}
                     </p>
                   </li>
@@ -180,7 +182,9 @@ const curriculum = () => {
                     </div>
                     <p className="leading-8 grid grid-cols-1">
                       {habilidadesBiotecnologia.map((habilidad) => (
-                        <ContenedorHabilidad Habilidad={habilidad} />
+                       <span key={habilidad} className="rounded-xl bg-gray-300 dark:bg-gray-500 px-4  mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400 cursor-pointer">
+                           {habilidad}
+                        </span>
                       ))}
                     </p>
                   </li>
@@ -308,10 +312,10 @@ const curriculum = () => {
                     </div>
 
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
-                      <ContenedorHabilidad Habilidad={"Desarrollo Web"} />
-                      <ContenedorHabilidad Habilidad={"Análisis de datos"} />
-                      <ContenedorHabilidad Habilidad={"Creatividad"} />
-                      <ContenedorHabilidad Habilidad={"SEO"} />
+                      <ContenedorHabilidadSolo Habilidad={"Desarrollo Web"} />
+                      <ContenedorHabilidadSolo Habilidad={"Análisis de datos"} />
+                      <ContenedorHabilidadSolo Habilidad={"Creatividad"} />
+                      <ContenedorHabilidadSolo Habilidad={"SEO"} />
                     </div>
                   </section>
                 </div>
@@ -375,8 +379,9 @@ const curriculum = () => {
                       Habilidades:
                     </div>
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
-                      <ContenedorHabilidad Habilidad={"Servicio al cliente"} />
-                      <ContenedorHabilidad Habilidad={"Ventas"} />
+                      
+                      <ContenedorHabilidadSolo Habilidad={"Servicio al cliente"} />
+                      <ContenedorHabilidadSolo Habilidad={"Ventas"} />
                     </div>
                   </section>
                 </div>
@@ -421,11 +426,11 @@ const curriculum = () => {
                       Habilidades:
                     </div>
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
-                      <ContenedorHabilidad Habilidad={"NTC - ISO 9001"} />
+                      <ContenedorHabilidadSolo Habilidad={"NTC - ISO 9001"} />
 
-                      <ContenedorHabilidad Habilidad={"Gestión de calidad"} />
+                      <ContenedorHabilidadSolo Habilidad={"Gestión de calidad"} />
 
-                      <ContenedorHabilidad Habilidad={"Gestión de calidad"} />
+                      <ContenedorHabilidadSolo Habilidad={"Gestión de calidad"} />
                     </div>
                   </section>
                 </div>
