@@ -61,9 +61,9 @@ const About = () => {
           </div>
 
           <div className="flex-shrink-0 lg:mt-12 lg:px-4 flex justify-center">
-            <div class="person">
-              <div class="containerx">
-                <div class="containerx-inner">
+            <div className="person">
+              <div classNme="containerx">
+                <div className="containerx-inner">
                   <img
                     src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffull_cuadro_blanco.988df149.png&w=256&q=75"
                     alt="Profile"
