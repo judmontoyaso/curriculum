@@ -62,15 +62,15 @@ const About = () => {
 
           <div className="flex-shrink-0 lg:mt-12 lg:px-4 flex justify-center">
             <div className="person">
-              <div classNme="containerx">
+              <div className="containerx">
                 <div className="containerx-inner">
                   <img
-                    src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffull_cuadro_blanco.988df149.png&w=256&q=75"
+                    src="https://juandeveloper.ninja/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffull_cuadro_blanco.988df149.png&w=256&q=75"
                     alt="Profile"
                     className="circle"
                   ></img>
                   <img
-                    src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile-removebg-preview.2d1ce854.png&w=256&q=75"
+                    src="https://juandeveloper.ninja/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile-removebg-preview.2d1ce854.png&w=256&q=75"
                     className="img img1"
                   ></img>
                 </div>
