@@ -1,8 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import profile from "/public/profile-removebg-preview.png";
-import fondo from "/public/full_cuadro_blanco.png";
-
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
 import { Particle } from "./Particle";

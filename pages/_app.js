@@ -1,6 +1,7 @@
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import "../styles/globals.css";
+import "../styles/poPoutEffect.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { config } from "@fortawesome/fontawesome-svg-core";
