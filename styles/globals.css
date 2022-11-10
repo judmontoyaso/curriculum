@@ -22,7 +22,7 @@
     height: 10px!important;
     position: absolute!important;
     top: 390px!important;
-    width: 800px!important;
+    
   }
   .containerx:hover {
     transform: scale(0.54)!important;
@@ -33,7 +33,7 @@
     );
     position: relative!important;
     transform-origin: 50%!important;
-    top: -200px!important;
+    top: -300px!important;
   }
   .circle {
     background-color: #fee7d3!important;
