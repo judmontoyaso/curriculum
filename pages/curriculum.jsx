@@ -74,7 +74,7 @@ const curriculum = () => {
                     placeholder="blur"
                   />
                 </div>
-                <h1 className="text-center text-3xl font-semibold mb-2">
+                <h1 className=" text-center text-3xl font-semibold mb-2">
                   Juan David Montoya
                 </h1>
                 <h2 className="text-center text-xl font-light">Ingeniero</h2>
@@ -169,7 +169,10 @@ const curriculum = () => {
                     </div>
                     <p className="leading-8 grid grid-cols-3">
                       {habilidadesPrincipales.map((habilidad) => (
-                        <span key={habilidad} className="rounded-xl bg-gray-300 dark:bg-gray-500 px-4  mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400 cursor-pointer">
+                        <span
+                          key={habilidad}
+                          className="rounded-xl bg-gray-300 dark:bg-gray-500 px-4  mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400 cursor-pointer"
+                        >
                           {habilidad}
                         </span>
                       ))}
@@ -182,8 +185,11 @@ const curriculum = () => {
                     </div>
                     <p className="leading-8 grid grid-cols-1">
                       {habilidadesBiotecnologia.map((habilidad) => (
-                       <span key={habilidad} className="rounded-xl bg-gray-300 dark:bg-gray-500 px-4  mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400 cursor-pointer">
-                           {habilidad}
+                        <span
+                          key={habilidad}
+                          className="rounded-xl bg-gray-300 dark:bg-gray-500 px-4  mr-2 mb-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400 cursor-pointer"
+                        >
+                          {habilidad}
                         </span>
                       ))}
                     </p>
@@ -313,7 +319,9 @@ const curriculum = () => {
 
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
                       <ContenedorHabilidadSolo Habilidad={"Desarrollo Web"} />
-                      <ContenedorHabilidadSolo Habilidad={"Análisis de datos"} />
+                      <ContenedorHabilidadSolo
+                        Habilidad={"Análisis de datos"}
+                      />
                       <ContenedorHabilidadSolo Habilidad={"Creatividad"} />
                       <ContenedorHabilidadSolo Habilidad={"SEO"} />
                     </div>
@@ -346,7 +354,7 @@ const curriculum = () => {
                       <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
                         NTC - ISO 9001
                       </span>
-                      <span className="rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
+                      <span className="rounded-xl  bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400">
                         Ciencia de los alimentos
                       </span>
                     </div>
@@ -379,8 +387,9 @@ const curriculum = () => {
                       Habilidades:
                     </div>
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
-                      
-                      <ContenedorHabilidadSolo Habilidad={"Servicio al cliente"} />
+                      <ContenedorHabilidadSolo
+                        Habilidad={"Servicio al cliente"}
+                      />
                       <ContenedorHabilidadSolo Habilidad={"Ventas"} />
                     </div>
                   </section>
@@ -428,9 +437,13 @@ const curriculum = () => {
                     <div className="lg:inline-block lg:w-8/12 w-full lg:ml-10 grid">
                       <ContenedorHabilidadSolo Habilidad={"NTC - ISO 9001"} />
 
-                      <ContenedorHabilidadSolo Habilidad={"Gestión de calidad"} />
+                      <ContenedorHabilidadSolo
+                        Habilidad={"Gestión de calidad"}
+                      />
 
-                      <ContenedorHabilidadSolo Habilidad={"Gestión de calidad"} />
+                      <ContenedorHabilidadSolo
+                        Habilidad={"Gestión de calidad"}
+                      />
                     </div>
                   </section>
                 </div>

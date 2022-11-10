@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import GithubRepoCard from "./GithubRepoCard";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 const GithubRepo = () => {
   const [repo, setRepo] = useState([]);
@@ -12,7 +13,12 @@ const GithubRepo = () => {
       `https://api.github.com/search/repositories?q=user:judmontoyaso+sort:author-date-asc`
     );
 
-    let repos = res.data.items.splice(0, 6);
+    let repos = res.data.items.sort((a, b) => -(a.id - b.id));
+    // for (let i = 0; i < 9; i++) {
+    //   let re = res.data.items[i].id;
+
+    //   console.log(re);
+    // }
 
     setRepo(repos);
   }, []);
@@ -20,6 +26,7 @@ const GithubRepo = () => {
   if (typeof repo === undefined) {
     return "....";
   }
+  console.log(repo);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-10 lg:mt-10 gap-y-20">
@@ -29,6 +36,7 @@ const GithubRepo = () => {
         <GithubRepoCard latestRepo={latestRepo} key={latestRepo.id} />
       ))}
     </div>
+    
   );
 };
 

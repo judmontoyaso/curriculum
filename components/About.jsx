@@ -1,13 +1,15 @@
 import React from "react";
 import Image from "next/image";
-import profile from "/public/profile.jpg";
+import profile from "/public/profile-removebg-preview.png";
+import fondo from "/public/full_cuadro_blanco.png";
+
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
 import { Particle } from "./Particle";
 
 const About = () => {
   const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
-//////////////
+  //////////////
 
   return (
     <div className="container px-4 mx-auto">
@@ -57,16 +59,23 @@ const About = () => {
               </p>
             </div>
           </div>
-          <div className="flex-shrink-0 lg:mt-12 lg:px-4 mb-10">
-            <Image
-              src={profile}
-              alt="Profile"
-              priority={true}
-              className="rounded-full"
-              width={180}
-              height={200}
-              placeholder="blur"
-            />
+
+          <div className="flex-shrink-0 lg:mt-12 lg:px-4 flex justify-center">
+            <div class="person">
+              <div class="containerx">
+                <div class="containerx-inner">
+                  <img
+                    src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffull_cuadro_blanco.988df149.png&w=256&q=75"
+                    alt="Profile"
+                    className="circle"
+                  ></img>
+                  <img
+                    src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile-removebg-preview.2d1ce854.png&w=256&q=75"
+                    className="img img1"
+                  ></img>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </RoughNotationGroup>
