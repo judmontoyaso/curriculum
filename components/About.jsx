@@ -61,12 +61,12 @@ const About = () => {
               <div className="containerx">
                 <div className="containerx-inner">
                   <img
-                    src="https://juandeveloper.ninja/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffull_cuadro_blanco.988df149.png&w=256&q=75"
+                    src="https://i.postimg.cc/52GsSvYn/full-cuadro-blanco.png"
                     alt="Profile"
                     className="circle"
                   ></img>
                   <img
-                    src="https://juandeveloper.ninja/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile-removebg-preview.2d1ce854.png&w=256&q=75"
+                    src="https://i.postimg.cc/3wvnSR27/profile-removebg-preview.png"
                     className="img img1"
                   ></img>
                 </div>
