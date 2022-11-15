@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import ActiveRoute from "./ActiveRoute";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import LikeButton from "./LikeButton";
 
 const Navigation = () => {
   const [active, setActive] = useState(false);
@@ -26,7 +27,7 @@ const Navigation = () => {
   return (
     <nav className="sticky top-0 z-20 py-2 bg-gray-200 md:py-4 md:mb-6  dark:bg-black  transition-all duration-1000">
       <ThemeSwitch />
-
+<LikeButton/>
       <button
         className="float-right pr-3 pl-3 pt-1 dark:hover:text-blue-400 hover:text-green-500 rounded-sm lg:hidden text-black ml-auto outline-none justify-end dark:text-white  hover:text-xl"
         onClick={handleClick}
