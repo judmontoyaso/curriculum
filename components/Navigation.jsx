@@ -45,32 +45,52 @@ const Navigation = () => {
       >
         <div className=" lg:inline-flex lg:flex-row lg:ml-auto lg:mr-10 lg:w-auto w-full lg:items-center items-end  flex flex-col lg:h-auto  lg:sticky absolute dark:bg-black dark:bg-opacity-80 bg-white lg:bg-transparent lg:dark:bg-transparent bg-opacity-80  transition-color duration-1000">
           <ActiveRoute href="/">
-            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
+            <RoughNotation
+              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
+              type={"bracket"}
+              brackets = {['left', 'right']}
+            >
               <FontAwesomeIcon icon={faUserCircle} />
               <span className="lg:ml-2 ml-5 ">Perfil</span>
             </RoughNotation>
           </ActiveRoute>
           <ActiveRoute href="/curriculum">
-            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
+            <RoughNotation
+              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
+              type={"bracket"}
+              brackets = {['left', 'right']}
+            >
               <FontAwesomeIcon icon={faFileAlt} />
               <span className="lg:ml-2 ml-5">Curriculum</span>
             </RoughNotation>
           </ActiveRoute>
           <ActiveRoute href="/project">
-            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
+            <RoughNotation
+              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
+              type={"bracket"}
+              brackets = {['left', 'right']}
+            >
               <FontAwesomeIcon icon={faLaptopCode} />
               <span className="lg:ml-2 ml-5">Proyectos</span>
             </RoughNotation>
           </ActiveRoute>
           <ActiveRoute href="/blog">
-            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
+            <RoughNotation
+              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
+              type={"bracket"}
+              brackets = {['left', 'right']}
+            >
               <FontAwesomeIcon icon={faPiedPiper} />
 
               <span className="lg:ml-2 ml-5">Blog</span>
             </RoughNotation>
           </ActiveRoute>
           <ActiveRoute href="/contact">
-            <RoughNotation color={theme === "dark" ? "#1ACF79 " : "#2db7f5"} type={"box"}>
+            <RoughNotation
+              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
+              type={"bracket"}
+              brackets = {['left', 'right']}
+            >
               <FontAwesomeIcon icon={faPaperPlane} />
               <span className="lg:ml-2 ml-5">Contacto</span>
             </RoughNotation>
