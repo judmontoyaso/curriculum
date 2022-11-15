@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import ActiveRoute from "./ActiveRoute";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import LikeButton from "./LikeButton";
 
 const Navigation = () => {
   const [active, setActive] = useState(false);
@@ -26,6 +27,9 @@ const Navigation = () => {
   return (
     <nav className="sticky top-0 z-20 py-2 bg-gray-200 md:py-4 md:mb-6  dark:bg-black  transition-all duration-1000">
       <ThemeSwitch />
+      <div className=" left-40 top-4 absolute">
+        <LikeButton />
+      </div>
 
       <button
         className="float-right pr-3 pl-3 pt-1 dark:hover:text-blue-400 hover:text-green-500 rounded-sm lg:hidden text-black ml-auto outline-none justify-end dark:text-white  hover:text-xl"
@@ -48,7 +52,7 @@ const Navigation = () => {
             <RoughNotation
               color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
               type={"bracket"}
-              brackets = {['left', 'right']}
+              brackets={["left", "right"]}
             >
               <FontAwesomeIcon icon={faUserCircle} />
               <span className="lg:ml-2 ml-5 ">Perfil</span>
@@ -58,7 +62,7 @@ const Navigation = () => {
             <RoughNotation
               color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
               type={"bracket"}
-              brackets = {['left', 'right']}
+              brackets={["left", "right"]}
             >
               <FontAwesomeIcon icon={faFileAlt} />
               <span className="lg:ml-2 ml-5">Curriculum</span>
@@ -68,7 +72,7 @@ const Navigation = () => {
             <RoughNotation
               color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
               type={"bracket"}
-              brackets = {['left', 'right']}
+              brackets={["left", "right"]}
             >
               <FontAwesomeIcon icon={faLaptopCode} />
               <span className="lg:ml-2 ml-5">Proyectos</span>
@@ -78,7 +82,7 @@ const Navigation = () => {
             <RoughNotation
               color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
               type={"bracket"}
-              brackets = {['left', 'right']}
+              brackets={["left", "right"]}
             >
               <FontAwesomeIcon icon={faPiedPiper} />
 
@@ -89,7 +93,7 @@ const Navigation = () => {
             <RoughNotation
               color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
               type={"bracket"}
-              brackets = {['left', 'right']}
+              brackets={["left", "right"]}
             >
               <FontAwesomeIcon icon={faPaperPlane} />
               <span className="lg:ml-2 ml-5">Contacto</span>
