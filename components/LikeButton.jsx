@@ -8,9 +8,9 @@ const LikeButton = () => {
   const [color, setColor] = useState('text-gray-500');
   const [textColor, setTextColor] = useState('text-gray-900');
   const [activeButton, setActiveButton] = useState(false);
-
-
   const [bgColor, setBgColor] = useState('bg-white');
+  const [buttonEffect, setButtonEffect] = useState('btn-5');
+
 
 
   const [sumLike, setSumLike] = useState();
@@ -44,18 +44,20 @@ const LikeButton = () => {
     setBgColor('bg-blue-900')
     setTextColor('text-white')
     setActiveButton(true)
-
+    setButtonEffect("")
     getServerSideProps();
     console.log(color)
   };
 
+ 
+
   return (
-    <div className={`transition-none p-1 flex flex-row items-center mr-4 mt-0.5  border    border-gray-300 rounded-lg ${bgColor} ${activeButton ? 'cursor-default' : 'cursor-pointer'}`}>
+    <div className={`${buttonEffect} transition-none p-1 flex flex-row items-center mr-4 mt-0.5  border    border-gray-300 rounded-lg ${bgColor} ${activeButton ? 'cursor-default' : 'cursor-pointer'}`}>
       <button
         aria-label="Toggle"
         type="button"
         FontAwesomeIcon
-        className={`pr-1 pl-1  mr-1 ${activeButton ? 'cursor-default' : 'cursor-pointer'}`}
+        className={` pr-1 pl-1  mr-1 ${activeButton ? 'cursor-default' : 'cursor-pointer'}`}
         onClick={likeSum}
         disabled = {activeButton}
       >
