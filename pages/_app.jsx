@@ -4,13 +4,17 @@ import "../styles/globals.css";
 import "../styles/poPoutEffect.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
+import React, { useState } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import Particles from "react-tsparticles";
 config.autoAddCss = false;
 
-function MyApp({ Component, pageProps }) {
+
+
+function MyApp({ Component, pageProps}) {
   
+
+
   return (
     <>
       <Head>

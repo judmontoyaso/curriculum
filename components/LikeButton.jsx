@@ -1,14 +1,28 @@
-import { useEffect, useState } from "react";
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
 
 const LikeButton = () => {
-  const [like, setLike] = useState(0);
+  const [like, setLike] = useState();
+  useEffect(() => {
+    async function getServerSideProps(context) {
+      let res = await fetch("http://localhost:3000/api/likes", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      let likes = await res.json();
+      setLike(likes);
+    }
+    getServerSideProps();
+  });
 
+  console.log(like);
   // When mounted on client, now we can show the UI
-
-  const likeSume = () => {
-    setLike(like + 1), [like];
+  const likeSum = () => {
+    setLike(like + 1);
   };
 
   return (
@@ -18,7 +32,7 @@ const LikeButton = () => {
         type="button"
         FontAwesomeIcon
         className="pr-1 pl-1 ml-1 mr-1"
-        onClick={likeSume}
+        onClick={likeSum}
       >
         <FontAwesomeIcon
           icon={faThumbsUp}

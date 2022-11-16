@@ -7,7 +7,22 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { Particle } from "../components/Particle";
 
+
+// export async function getServerSideProps(context) {
+//     const client = await clientPromise;
+  
+//     const db = client.db("curriculum");
+  
+//     let likes = await db.collection("likes").find({}).toArray();
+//     likes = JSON.parse(JSON.stringify(likes[0].likes));
+  
+//     return {
+//       props: { likes },
+//     };
+//   }
+
 const Contact = () => {
+
   const numStr = "000000" + ((Math.random() * 1000000) | 0);
   const numero = numStr.substring(numStr.length - 6);
   const [contactNumber, setContactNumber] = useState(numero);
@@ -98,7 +113,8 @@ const Contact = () => {
                   />
                 </div>
                 {formik.touched.nombre && formik.errors.nombre ? (
-                  <div className="my-2 mx-1 border-l-4 border-red-500  text-red-700 px-2 text-xs">
+                  <div className="my-2 bg-red-100 border-l-4 border-red-500  rounded-2xl text-red-700 p-4">
+                    <p className="front-bold">Ups!</p>
                     <p>{formik.errors.nombre}</p>
                   </div>
                 ) : null}
@@ -116,7 +132,8 @@ const Contact = () => {
                   />
                 </div>
                 {formik.touched.email && formik.errors.email ? (
-                  <div className="my-2 mx-1   border-l-4 border-red-500  text-red-700 px-2 text-xs">
+                  <div className="my-2 bg-red-100 border-l-4 border-red-500 rounded-2xl text-red-700 p-4">
+                    <p className="front-bold">Ups!</p>
                     <p>{formik.errors.email}</p>
                   </div>
                 ) : null}
@@ -136,7 +153,8 @@ const Contact = () => {
                   ></textarea>
                 </label>
                 {formik.touched.mensaje && formik.errors.mensaje ? (
-                  <div className="my-2 mx-1  border-red-500  border-l-4  text-red-700 px-2 text-xs">
+                  <div className="my-2 bg-red-100 border-l-4 border-red-500 rounded-2xl text-red-700 p-4">
+                    <p className="front-bold">Ups!</p>
                     <p>{formik.errors.mensaje}</p>
                   </div>
                 ) : null}
@@ -150,7 +168,7 @@ const Contact = () => {
               <div className="col-span-2 text-right">
                 <button
                   type="submit"
-                  className="py-2 px-4  bg-indigo-600 hover:bg-green-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-xl "
+                  className="py-2 px-4  bg-indigo-600 hover:bg-green-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-xl "
                 >
                   Enviar
                 </button>
