@@ -5,24 +5,34 @@ import { useState, useEffect } from "react";
 
 const LikeButton = () => {
   const [like, setLike] = useState();
-  useEffect(() => {
-    async function getServerSideProps(context) {
-      let res = await fetch("https://www.juandeveloper.ninja/api/likes", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      let likes = await res.json();
-      setLike(likes);
-    }
-    getServerSideProps();
-  });
+  const [sumLike, setSumLike] = useState();
 
-  console.log(like);
-  // When mounted on client, now we can show the UI
+  async function getServerSideProps(context) {
+    let res = await fetch("https://www.juandeveloper.ninja/api/likes", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let likes = await res.json();
+    likes = likes[0].likes;
+    console.log(likes);
+    setLike(likes);
+  }
+  getServerSideProps();
+
+  async function getServerSidePropss(context) {
+    let resp = await fetch("https://www.juandeveloper.ninja/api/likes", {
+      method: "POST",
+      body: JSON.parse(context),
+    });
+    resp = await resp.json();
+  }
+
+  // When mount ed on client, now we can show the UI
   const likeSum = () => {
-    setLike(like + 1);
+    getServerSidePropss(like + 1);
+    getServerSideProps();
   };
 
   return (
