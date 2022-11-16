@@ -28,13 +28,14 @@ const Navigation = () => {
     <nav className="sticky top-0 z-20 py-2 bg-gray-200 md:py-4 md:mb-6  dark:bg-black  transition-all duration-1000">
       <ThemeSwitch />
 
-      <div className=" left-40 top-4 absolute">
+    
+<div className="float-right flex flex-row">
+
+      <div className="  !transition-none ">
         <LikeButton />
       </div>
-
-
       <button
-        className="float-right pr-3 pl-3 pt-1 dark:hover:text-blue-400 hover:text-green-500 rounded-sm lg:hidden text-black ml-auto outline-none justify-end dark:text-white  hover:text-xl"
+        className=" pr-3 pl-3 pt-1 dark:hover:text-blue-400 hover:text-green-500 rounded-sm lg:hidden text-black ml-auto outline-none justify-end dark:text-white  hover:text-xl"
         onClick={handleClick}
       >
         {!active ? (
@@ -42,14 +43,14 @@ const Navigation = () => {
         ) : (
           <FontAwesomeIcon icon={faHotdog} size="lg" />
         )}
-      </button>
-
+      </button></div>
       <div
         className={`${
           active ? "" : "hidden"
         }   w-full lg:inline-flex lg:flex-grow lg:w-auto lg:float-right`}
       >
         <div className=" lg:inline-flex lg:flex-row lg:ml-auto lg:mr-10 lg:w-auto w-full lg:items-center items-end  flex flex-col lg:h-auto  lg:sticky absolute dark:bg-black dark:bg-opacity-80 bg-white lg:bg-transparent lg:dark:bg-transparent bg-opacity-80  transition-color duration-1000">
+          
           <ActiveRoute href="/">
             <RoughNotation
               color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
@@ -101,6 +102,8 @@ const Navigation = () => {
               <span className="lg:ml-2 ml-5">Contacto</span>
             </RoughNotation>
           </ActiveRoute>
+
+
         </div>
       </div>
     </nav>
