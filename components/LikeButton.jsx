@@ -16,7 +16,7 @@ const LikeButton = () => {
   const [sumLike, setSumLike] = useState();
 
   async function getServerSideProps(context) {
-    let res = await fetch("https://www.juandeveloper.ninja/api/likes", {
+    let res = await fetch("http://localhost:3000/api/likes", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const LikeButton = () => {
   getServerSideProps();
 
   async function getServerSidePropss(context) {
-    let resp = await fetch("https://www.juandeveloper.ninja/api/likes", {
+    let resp = await fetch("http://localhost:3000/api/likes", {
       method: "POST",
       body: JSON.parse(context),
     });
@@ -66,8 +66,8 @@ const LikeButton = () => {
           size=""
           className={`mr-1  ${color} ${activeButton ? '' : 'hover:text-blue-900'}`}
         />
-      </button>
       <span className={`text-sm mr-1 !transition-none  ${textColor}`}>{like}</span>
+      </button>
     </div>
   );
 };
