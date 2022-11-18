@@ -2,6 +2,7 @@ import React from "react";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
 import { Particle } from "./Particle";
+import Link from "next/link";
 
 const About = () => {
   const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
@@ -55,22 +56,23 @@ const About = () => {
               </p>
             </div>
           </div>
-
-          <div className="flex-shrink-0 lg:mt-12 lg:px-4 flex justify-center">
-            <div className="person">
-              <div className="containerx">
-                <div className="containerx-inner">
-                  <img
-                    src="https://i.postimg.cc/52GsSvYn/full-cuadro-blanco.png"
-                    alt="Profile"
-                    className="circle"
-                  ></img>
-                  <img
-                    src="https://i.postimg.cc/3wvnSR27/profile-removebg-preview.png"
-                    className="img img1"
-                  ></img>
+          <div className="flex-shrink-0 lg:mt-12 lg:px-4 flex justify-center ">
+            <div className="person ">
+              <Link href={"/curriculum"}>
+                <div className="containerx cursor-pointer">
+                  <div className="containerx-inner">
+                    <img
+                      src="https://i.postimg.cc/52GsSvYn/full-cuadro-blanco.png"
+                      alt="Profile"
+                      className="circle"
+                    ></img>
+                    <img
+                      src="https://i.postimg.cc/3wvnSR27/profile-removebg-preview.png"
+                      className="img img1"
+                    ></img>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

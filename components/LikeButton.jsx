@@ -67,8 +67,8 @@ const LikeButton = () => {
           size=""
           className={`mr-1  ${color} ${activeButton ? '' : 'hover:text-blue-900'}`}
         />
-      </button>
       <span className={`text-sm mr-1 !transition-none  ${textColor}`}>{like}</span>
+      </button>
     </div>
   );
 };
