@@ -3,6 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 
+
 const LikeButton = () => {
   const [like, setLike] = useState();
   const [color, setColor] = useState('text-gray-500');
@@ -16,7 +17,7 @@ const LikeButton = () => {
   const [sumLike, setSumLike] = useState();
 
   async function getServerSideProps(context) {
-    let res = await fetch("https://www.juandeveloper.ninja/api/likes", {
+    let res = await fetch("/api/likes", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +31,7 @@ const LikeButton = () => {
   getServerSideProps();
 
   async function getServerSidePropss(context) {
-    let resp = await fetch("https://www.juandeveloper.ninja/api/likes", {
+    let resp = await fetch("/api/likes", {
       method: "POST",
       body: JSON.parse(context),
     });
