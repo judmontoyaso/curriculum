@@ -12,10 +12,6 @@ const LikeButton = () => {
   const [bgColor, setBgColor] = useState('bg-white');
   const [buttonEffect, setButtonEffect] = useState('btn-5');
 
-
-
-  const [sumLike, setSumLike] = useState();
-
   async function getServerSideProps(context) {
     let res = await fetch("/api/likes", {
       method: "GET",
@@ -53,7 +49,7 @@ const LikeButton = () => {
  
 
   return (
-    <div className={`${buttonEffect} transition-none p-1 flex flex-row items-center mr-4 mt-0.5  border    border-gray-300 rounded-lg ${bgColor} ${activeButton ? 'cursor-default' : 'cursor-pointer'}`}>
+    <div className={`${buttonEffect} transition-none p-1 flex flex-row items-center mr-4 mt-0.5  border button-like    border-gray-300 rounded-lg ${bgColor} ${activeButton ? 'cursor-default' : 'cursor-pointer'}`}>
       <button
         aria-label="Toggle"
         type="button"
@@ -65,7 +61,7 @@ const LikeButton = () => {
         <FontAwesomeIcon
           icon={faThumbsUp}
           size=""
-          className={`mr-1  ${color} ${activeButton ? '' : 'hover:text-blue-900'}`}
+          className={`mr-1  ${color} ${activeButton ? '' : 'icono'}`}
         />
       <span className={`text-sm mr-1 !transition-none  ${textColor}`}>{like}</span>
       </button>

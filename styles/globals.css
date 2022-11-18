@@ -18,3 +18,8 @@
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px;
 }
+
+
+.button-like:hover button .icono{
+    color: rgba(30, 58, 138, var(--tw-text-opacity)) !important;
+}
