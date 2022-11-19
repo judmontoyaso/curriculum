@@ -23,3 +23,16 @@
 .button-like:hover button .icono{
     color: rgba(30, 58, 138, var(--tw-text-opacity)) !important;
 }
+
+.my-icon .--fa-primary-color{
+    color:blue
+}
+.my-icon {
+    fill: #1a237e;
+    opacity: 0.5;
+    
+ }
+ .my-icon .fa-secondary {
+    fill: #c62828;
+    opacity: 0.8;
+ }

@@ -57,7 +57,7 @@ const LikeButton = () => {
         aria-label="Toggle"
         type="button"
         FontAwesomeIcon
-        className={` pr-1 pl-1   ${
+        className={` pr-1 pl-1  ${
           activeButton ? "cursor-default" : "cursor-pointer"
         }`}
         onClick={likeSum}
@@ -68,10 +68,10 @@ const LikeButton = () => {
           size=""
           className={`mr-1  ${color} ${activeButton ? "" : "icono"}`}
         />
-        <span className={`text-sm ml-1 !transition-none  ${textColor}`}>
+        <span className={`text-sm  ml-1 !transition-none  ${textColor}`}>
           {loading ? (
             <svg
-              className={`animate-spin  ml-2 inline-block h-4 w-4 text-gray-400
+              className={`animate-spin  mb-1 inline-block h-4 w-4 text-gray-400
               }`}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
