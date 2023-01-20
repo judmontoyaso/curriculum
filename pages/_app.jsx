@@ -4,16 +4,19 @@ import "../styles/globals.css";
 import "../styles/poPoutEffect.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import TagManager from "react-gtm-module/dist/TagManager";
 config.autoAddCss = false;
 
 
 
 function MyApp({ Component, pageProps}) {
   
-
+  useEffect(() => {
+    TagManager.initialize({ gtmId: 'GTM-M2WN9NN' });
+}, []);
 
   return (
     <>
