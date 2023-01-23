@@ -17,9 +17,12 @@ function MyApp({ Component, pageProps}) {
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2WN9NN' });
     window.dataLayer.push({ 
+      event: 'pageview',
+  page: {
       url: 'https://www.juandeveloper.ninja/',
-      event: 'pageview' 
-    }); 
+      title: 'Juan David Montoya',
+    }}); 
+    console.log(window.dataLayer)
 }, []);
 
 
