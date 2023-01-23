@@ -16,15 +16,12 @@ function MyApp({ Component, pageProps}) {
   
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2WN9NN' });
+    window.dataLayer.push({ 
+      event: 'pageview' 
+    }); 
 }, []);
 
-window.dataLayer.push({ 
-  event: 'página vista', 
-  page: { 
-    url: 'https://www.juandeveloper.ninja/', 
-    tittle: 'Juan David Montoya' 
-  } 
-});
+
   return (
     <>;
       <Head>
