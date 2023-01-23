@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps}) {
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2WN9NN' });
     window.dataLayer.push({ 
+      url: 'https://www.juandeveloper.ninja/',
       event: 'pageview' 
     }); 
 }, []);
