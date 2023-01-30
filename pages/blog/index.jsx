@@ -12,6 +12,7 @@ export default function Blog({ devDotToPosts }) {
            Si quieres saber como construí mi sitio web y contruir el tuyo, acá puedes ver algunos posts que he escrito en dev.to y que utilice para diseñar este sitio.
           </p>{" "}
         Solo tienes que dar click en la tarjeta!
+        
         </span>
 
         <hr className="mt-8  border-gray-300 dark:border-gray-700" />
