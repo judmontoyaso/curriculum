@@ -10,24 +10,21 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import TagManager from "react-gtm-module/dist/TagManager";
 config.autoAddCss = false;
 
-
-
-function MyApp({ Component, pageProps}) {
-  
+function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    TagManager.initialize({ gtmId: 'GTM-M2WN9NN' });
-    window.dataLayer.push({ 
-      event: 'pageview',
-  page: {
-      url: 'https://www.juandeveloper.ninja/',
-      title: 'Juan David Montoya',
-    }}); 
-    console.log(window.dataLayer)
-}, []);
-
+    TagManager.initialize({ gtmId: "GTM-M2WN9NN" });
+    window.dataLayer.push({
+      event: "pageview",
+      page: {
+        url: "https://www.juandeveloper.ninja/",
+        title: "Juan David Montoya",
+      },
+    });
+    console.log(window.dataLayer);
+  }, []);
 
   return (
-    <>;
+    <>
       <Head>
         <title>Juan David Montoya</title>
         <link rel="icon" href="/favicon.ico" />
@@ -35,9 +32,8 @@ function MyApp({ Component, pageProps}) {
       <ThemeProvider attribute="class" enableSystem={false}>
         <Navigation />
 
-        
-    <Component {...pageProps} />
-        
+        <Component {...pageProps} />
+
         <Footer />
       </ThemeProvider>
     </>
