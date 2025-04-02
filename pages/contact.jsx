@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import emailjs, { send } from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { Particle } from "../components/Particle";
@@ -28,65 +28,31 @@ const Contact = () => {
   const numero = numStr.substring(numStr.length - 6);
   const [contactNumber, setContactNumber] = useState(numero);
   const [loading, setLoading] = useState(false);
+  const form = useRef();
 
   console.log(loading);
 
-  function SendEmail(object) {
-    emailjs
-      .send(
-        "formulario_contacto_cv",
-        "template_5243rb1",
-        object,
-        "N6pIVzH5Sti9MeJbI"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-          toast.success(
-            "Gracias por escribirme, me pondré en contácto pronto!",
-            {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: resolvedTheme === "dark" ? "dark" : "light",
-              transition: Flip,
-            }
-          );
-          setLoading(false);
-
-          // Swal.fire(
-          //   "Enviado!",
-          //   "Gracias por escribirme, me pondré en contácto pronto",
-          //   "success"
-          // );
-          formik.resetForm();
-        },
-        (error) => {
-          toast.error("Ocurrio un error, por favor intente más tarde", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: resolvedTheme === "dark" ? "dark" : "light",
-            transition: Flip,
-          });
-          // Swal.fire(
-          //   "Error",
-          //   "Ocurrio un error, por favor intente más tarde",
-          //   "error"
-          // );
-          console.log(error.text);
-        }
-      );
-  }
+    emailjs.sendForm('service_your_service_id', 'template_your_template_id', form.current, 'your_public_key')
+      .then((result) => {
+        Swal.fire({
+          title: '¡Mensaje enviado!',
+          text: 'Gracias por contactarme, te responderé lo antes posible.',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+        form.current.reset();
+      }, (error) => {
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
+      });
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -109,7 +75,7 @@ const Contact = () => {
       const { nombre, email, mensaje, numero } = valores;
 
       try {
-        SendEmail(valores);
+        sendEmail(e);
       } catch (error) {
         console.log(error);
       }
@@ -118,121 +84,71 @@ const Contact = () => {
     },
   });
   return (
-    <div>
-      <div>
-        <span className="text-center"></span>
-      </div>
-      <div className="flex justify-center ">
-        <Particle />
-
-        <form
-          className="flex w-3/4 max-w-sm space-x-3 lg:w-full lg:max-w-max"
-          onSubmit={formik.handleSubmit}
-        >
-          <ToastContainer />
-          <div className="w-full max-w-full lg:max-w-full px-5 py-10 m-auto mt-10 bg-white rounded-xl shadow-2xl dark:bg-gray-800 transition-colors duration-1000 dark:shadow-inner">
-            <div className="mb-10 text-3xl font-light text-center text-gray-800 dark:text-white">
-              <span className="font-semibold ">¡ Contáctame !</span>
-            </div>
-            <div className="grid max-w-xl grid-cols-2 gap-4 m-auto">
-              <div className="col-span-2 lg:col-span-1">
-                <div className=" relative ">
-                  <input
-                    type="text"
-                    id="nombre"
-                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
-                    placeholder="Nombre"
-                    value={formik.values.nombre}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                </div>
-                {formik.touched.nombre && formik.errors.nombre ? (
-                  <div className="my-2 bg-red-100 border-l-4 border-red-500  rounded-2xl text-red-700 p-4">
-                    <p className="front-bold">Ups!</p>
-                    <p>{formik.errors.nombre}</p>
-                  </div>
-                ) : null}
-              </div>
-              <div className="col-span-2 lg:col-span-1">
-                <div className=" relative ">
-                  <input
-                    type="email"
-                    id="email"
-                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-300  focus:border-transparent"
-                    placeholder="email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                </div>
-                {formik.touched.email && formik.errors.email ? (
-                  <div className="my-2 bg-red-100 border-l-4 border-red-500 rounded-2xl text-red-700 p-4">
-                    <p className="front-bold">Ups!</p>
-                    <p>{formik.errors.email}</p>
-                  </div>
-                ) : null}
-              </div>
-              <div className="col-span-2">
-                <label className="text-gray-700" htmlFor="name">
-                  <textarea
-                    className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-300  focus:border-transparent"
-                    id="mensaje"
-                    placeholder="Ingresa tu comentario"
-                    name="mensaje"
-                    rows="5"
-                    cols="40"
-                    value={formik.values.mensaje}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  ></textarea>
-                </label>
-                {formik.touched.mensaje && formik.errors.mensaje ? (
-                  <div className="my-2 bg-red-100 border-l-4 border-red-500 rounded-2xl text-red-700 p-4">
-                    <p className="front-bold">Ups!</p>
-                    <p>{formik.errors.mensaje}</p>
-                  </div>
-                ) : null}
-              </div>
-
-              <input
-                type="hidden"
-                name="contact_number"
-                value={formik.values.numero}
-              />
-              <div className="col-span-2 text-right">
-                <button
-                  type="submit"
-                  className="py-2 px-4  bg-indigo-600 hover:bg-green-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-xl "
-                >
-                  {!loading ? "Enviar" : "Enviando"}
-                  <svg
-                    className={`animate-spin  ml-2 mr-3 inline-block h-5 w-5 text-white ${
-                      !loading ? "hidden" : "visible"
-                    }`}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                </button>
+    <div className="min-h-screen bg-white dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 relative">
+      <Particle />
+      <div className="max-w-md mx-auto">
+        <div className="text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+            Contáctame
+          </h2>
+          <p className="mt-4 text-lg text-gray-500 dark:text-gray-300">
+            ¿Tienes alguna pregunta o propuesta? ¡Escríbeme!
+          </p>
+        </div>
+        <div className="mt-12">
+          <form ref={form} onSubmit={sendEmail} className="grid grid-cols-1 gap-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Nombre
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  name="user_name"
+                  id="name"
+                  required
+                  className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                />
               </div>
             </div>
-          </div>
-        </form>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Email
+              </label>
+              <div className="mt-1">
+                <input
+                  type="email"
+                  name="user_email"
+                  id="email"
+                  required
+                  className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Mensaje
+              </label>
+              <div className="mt-1">
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Enviar mensaje
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
