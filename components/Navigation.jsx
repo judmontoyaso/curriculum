@@ -9,6 +9,7 @@ import {
   faFileAlt,
   faLaptopCode,
   faPaperPlane,
+  faHistory,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHotdog } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
@@ -69,6 +70,16 @@ const Navigation = () => {
             >
               <FontAwesomeIcon icon={faFileAlt} />
               <span className="lg:ml-2 ml-5">Curriculum</span>
+            </RoughNotation>
+          </ActiveRoute>
+          <ActiveRoute href="/timeline">
+            <RoughNotation
+              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
+              type={"bracket"}
+              brackets={["left", "right"]}
+            >
+              <FontAwesomeIcon icon={faHistory} />
+              <span className="lg:ml-2 ml-5">Timeline</span>
             </RoughNotation>
           </ActiveRoute>
           <ActiveRoute href="/project">

@@ -27,37 +27,34 @@ const About = () => {
               </RoughNotation>
             </h1>
             <div className="mt-6 text-gray-800 dark:text-white">
-              <p className="mb-4 text-justify">
+              <div className="mb-4 text-justify">
                 Soy un{" "}
                 <RainbowHighlight color={colors[0]} type={"highlight"}>
                   {" "}
-                  Ingeniero
+                  Especialista en Analítica y Big Data
                 </RainbowHighlight>{" "}
-                orientado a la calidad. Soy una persona positiva,{" "}
+                con experiencia en ciencia de datos y desarrollo web. Me especializo en análisis de datos con{" "}
                 <RainbowHighlight color={colors[1]} type={"highlight"}>
-                  proactiva,
+                  Machine Learning
                 </RainbowHighlight>{" "}
-                comprometida y responsable. Tengo conocimientos en biotecnología
-                y en{" "}
+                y desarrollo de aplicaciones usando{" "}
                 <RainbowHighlight color={colors[3]} type={"highlight"}>
-                  desarrollo web,
+                  Python, Next.js y .NET
                 </RainbowHighlight>{" "}
-                me apasiona el manejo de herramientas tecnológicas que permitan
-                aprovechar la eficiencia en el manejo de la información.
-                <p className="mb-4 text-justify">
-                  {" "}
-                  Mi objetivo profesional esta enfocado en integrarme en un{" "}
-                  <RainbowHighlight color={colors[0]} type={"highlight"}>
-                    equipo de trabajo
-                  </RainbowHighlight>
-                  , donde pueda aportar desde mi formación y que me permita
-                  crecer profesionalmente.
-                </p>
-              </p>
+                . He trabajado en proyectos de desarrollo, IA, ETL, y visualización, y me gusta optimizar
+                procesos con automatización.
+              </div>
+              <div className="mb-4 text-justify">
+                Actualmente me desempeño como{" "}
+                <RainbowHighlight color={colors[0]} type={"highlight"}>
+                  Bioinformatic Associate
+                </RainbowHighlight>
+                {" "}en Iluma Alliance, donde lidero el desarrollo de plataformas web para visualización de reportes gráficos interactivos y participo en la creación de agentes IA para la generación de resúmenes de información.
+              </div>
             </div>
           </div>
           <div className="flex-shrink-0 lg:mt-12 lg:px-4 flex justify-center ">
-            <div className="person ">
+            <div className="person">
               <Link href={"/curriculum"}>
                 <div className="containerx cursor-pointer">
                   <div className="containerx-inner">
@@ -65,11 +62,12 @@ const About = () => {
                       src="https://i.postimg.cc/52GsSvYn/full-cuadro-blanco.png"
                       alt="Profile"
                       className="circle"
-                    ></img>
+                    />
                     <img
                       src="https://i.postimg.cc/3wvnSR27/profile-removebg-preview.png"
+                      alt="Profile"
                       className="img img1"
-                    ></img>
+                    />
                   </div>
                 </div>
               </Link>

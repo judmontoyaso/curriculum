@@ -2,6 +2,7 @@ import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import "../styles/globals.css";
 import "../styles/poPoutEffect.css";
+import "../styles/timeline.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import React, { useState, useEffect } from "react";

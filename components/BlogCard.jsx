@@ -31,40 +31,40 @@ export default function BlogCard({
   }/${date.getFullYear()}`;
 
   return (
-    <Link as={`/blog/posts/${slug}`} href="/blog/posts/[slug]">
+    <Link href={`/blog/posts/${slug}`} className="block">
       <article className="rounded-2xl shadow-xl lg:p-3 p-2 dark:shadow-xl bg-gray-200 bg-opacity-90 dark:bg-gray-800 text-justify hover:scale-105 ease-in-out hover:-translate-y-1 duration-700">
         <div className="p-6 flex-1">
           <div className="border-l-4 border-green-400 pl-3 dark:border-indigo-400 transition-colors duration-1000">
-            <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">
+            <div className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">
               {formatedDate}
-            </h2>
-            <h1 className="font-semibold text-xl dark:text-gray-200 text-gray-700">
+            </div>
+            <h2 className="font-semibold text-xl dark:text-gray-200 text-gray-700">
               {title}
-            </h1>
-            <p className="leading-relaxed mb-2 text-gray-600 dark:text-gray-400">
+            </h2>
+            <div className="leading-relaxed mb-2 text-gray-600 dark:text-gray-400">
               {desc}
-            </p>
+            </div>
           </div>
         </div>
         <div className="px-6 pt-4 pb-2">
           {tagList.map((tag, id) => (
             <span
               key={id}
-              className=" py-1  rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2  hover:bg-indigo-400 hover:text-white  dark:hover:bg-green-400"
+              className="py-1 rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400"
             >
               #{tag}
             </span>
           ))}
         </div>
 
-        <div className="flex items-center flex-wrap px-2 py-4 ">
-          <a className="text-blue-500 inline-flex items-center md:mb-2 lg:mb-0  cursor-pointer">
+        <div className="flex items-center flex-wrap px-2 py-4">
+          <span className="text-blue-500 inline-flex items-center md:mb-2 lg:mb-0 cursor-pointer">
             Continua leyendo
             <FontAwesomeIcon
               icon={faBookOpen}
               className="text-blue-500 w-4 h-4 ml-2"
             />
-          </a>
+          </span>
           <span className="text-gray-600 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
             <FontAwesomeIcon
               icon={faHeart}

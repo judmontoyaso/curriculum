@@ -1,14 +1,14 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'class', // or 'media' or 'class'
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  darkMode: 'class',
   theme: {
     extend: {
       visibility: ['hover', 'focus'],
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 }

@@ -1,0 +1,207 @@
+.vertical-timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.vertical-timeline::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background-color: #e5e7eb;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+}
+
+.dark .vertical-timeline::before {
+  background: #4b5563;
+}
+
+.vertical-timeline-element {
+  position: relative;
+  margin: 2rem 0;
+  width: 50%;
+  padding-right: 30px;
+}
+
+.vertical-timeline-element:nth-child(even) {
+  margin-left: 50%;
+  padding-right: 0;
+  padding-left: 30px;
+}
+
+.vertical-timeline-element-content {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.vertical-timeline-element-content.expanded {
+  max-height: 500px;
+}
+
+.vertical-timeline-element-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.vertical-timeline-element-content-arrow {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: -7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+
+.vertical-timeline-element:nth-child(even) .vertical-timeline-element-content-arrow {
+  right: auto;
+  left: -7px;
+}
+
+.vertical-timeline-element-icon {
+  position: absolute;
+  top: 0;
+  right: -17px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 16px;
+  line-height: 34px;
+  box-shadow: 0 0 0 4px #fff, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.vertical-timeline-element:hover .vertical-timeline-element-icon {
+  transform: scale(1.1);
+}
+
+.vertical-timeline-element:nth-child(even) .vertical-timeline-element-icon {
+  right: auto;
+  left: -17px;
+}
+
+.vertical-timeline-element-date {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 120%;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.vertical-timeline-element:nth-child(even) .vertical-timeline-element-date {
+  right: auto;
+  left: 120%;
+}
+
+.timeline-header {
+  margin-bottom: 1rem;
+}
+
+.vertical-timeline-element-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vertical-timeline-element-title .year {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.vertical-timeline-element-subtitle {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.timeline-content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.vertical-timeline-element-content.expanded .timeline-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vertical-timeline-element p {
+  margin: 0;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media screen and (max-width: 768px) {
+  .vertical-timeline::before {
+    left: 31px;
+  }
+
+  .vertical-timeline-element {
+    width: 100%;
+    margin-left: 70px;
+    padding-right: 0;
+    padding-left: 30px;
+  }
+
+  .vertical-timeline-element:nth-child(even) {
+    margin-left: 70px;
+    padding-left: 30px;
+  }
+
+  .vertical-timeline-element-icon {
+    left: 14px;
+  }
+
+  .vertical-timeline-element:nth-child(even) .vertical-timeline-element-icon {
+    left: 14px;
+  }
+
+  .vertical-timeline-element-date {
+    left: 70px;
+  }
+
+  .vertical-timeline-element:nth-child(even) .vertical-timeline-element-date {
+    left: 70px;
+  }
+}
+
+.vertical-timeline-element--work .vertical-timeline-element-icon {
+  background: #3b82f6;
+}
+
+.vertical-timeline-element--education .vertical-timeline-element-icon {
+  background: #ef4444;
+}
+
+.vertical-timeline-element-content-arrow {
+  border-right: 7px solid #3b82f6;
+}
+
+.vertical-timeline-element--education .vertical-timeline-element-content-arrow {
+  border-right: 7px solid #ef4444;
+} 
