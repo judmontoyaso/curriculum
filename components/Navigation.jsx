@@ -6,7 +6,7 @@ import { faHotdog } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import ActiveRoute from "./ActiveRoute";
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { RoughNotation } from "react-rough-notation";
 import LikeButton from "./LikeButton";
 
 const Navigation = () => {
