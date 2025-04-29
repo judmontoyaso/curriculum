@@ -1,24 +1,58 @@
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faCodeBranch, faCode } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const GithubRepoCard = ({ latestRepo }) => {
   return (
-    <div className="rounded-2xl shadow-xl p-6 dark:shadow-xl bg-gray-200 bg-opacity-90 dark:bg-gray-800 text-justify hover:scale-105 ease-in-out hover:-translate-y-1 duration-700">
-      <div className="border-l-4 border-green-400 pl-3 dark:border-indigo-400 transition-colors duration-1000">
-        <h1 className="font-semibold text-xl dark:text-gray-200 text-gray-700">
-          {latestRepo.name}
-        </h1>
-      </div>
-      <p className="text-base font-normal my-4 text-gray-500">
-        {latestRepo.description}
-      </p>
-      <div className="self-end">
-        <a
-          href={latestRepo.clone_url}
-          className="font-semibold group flex flex-row space-x-2 w-full items-center"
-        >
-          <p> Ver Repositorio </p>
-          <div className="transform  group-hover:translate-x-2 transition duration-300">
-            &rarr;
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+      <div className="p-6">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex-1">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              {latestRepo.name}
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 text-sm">
+              {latestRepo.description || "Sin descripción"}
+            </p>
           </div>
+          <FontAwesomeIcon 
+            icon={faCode} 
+            className="text-blue-500 text-2xl ml-4"
+          />
+        </div>
+
+        {/* Stats */}
+        <div className="flex items-center space-x-4 mb-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center">
+            <FontAwesomeIcon icon={faStar} className="mr-1" />
+            <span>{latestRepo.stargazers_count}</span>
+          </div>
+          <div className="flex items-center">
+            <FontAwesomeIcon icon={faCodeBranch} className="mr-1" />
+            <span>{latestRepo.forks_count}</span>
+          </div>
+        </div>
+
+        {/* Languages */}
+        {latestRepo.language && (
+          <div className="mb-4">
+            <span className="inline-block px-3 py-1 text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900 rounded-full">
+              {latestRepo.language}
+            </span>
+          </div>
+        )}
+
+        {/* Link */}
+        <a
+          href={latestRepo.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200"
+        >
+          <FontAwesomeIcon icon={faGithub} className="mr-2" />
+          <span>Ver repositorio</span>
         </a>
       </div>
     </div>

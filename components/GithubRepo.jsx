@@ -7,33 +7,49 @@ import { text } from "@fortawesome/fontawesome-svg-core";
 
 const GithubRepo = () => {
   const [repo, setRepo] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  useEffect(async () => {
-    const res = await axios.get(
-      `https://api.github.com/search/repositories?q=user:judmontoyaso+sort:author-date-asc`
-    );
+  useEffect(() => {
+    const fetchRepos = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.github.com/search/repositories?q=user:judmontoyaso+sort:author-date-asc`
+        );
+        const repos = res.data.items.sort((a, b) => -(a.id - b.id));
+        setRepo(repos);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    let repos = res.data.items.sort((a, b) => -(a.id - b.id));
-    // for (let i = 0; i < 9; i++) {
-    //   let re = res.data.items[i].id;
-
-    //   console.log(re);
-    // }
-
-    setRepo(repos);
+    fetchRepos();
   }, []);
 
-  if (typeof repo === undefined) {
-    return "....";
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      </div>
+    );
   }
-  console.log(repo);
+
+  if (error) {
+    return (
+      <div className="text-center text-red-500">
+        Error al cargar los repositorios: {error}
+      </div>
+    );
+  }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-10 lg:mt-10 gap-y-20">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
       {/* Single github Repo */}
 
-      {repo.map((latestRepo, id) => (
-        <GithubRepoCard latestRepo={latestRepo} key={latestRepo.id} />
+      {repo.map((latestRepo) => (
+        <GithubRepoCard key={latestRepo.id} latestRepo={latestRepo} />
       ))}
     </div>
     

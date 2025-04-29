@@ -52,11 +52,8 @@ const Curriculum = () => {
   ];
   
   const saveFile = () => {
-    //Para obtener archivos pdf, se obtiene un link de archivo codificado en base 64 y descargarlo como pdf
-    saveAs(
-      "https://drive.google.com/uc?export=download&id=1-2Z5qX5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z",
-      "CV_JuanMontoya.pdf"
-    );
+    // Descargar el archivo CV desde la carpeta public
+    saveAs("/cv_Juan_Montoya.pdf", "CV_JuanMontoya.pdf");
   };
   
   return (

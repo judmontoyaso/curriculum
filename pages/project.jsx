@@ -1,27 +1,48 @@
 import React from "react";
 import GithubRepo from "../components/GithubRepo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faCode } from "@fortawesome/free-solid-svg-icons";
 
-const project = () => {
+const Project = () => {
   return (
-    <div className="text-center">
-      <h1 className="text-xl font-bold text-gray-900 lg:text-3xl dark:text-white mt-10">
-        Proyectos
-      </h1>
-      <div className="lg:mr-28 lg:ml-28 text-justify lg:mt-10 lg:mb-14 mt-10 mb-14 mr-10 ml-10">
-        <span className="font-semibold text-gray-600 dark:text-gray-400 text-lg">
-          <p>
-            En esta sección encontraras los ultimos proyectos personales en los
-            que he trabajado, incluyendo este sitio web.
-          </p>{" "}
-          Si deseas ver el repositorio da click en la flecha y te llevara a
-          github.
-        </span>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center mb-4">
+            <FontAwesomeIcon icon={faCode} className="text-3xl text-blue-500 mr-3" />
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white relative">
+              Mis Proyectos
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform scale-x-75"></div>
+            </h1>
+          </div>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            En esta sección encontrarás los últimos proyectos personales en los que he trabajado, 
+            incluyendo este sitio web. Cada proyecto representa un desafío único y una oportunidad 
+            para aplicar mis habilidades en desarrollo web y tecnología.
+          </p>
+        </div>
 
-        <hr className="mt-8  border-gray-300 dark:border-gray-700" />
+        {/* Projects Grid */}
+        <div className="mb-12">
+          <GithubRepo />
+        </div>
+
+        {/* GitHub Profile Link */}
+        <div className="text-center mt-12">
+          <a
+            href="https://github.com/judmontoyaso"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors duration-300"
+          >
+            <FontAwesomeIcon icon={faGithub} className="text-xl mr-2" />
+            <span>Visita mi perfil de GitHub</span>
+          </a>
+        </div>
       </div>
-      <GithubRepo></GithubRepo>
     </div>
   );
 };
 
-export default project;
+export default Project;
