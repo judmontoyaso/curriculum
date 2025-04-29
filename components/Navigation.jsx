@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ThemeSwitch from "./ThemeSwitch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHamburger, faUserCircle, faFileAlt, faLaptopCode, faHistory } from "@fortawesome/free-solid-svg-icons";
+import { faHamburger, faUserCircle, faFileAlt, faLaptopCode, faHistory, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faHotdog } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
@@ -92,6 +92,20 @@ const Navigation = () => {
                   <div className="flex items-center py-2 lg:py-0">
                     <FontAwesomeIcon icon={faLaptopCode} className="mr-2" />
                     <span>Proyectos</span>
+                  </div>
+                </RoughNotation>
+              </ActiveRoute>
+              
+              <ActiveRoute href="/contact">
+                <RoughNotation
+                  color={theme === "dark" ? "#EC4899" : "#EC4899"}
+                  type="underline"
+                  strokeWidth={2}
+                  padding={[0, 2]}
+                >
+                  <div className="flex items-center py-2 lg:py-0">
+                    <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
+                    <span>Contacto</span>
                   </div>
                 </RoughNotation>
               </ActiveRoute>
