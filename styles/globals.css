@@ -2,37 +2,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.btn-5 {
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
   
-    
+  body {
+    @apply text-gray-800 dark:text-gray-200;
+  }
+}
+
+@layer components {
+  .btn-5 {
     outline: 1px solid;
     outline-color: rgba(89, 31, 196, 0.185);
     outline-offset: 0px;
     text-shadow: none;
     transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-}
+  }
 
-.btn-5:hover {
+  .btn-5:hover {
     box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5),
         0 0 20px rgba(255, 255, 255, 0.2);
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px;
-}
+  }
 
-
-.button-like:hover button .icono{
+  .button-like:hover button .icono {
     color: rgba(30, 58, 138, var(--tw-text-opacity)) !important;
-}
+  }
 
-.my-icon .--fa-primary-color{
-    color:blue
-}
-.my-icon {
+  .my-icon .--fa-primary-color {
+    color: blue;
+  }
+  
+  .my-icon {
     fill: #1a237e;
     opacity: 0.5;
-    
- }
- .my-icon .fa-secondary {
+  }
+  
+  .my-icon .fa-secondary {
     fill: #c62828;
     opacity: 0.8;
- }
+  }
+  
+  /* Nuevos estilos minimalistas */
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6;
+  }
+  
+  .highlight {
+    @apply font-medium text-blue-600 dark:text-blue-400;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500 dark:from-blue-400 dark:to-teal-300;
+  }
+}

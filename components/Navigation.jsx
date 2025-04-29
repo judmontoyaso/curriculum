@@ -1,16 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ThemeSwitch from "./ThemeSwitch";
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPiedPiper } from "@fortawesome/free-brands-svg-icons";
-import {
-  faHamburger,
-  faUserCircle,
-  faFileAlt,
-  faLaptopCode,
-  faPaperPlane,
-  faHistory,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHamburger, faUserCircle, faFileAlt, faLaptopCode, faHistory } from "@fortawesome/free-solid-svg-icons";
 import { faHotdog } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
@@ -24,97 +15,88 @@ const Navigation = () => {
   const handleClick = () => {
     setActive(!active);
   };
-  const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
+  
   return (
-    <nav className="sticky top-0 z-20 py-2 bg-gray-200 md:py-4 md:mb-6  dark:bg-black  transition-all duration-1000">
-      <ThemeSwitch />
-
-    
-<div className="float-right flex flex-row">
-
-      <div className="  !transition-none ">
-        <LikeButton />
-      </div>
-      <button
-        className=" pr-3 pl-3 pt-1 dark:hover:text-blue-400 hover:text-green-500 rounded-sm lg:hidden text-black ml-auto outline-none justify-end dark:text-white  hover:text-xl"
-        onClick={handleClick}
-      >
-        {!active ? (
-          <FontAwesomeIcon icon={faHamburger} size="lg" />
-        ) : (
-          <FontAwesomeIcon icon={faHotdog} size="lg" />
-        )}
-      </button></div>
-      <div
-        className={`${
-          active ? "" : "hidden"
-        }   w-full lg:inline-flex lg:flex-grow lg:w-auto lg:float-right`}
-      >
-        <div className=" lg:inline-flex lg:flex-row lg:ml-auto lg:mr-10 lg:w-auto w-full lg:items-center items-end  flex flex-col lg:h-auto  lg:sticky absolute dark:bg-black dark:bg-opacity-80 bg-white lg:bg-transparent lg:dark:bg-transparent bg-opacity-80  transition-color duration-1000">
+    <nav className="sticky top-0 z-20 py-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <ThemeSwitch />
+            <div className="ml-4">
+              <LikeButton />
+            </div>
+          </div>
           
-          <ActiveRoute href="/">
-            <RoughNotation
-              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
-              type={"bracket"}
-              brackets={["left", "right"]}
-            >
-              <FontAwesomeIcon icon={faUserCircle} />
-              <span className="lg:ml-2 ml-5 ">Perfil</span>
-            </RoughNotation>
-          </ActiveRoute>
-          <ActiveRoute href="/curriculum">
-            <RoughNotation
-              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
-              type={"bracket"}
-              brackets={["left", "right"]}
-            >
-              <FontAwesomeIcon icon={faFileAlt} />
-              <span className="lg:ml-2 ml-5">Curriculum</span>
-            </RoughNotation>
-          </ActiveRoute>
-          <ActiveRoute href="/timeline">
-            <RoughNotation
-              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
-              type={"bracket"}
-              brackets={["left", "right"]}
-            >
-              <FontAwesomeIcon icon={faHistory} />
-              <span className="lg:ml-2 ml-5">Timeline</span>
-            </RoughNotation>
-          </ActiveRoute>
-          <ActiveRoute href="/project">
-            <RoughNotation
-              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
-              type={"bracket"}
-              brackets={["left", "right"]}
-            >
-              <FontAwesomeIcon icon={faLaptopCode} />
-              <span className="lg:ml-2 ml-5">Proyectos</span>
-            </RoughNotation>
-          </ActiveRoute>
-          <ActiveRoute href="/blog">
-            <RoughNotation
-              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
-              type={"bracket"}
-              brackets={["left", "right"]}
-            >
-              <FontAwesomeIcon icon={faPiedPiper} />
-
-              <span className="lg:ml-2 ml-5">Blog</span>
-            </RoughNotation>
-          </ActiveRoute>
-          <ActiveRoute href="/contact">
-            <RoughNotation
-              color={theme === "dark" ? "#1ACF79 " : "#2db7f5"}
-              type={"bracket"}
-              brackets={["left", "right"]}
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-              <span className="lg:ml-2 ml-5">Contacto</span>
-            </RoughNotation>
-          </ActiveRoute>
-
-
+          <button
+            className="lg:hidden text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
+            onClick={handleClick}
+          >
+            {!active ? (
+              <FontAwesomeIcon icon={faHamburger} size="lg" />
+            ) : (
+              <FontAwesomeIcon icon={faHotdog} size="lg" />
+            )}
+          </button>
+          
+          <div className={`${active ? "block" : "hidden"} lg:block absolute lg:relative top-full left-0 w-full lg:w-auto bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm lg:bg-transparent lg:dark:bg-transparent border-b border-gray-200 dark:border-gray-700 lg:border-0`}>
+            <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-8 p-4 lg:p-0">
+              <ActiveRoute href="/">
+                <RoughNotation
+                  color={theme === "dark" ? "#3B82F6" : "#3B82F6"}
+                  type="underline"
+                  strokeWidth={2}
+                  padding={[0, 2]}
+                >
+                  <div className="flex items-center py-2 lg:py-0">
+                    <FontAwesomeIcon icon={faUserCircle} className="mr-2" />
+                    <span>Perfil</span>
+                  </div>
+                </RoughNotation>
+              </ActiveRoute>
+              
+              <ActiveRoute href="/curriculum">
+                <RoughNotation
+                  color={theme === "dark" ? "#10B981" : "#10B981"}
+                  type="underline"
+                  strokeWidth={2}
+                  padding={[0, 2]}
+                >
+                  <div className="flex items-center py-2 lg:py-0">
+                    <FontAwesomeIcon icon={faFileAlt} className="mr-2" />
+                    <span>Curriculum</span>
+                  </div>
+                </RoughNotation>
+              </ActiveRoute>
+              
+              <ActiveRoute href="/timeline">
+                <RoughNotation
+                  color={theme === "dark" ? "#F59E0B" : "#F59E0B"}
+                  type="underline"
+                  strokeWidth={2}
+                  padding={[0, 2]}
+                >
+                  <div className="flex items-center py-2 lg:py-0">
+                    <FontAwesomeIcon icon={faHistory} className="mr-2" />
+                    <span>Timeline</span>
+                  </div>
+                </RoughNotation>
+              </ActiveRoute>
+              
+              <ActiveRoute href="/project">
+                <RoughNotation
+                  color={theme === "dark" ? "#84CC16" : "#84CC16"}
+                  type="underline"
+                  strokeWidth={2}
+                  padding={[0, 2]}
+                >
+                  <div className="flex items-center py-2 lg:py-0">
+                    <FontAwesomeIcon icon={faLaptopCode} className="mr-2" />
+                    <span>Proyectos</span>
+                  </div>
+                </RoughNotation>
+              </ActiveRoute>
+            </div>
+          </div>
         </div>
       </div>
     </nav>

@@ -5,7 +5,7 @@ import "../styles/poPoutEffect.css";
 import "../styles/timeline.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import TagManager from "react-gtm-module/dist/TagManager";
@@ -21,21 +21,26 @@ function MyApp({ Component, pageProps }) {
         title: "Juan David Montoya",
       },
     });
-    console.log(window.dataLayer);
   }, []);
 
   return (
     <>
       <Head>
         <title>Juan David Montoya</title>
+        <meta name="description" content="Portfolio y CV de Juan David Montoya - Especialista en Analítica y Big Data" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
       <ThemeProvider attribute="class" enableSystem={false}>
-        <Navigation />
-
-        <Component {...pageProps} />
-
-        <Footer />
+        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+          <Navigation />
+          <main className="flex-grow">
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+        </div>
       </ThemeProvider>
     </>
   );
