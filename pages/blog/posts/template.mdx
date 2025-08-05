@@ -1,0 +1,49 @@
+---
+title: 'Título del artículo'
+date: '2024-03-21'
+image: '/path/to/featured-image.jpg'
+description: 'Una breve descripción del artículo que capture la atención del lector y resuma el contenido principal.'
+tags: ['desarrollo-web', 'react', 'nextjs']
+---
+
+import BlogPost from '../../../components/BlogPost';
+
+# Título del artículo
+
+## Introducción
+
+Tu introducción aquí. Escribe un párrafo atractivo que enganche al lector y establezca el contexto del artículo.
+
+## Subtítulo 1
+
+Contenido de la primera sección. Puedes usar **negrita**, *cursiva*, y otros elementos de markdown.
+
+### Sub-sección
+
+- Lista de elementos
+- Otro elemento
+- Y otro más
+
+## Código de ejemplo
+
+```javascript
+// Puedes incluir bloques de código
+const ejemplo = () => {
+  console.log("¡Hola mundo!");
+};
+```
+
+## Conclusión
+
+Resumen de los puntos principales y conclusiones.
+
+export default ({ children }) => (
+  <BlogPost
+    title="Título del artículo"
+    date="21 de Marzo, 2024"
+    image="/path/to/featured-image.jpg"
+    description="Una breve descripción del artículo que capture la atención del lector y resuma el contenido principal."
+  >
+    {children}
+  </BlogPost>
+);

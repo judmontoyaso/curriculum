@@ -1,103 +1,74 @@
-/* eslint-disable react/no-danger */
-/* eslint-disable camelcase */
-import Head from "next/head";
-import Link from "next/link";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import BlogPost from "../../../components/BlogPost";
+import { useRouter } from "next/router";
 
+// MDX components
+const components = {
+  BlogPost,
+  // Add any custom components you want to use in MDX here
+};
 
+export default function Post({ source, frontMatter }) {
+  const router = useRouter();
 
-export default function Post({ devDotToPost }) {
-  const {
-    title,
-    published_at,
-    social_image,
-    body_html,
-    user,
-    type_of,
-    description,
-    canonical_url,
-  } = devDotToPost;
-  const date = new Date(published_at);
-  const formatedDate = `${date.getDate()}/${
-    parseInt(date.getMonth(), 10) + 1
-  }/${date.getFullYear()}`;
+  // Show loading state if page is not yet generated
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      <Head>
-        <meta property="og:type" content={type_of} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={social_image} />
-        <meta property="og:url" content={canonical_url} />
-      </Head>
-      <div className="flex justify-center">
-        <article className="text-xs w-full md:w-3/4 ">
-          <div className="border-2 text-black bg-white md:rounded-lg overflow-hidden">
-            <div className="p-4 md:p-32">
-              <h1>{title}</h1>
-              <div className="flex items-center text-gray-600">
-                <span className="mx-4">{user.name}</span>
-                <span className="text-sm">{formatedDate}</span>
-              </div>
-              <div
-                className="markdown"
-                dangerouslySetInnerHTML={{ __html: body_html }}
-              />
-            </div>
-          </div>
-          <Link href="/blog">
-            <a className="text-blue-500 inline-flex items-center md:mb-2 lg:mb-0 cursor-pointer text-base pb-8">
-              <svg
-                className="w-4 h-4 mr-2"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                viewBox="0 0 24 24"
-              >
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-              Back
-            </a>
-          </Link>
-        </article>
-      </div>
+    <div className="min-h-screen py-10">
+      <MDXRemote {...source} components={components} />
     </div>
   );
 }
 
-export const getStaticProps = async ({ params }) => {
-  const devDotToPost = await fetch(
-    `https://dev.to/api/articles/juanmontoya/${params.slug}`
-  );
-  const res = await devDotToPost.json();
-
-  return {
-    props: {
-      devDotToPost: res,
-    },
-  };
-};
-
 export async function getStaticPaths() {
-  const devDotToPosts = await fetch(
-    `https://dev.to/api/articles?username=juanmontoya`
-  );
-  const posts = await devDotToPosts.json();
-
-  if (typeof posts === undefined) {
-    return "....";
-  }
+  // Get local post paths
+  const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
+  const filenames = fs.readdirSync(postsDirectory);
+  
+  const paths = filenames
+    .filter(filename => filename.endsWith(".mdx") && filename !== "template.mdx")
+    .map(filename => ({
+      params: {
+        slug: filename.replace(/\.mdx$/, ""),
+      },
+    }));
 
   return {
-    paths: posts.map((post) => {
-      return {
-        params: {
-          slug: post.slug,
-        },
-      };
-    }),
-    fallback: false,
+    paths,
+    fallback: true,
   };
+}
+
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+
+  // Get local post
+  const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+
+  try {
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { content, data } = matter(fileContents);
+    const mdxSource = await serialize(content, {
+      scope: data,
+    });
+
+    return {
+      props: {
+        source: mdxSource,
+        frontMatter: data,
+      },
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
 }

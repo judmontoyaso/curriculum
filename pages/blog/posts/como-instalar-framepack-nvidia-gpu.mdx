@@ -1,0 +1,281 @@
+---
+title: 'Cómo Instalar y Ejecutar FramePack en tu PC con GPU NVIDIA (Paso a Paso)'
+date: '2025-05-05'
+image: '/blog/framepack.png'
+description: 'Guía completa para instalar y configurar FramePack, un modelo de IA para generar animaciones fluidas, en Windows con GPU NVIDIA. Incluye solución de problemas comunes y optimizaciones.'
+tags: ['AI', 'NVIDIA', 'Python', 'Tutorial', 'FramePack']
+author: 'Juan Montoya'
+---
+
+import BlogPost from '../../../components/BlogPost';
+
+<BlogPost
+  title="Cómo Instalar y Ejecutar FramePack en tu PC con GPU NVIDIA (Paso a Paso)"
+  date="05 de mayo de 2025"
+  image="/blog/framepack.png"
+  description="Guía completa para instalar y configurar FramePack, un modelo de IA para generar animaciones fluidas, en Windows con GPU NVIDIA. Incluye solución de problemas comunes y optimizaciones."
+>
+
+## Introducción
+
+FramePack es un modelo de inteligencia artificial de próxima generación desarrollado para generar animaciones fluidas a partir de imágenes estáticas. Diseñado por ByteDance, este proyecto optimiza la predicción de fotogramas sucesivos mediante la compresión de contexto de entrada, permitiendo un rendimiento constante sin importar la longitud del video original. Su código fuente está disponible en GitHub, lo que facilita su instalación y personalización localmente.
+
+Este tutorial está orientado a usuarios de Windows 10/11 con GPU NVIDIA (compatible con CUDA 12.6), 32 GB de RAM y Python 3.10.11, proporcionando un entorno virtual aislado para evitar conflictos de dependencias.
+
+<div className="mt-12 bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8 backdrop-blur-sm">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="relative group">
+      <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+      <div className="relative bg-white dark:bg-gray-900 rounded-xl p-4">
+        <div className="aspect-square overflow-hidden rounded-lg">
+          <img 
+            src="/blog/framepack2.png" 
+            alt="Imagen original" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="mt-4 text-center">
+          <h4 className="font-semibold text-gray-900 dark:text-white">Imagen Original</h4>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Ilustración estática en estilo grabado</p>
+        </div>
+      </div>
+    </div>
+
+    <div className="relative group">
+      <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+      <div className="relative bg-white dark:bg-gray-900 rounded-xl p-4">
+        <div className="aspect-square overflow-hidden rounded-lg">
+          <img 
+            src="/blog/framepackgif.gif" 
+            alt="Resultado animado" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="mt-4 text-center">
+          <h4 className="font-semibold text-gray-900 dark:text-white">Resultado Animado</h4>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Animación generada por FramePack</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="text-center text-gray-700 dark:text-gray-300 mt-8 max-w-2xl mx-auto">
+    Como se puede observar, FramePack logra generar una animación fluida y natural a partir de una única imagen estática, 
+    manteniendo la consistencia del estilo artístico y agregando movimientos sutiles que dan vida a la ilustración.
+  </div>
+</div>
+
+## Requisitos del Sistema
+
+<table>
+  <thead>
+    <tr>
+      <th>Recurso</th>
+      <th>Mínimo</th>
+      <th>Recomendado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GPU</td>
+      <td>NVIDIA con soporte CUDA 11.x</td>
+      <td>NVIDIA RTX 2050 o superior (CUDA 12.6)</td>
+    </tr>
+    <tr>
+      <td>RAM</td>
+      <td>16 GB</td>
+      <td>32 GB</td>
+    </tr>
+    <tr>
+      <td>Sistema Operativo</td>
+      <td>Windows 10/11</td>
+      <td>Windows 10/11</td>
+    </tr>
+    <tr>
+      <td>Python</td>
+      <td>3.9+</td>
+      <td>3.10.11</td>
+    </tr>
+    <tr>
+      <td>Espacio libre</td>
+      <td>+5 GB</td>
+      <td>+10 GB</td>
+    </tr>
+  </tbody>
+</table>
+
+Fuentes oficiales: Python 3.10.11 en [python.org](https://python.org) y guía de PyTorch para CUDA 12.6 en [pytorch.org](https://pytorch.org).
+
+## Paso 1: Descargar e Instalar Python 3.10.11
+
+1. Ve al sitio oficial: `python.org/downloads/release/python-31011/`
+2. Descarga el instalador de 64 bits para Windows.
+3. Durante la instalación:
+   * Marca **Add Python to PATH**
+   * Elige **Customize installation**
+   * Activa pip, venv, tkinter y otras herramientas estándar
+   * Selecciona **Install for all users** e instala en `C:\Python310`
+4. Reinicia el sistema al finalizar.
+
+## Paso 2: Crear y Activar un Entorno Virtual
+
+Desde PowerShell o CMD ejecuta:
+
+```bash
+cd %USERPROFILE%\Documents
+```
+
+```bash
+mkdir framepack
+```
+
+```bash
+cd framepack
+```
+
+```bash
+python -m venv venv
+```
+
+```bash
+venv\Scripts\activate
+```
+
+Esto crea un entorno aislado para evitar conflictos con otras librerías.
+
+## Paso 3: Instalar PyTorch con CUDA 12.6
+
+Actualiza pip e instala PyTorch optimizado para tu GPU:
+
+```bash
+pip install --upgrade pip
+```
+
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+```
+
+Luego valida la instalación:
+
+```python
+import torch
+```
+
+```python
+print(torch.cuda.is_available())      # Debe mostrar True
+```
+
+```python
+print(torch.cuda.get_device_name(0))  # Ej: NVIDIA GeForce RTX 2050
+```
+
+Estas instrucciones siguen las guías oficiales de PyTorch para soporte con CUDA 12.6.
+
+## Paso 4: Clonar e Instalar FramePack
+
+Clona el repositorio oficial:
+
+```bash
+git clone https://github.com/lllyasviel/FramePack.git
+```
+
+```bash
+cd FramePack
+```
+
+Instala las dependencias:
+
+```bash
+pip install -r requirements.txt
+```
+
+> *Si no tienes git, descarga el ZIP desde GitHub, extráelo y accede a la carpeta manualmente.*
+
+## Paso 5: Solución de Errores Comunes
+
+<table>
+  <thead>
+    <tr>
+      <th>Error</th>
+      <th>Solución</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Conflicto con `typing-extensions` o `jinja2`</td>
+      <td>ejecutar `pip install --force-reinstall typing-extensions jinja2`</td>
+    </tr>
+    <tr>
+      <td>PyTorch no detecta GPU</td>
+      <td>verifica drivers NVIDIA y CUDA Toolkit 12.6, reinicia el sistema</td>
+    </tr>
+    <tr>
+      <td>Fallos con pip o errores de importación</td>
+      <td>reinstala Python o recrea el entorno virtual</td>
+    </tr>
+    <tr>
+      <td>No se abre la interfaz en navegador</td>
+      <td>abre manualmente `http://localhost:7860`</td>
+    </tr>
+  </tbody>
+</table>
+
+## Paso 6: Ejecutar FramePack con Interfaz Web
+
+Versión completa:
+
+```bash
+python demo_gradio.py
+```
+
+Versión ligera (f1):
+
+```bash
+python demo_gradio_f1.py
+```
+
+Se inicializará un servidor local y se abrirá automáticamente una interfaz web para cargar imágenes y generar animaciones.
+
+## Parámetros y Recomendaciones de Uso
+
+<table>
+  <thead>
+    <tr>
+      <th>Parámetro</th>
+      <th>Valor sugerido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Resolución</td>
+      <td>256–384 px</td>
+    </tr>
+    <tr>
+      <td>FPS</td>
+      <td>24–30</td>
+    </tr>
+    <tr>
+      <td>Max Steps</td>
+      <td>15–20</td>
+    </tr>
+    <tr>
+      <td>Precarga</td>
+      <td>ON (si está disponible)</td>
+    </tr>
+    <tr>
+      <td>Swap</td>
+      <td>Mínimo de 64 GB en Windows</td>
+    </tr>
+  </tbody>
+</table>
+
+*Cierra aplicaciones innecesarias y monitorea el uso de GPU para evitar cuellos de botella.*
+
+### Recursos Adicionales
+
+* [ArXiv: Packing Input Frame Context in Next‑Frame Prediction Models](https://arxiv.org)
+* [GitHub: FramePack (lllyasviel/FramePack)](https://github.com/lllyasviel/FramePack)
+* [Descarga Python 3.10.11](https://python.org/downloads/release/python-31011/)
+* [Guía instalación PyTorch con CUDA 12.6](https://pytorch.org/get-started/locally/)
+
+</BlogPost>

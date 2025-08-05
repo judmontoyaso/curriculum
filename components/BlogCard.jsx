@@ -1,19 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  faArrowAltCircleDown,
-  faArrowRight,
-  faBook,
-  faBookOpen,
-  faBookReader,
-  faComment,
-  faCommentsDollar,
-  faCommentSlash,
-  faHeart,
-  faPeopleArrows,
-} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCommentAlt, faComments } from "@fortawesome/free-regular-svg-icons";
+import { faCalendarAlt, faClock, faTag } from "@fortawesome/free-solid-svg-icons";
 
 export default function BlogCard({
   img,
@@ -21,64 +9,76 @@ export default function BlogCard({
   title,
   desc,
   slug,
-  likes,
-  comments,
-  tagList,
+  tagList = [],
+  readTime = "5 min",
 }) {
   const date = new Date(createdAt);
-  const formatedDate = `${date.getDate()}/${
-    parseInt(date.getMonth(), 10) + 1
-  }/${date.getFullYear()}`;
+  const formattedDate = new Intl.DateTimeFormat('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
 
   return (
-    <Link href={`/blog/posts/${slug}`} className="block">
-      <article className="rounded-2xl shadow-xl lg:p-3 p-2 dark:shadow-xl bg-gray-200 bg-opacity-90 dark:bg-gray-800 text-justify hover:scale-105 ease-in-out hover:-translate-y-1 duration-700">
-        <div className="p-6 flex-1">
-          <div className="border-l-4 border-green-400 pl-3 dark:border-indigo-400 transition-colors duration-1000">
-            <div className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">
-              {formatedDate}
-            </div>
-            <h2 className="font-semibold text-xl dark:text-gray-200 text-gray-700">
-              {title}
-            </h2>
-            <div className="leading-relaxed mb-2 text-gray-600 dark:text-gray-400">
-              {desc}
-            </div>
+    <Link href={`/blog/${slug}`} className="group">
+      <article className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] dark:shadow-gray-700/30">
+        {/* Image Container */}
+        <div className="relative w-full h-48 overflow-hidden">
+          {img ? (
+            <Image
+              src={img}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600" />
+          )}
+          {/* Tags Overlay */}
+          <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+            {tagList.map((tag, idx) => (
+              <span
+                key={idx}
+                className="px-3 py-1 text-sm bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 rounded-full backdrop-blur-sm"
+              >
+                <FontAwesomeIcon icon={faTag} className="mr-2 text-blue-500 dark:text-blue-400" />
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
-        <div className="px-6 pt-4 pb-2">
-          {tagList.map((tag, id) => (
-            <span
-              key={id}
-              className="py-1 rounded-xl bg-gray-300 px-3 dark:bg-gray-500 mb-2 mr-2 hover:bg-indigo-400 hover:text-white dark:hover:bg-green-400"
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
 
-        <div className="flex items-center flex-wrap px-2 py-4">
-          <span className="text-blue-500 inline-flex items-center md:mb-2 lg:mb-0 cursor-pointer">
-            Continua leyendo
-            <FontAwesomeIcon
-              icon={faBookOpen}
-              className="text-blue-500 w-4 h-4 ml-2"
-            />
-          </span>
-          <span className="text-gray-600 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
-            <FontAwesomeIcon
-              icon={faHeart}
-              className="text-red-500 w-4 h-4 mr-1"
-            />
-            {likes}
-          </span>
-          <span className="text-gray-600 inline-flex items-center leading-none text-sm">
-            <FontAwesomeIcon
-              icon={faComment}
-              className="text-gray-500 mr-1 h-4 w-4"
-            />
-            {comments}
-          </span>
+        {/* Content */}
+        <div className="p-6">
+          {/* Meta info */}
+          <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+            <span className="flex items-center">
+              <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-blue-500 dark:text-blue-400" />
+              {formattedDate}
+            </span>
+            <span className="flex items-center">
+              <FontAwesomeIcon icon={faClock} className="mr-2 text-blue-500 dark:text-blue-400" />
+              {readTime}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            {title}
+          </h2>
+
+          {/* Description */}
+          <p className="text-gray-600 dark:text-gray-300 line-clamp-3">
+            {desc}
+          </p>
+
+          {/* Read More */}
+          <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400 font-medium">
+            Leer más
+            <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
         </div>
       </article>
     </Link>
