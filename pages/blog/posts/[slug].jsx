@@ -1,81 +1,74 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
-import BlogPost from "../../../components/BlogPost";
-import { useRouter } from "next/router";
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote } from 'next-mdx-remote';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import BlogPost from '../../../components/BlogPost';
+import ReadingProgress from '../../../components/ReadingProgress';
 
-// Definimos los componentes que estarán disponibles en MDX
 const components = {
   BlogPost,
-  // Puedes agregar más componentes aquí si los necesitas
 };
 
 export default function Post({ source, frontMatter }) {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div className="min-h-screen py-10">
-      <MDXRemote {...source} components={components} />
-    </div>
+    <article className="relative min-h-screen bg-white dark:bg-gray-900">
+      <ReadingProgress />
+      <div className="max-w-4xl mx-auto px-4 pt-20">
+        <MDXRemote {...source} components={components} />
+      </div>
+    </article>
   );
 }
 
-export async function getStaticPaths() {
-  const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
-  const filenames = fs.readdirSync(postsDirectory);
-  
-  const paths = filenames
-    .filter(filename => filename.endsWith(".mdx") && filename !== "template.mdx" && filename !== "[slug].jsx")
-    .map(filename => ({
-      params: {
-        slug: filename.replace(/\.mdx$/, ""),
-      },
-    }));
-
-  return {
-    paths,
-    fallback: true,
-  };
-}
-
 export async function getStaticProps({ params }) {
+  const { slug } = params;
+
+  // Get local post
+  const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
+  const fullPath = path.join(postsDirectory, slug + ".mdx");
+
   try {
-    const { slug } = params;
-    const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
-    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-
-    if (!fs.existsSync(fullPath)) {
-      return {
-        notFound: true,
-      };
-    }
-
     const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { content, data } = matter(fileContents);
-    
-    const mdxSource = await serialize(content, {
-      scope: data,
-      mdxOptions: {
-        development: process.env.NODE_ENV === 'development',
-      },
-    });
+    const { data, content } = matter(fileContents);
+    const mdxSource = await serialize(content);
 
     return {
       props: {
         source: mdxSource,
-        frontMatter: data,
-      },
+        frontMatter: data
+      }
     };
-  } catch (err) {
-    console.error("Error loading blog post:", err);
+  } catch (error) {
+    console.error('Error reading blog post:', error);
     return {
-      notFound: true,
+      notFound: true
+    };
+  }
+}
+
+export async function getStaticPaths() {
+  const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
+  
+  try {
+    const fileNames = fs.readdirSync(postsDirectory);
+    const paths = fileNames
+      .filter(fileName => fileName.endsWith('.mdx'))
+      .map(fileName => ({
+        params: {
+          slug: fileName.replace(/\.mdx$/, '')
+        }
+      }));
+
+    return {
+      paths,
+      fallback: false
+    };
+  } catch (error) {
+    console.error('Error reading blog posts directory:', error);
+    return {
+      paths: [],
+      fallback: false
     };
   }
 }

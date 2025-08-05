@@ -67,17 +67,17 @@ export default function BlogCard({
           </div>
 
           {/* Title */}
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors min-h-[4rem] leading-tight">
             {title}
           </h2>
 
           {/* Description */}
-          <p className="text-gray-600 dark:text-gray-300 line-clamp-3 flex-grow">
+          <p className="text-gray-600 dark:text-gray-300 line-clamp-3 flex-grow text-base">
             {desc}
           </p>
 
           {/* Read More */}
-          <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400 font-medium pt-4 border-t border-gray-100 dark:border-gray-700">
+          <div className="mt-6 flex items-center text-blue-600 dark:text-blue-400 font-medium pt-4 border-t border-gray-100 dark:border-gray-700">
             Leer más
             <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />

@@ -1,130 +1,145 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ThemeSwitch from "./ThemeSwitch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHamburger, faUserCircle, faFileAlt, faLaptopCode, faEnvelope, faBook, faBlog } from "@fortawesome/free-solid-svg-icons";
-import { faHotdog } from "@fortawesome/free-solid-svg-icons";
+import { 
+  faUserCircle, 
+  faFileAlt, 
+  faLaptopCode, 
+  faEnvelope, 
+  faBook, 
+  faBlog,
+  faBars,
+  faXmark
+} from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import ActiveRoute from "./ActiveRoute";
-import { RoughNotation } from "react-rough-notation";
+import { motion, AnimatePresence } from "framer-motion";
 
+const menuItems = [
+  { href: "/", icon: faUserCircle, text: "Perfil", color: "#3B82F6" },
+  { href: "/curriculum", icon: faFileAlt, text: "Curriculum", color: "#10B981" },
+  { href: "/project", icon: faLaptopCode, text: "Proyectos", color: "#84CC16" },
+  { href: "/libros", icon: faBook, text: "Lecturas", color: "#8B5CF6" },
+  { href: "/blog", icon: faBlog, text: "Blog", color: "#F59E0B" },
+  { href: "/contact", icon: faEnvelope, text: "Contacto", color: "#EC4899" }
+];
 
 const Navigation = () => {
-  const [active, setActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { theme } = useTheme();
-  const handleClick = () => {
-    setActive(!active);
+  const router = useRouter();
+  const menuRef = React.useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Cerrar el menú cuando se cambia de ruta
+    setIsOpen(false);
+  }, [router.asPath]);
+
+  const navClasses = `
+    fixed top-0 left-0 right-0 z-50
+    transition-all duration-300
+    ${scrolled 
+      ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg" 
+      : "bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"}
+  `;
+
+  const MenuItem = ({ href, icon, text, color }) => {
+    const isActive = router.asPath === href;
+    
+    return (
+      <ActiveRoute href={href}>
+        <div className="relative group">
+          <div className="flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800">
+            <FontAwesomeIcon 
+              icon={icon} 
+              className={`text-lg ${isActive ? "text-" + color : "text-gray-600 dark:text-gray-300"}`}
+            />
+            <span className={`${isActive ? "text-gray-900 dark:text-white font-medium" : "text-gray-600 dark:text-gray-300"}`}>
+              {text}
+            </span>
+          </div>
+          {isActive && (
+            <motion.div
+              layoutId="activeTab"
+              className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
+              style={{ backgroundColor: color }}
+              transition={{ type: "spring", stiffness: 380, damping: 30 }}
+            />
+          )}
+        </div>
+      </ActiveRoute>
+    );
   };
-  
+
   return (
-    <nav className="sticky top-0 z-20 py-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
+    <nav className={navClasses}>
+      <div ref={menuRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <ThemeSwitch />
-
           </div>
-          
+
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center space-x-1">
+            {menuItems.map((item) => (
+              <MenuItem key={item.href} {...item} />
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
-            onClick={handleClick}
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
           >
-            {!active ? (
-              <FontAwesomeIcon icon={faHamburger} size="lg" />
-            ) : (
-              <FontAwesomeIcon icon={faHotdog} size="lg" />
-            )}
+            <FontAwesomeIcon 
+              icon={isOpen ? faXmark : faBars} 
+              className="text-xl"
+            />
           </button>
-          
-          <div className={`${active ? "block" : "hidden"} lg:block absolute lg:relative top-full left-0 w-full lg:w-auto bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm lg:bg-transparent lg:dark:bg-transparent border-b border-gray-200 dark:border-gray-700 lg:border-0`}>
-            <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-8 p-4 lg:p-0">
-              <ActiveRoute href="/">
-                <RoughNotation
-                  color={theme === "dark" ? "#3B82F6" : "#3B82F6"}
-                  type="underline"
-                  strokeWidth={2}
-                  padding={[0, 2]}
-                >
-                  <div className="flex items-center py-2 lg:py-0">
-                    <FontAwesomeIcon icon={faUserCircle} className="mr-2" />
-                    <span>Perfil</span>
-                  </div>
-                </RoughNotation>
-              </ActiveRoute>
-              
-              <ActiveRoute href="/curriculum">
-                <RoughNotation
-                  color={theme === "dark" ? "#10B981" : "#10B981"}
-                  type="underline"
-                  strokeWidth={2}
-                  padding={[0, 2]}
-                >
-                  <div className="flex items-center py-2 lg:py-0">
-                    <FontAwesomeIcon icon={faFileAlt} className="mr-2" />
-                    <span>Curriculum</span>
-                  </div>
-                </RoughNotation>
-              </ActiveRoute>
-              
-
-              <ActiveRoute href="/project">
-                <RoughNotation
-                  color={theme === "dark" ? "#84CC16" : "#84CC16"}
-                  type="underline"
-                  strokeWidth={2}
-                  padding={[0, 2]}
-                >
-                  <div className="flex items-center py-2 lg:py-0">
-                    <FontAwesomeIcon icon={faLaptopCode} className="mr-2" />
-                    <span>Proyectos</span>
-                  </div>
-                </RoughNotation>
-              </ActiveRoute>
-              
-              <ActiveRoute href="/libros">
-                <RoughNotation
-                  color={theme === "dark" ? "#8B5CF6" : "#8B5CF6"}
-                  type="underline"
-                  strokeWidth={2}
-                  padding={[0, 2]}
-                >
-                  <div className="flex items-center py-2 lg:py-0">
-                    <FontAwesomeIcon icon={faBook} className="mr-2" />
-                    <span>Lecturas</span>
-                  </div>
-                </RoughNotation>
-              </ActiveRoute>
-
-              <ActiveRoute href="/blog">
-                <RoughNotation
-                  color={theme === "dark" ? "#F59E0B" : "#F59E0B"}
-                  type="underline"
-                  strokeWidth={2}
-                  padding={[0, 2]}
-                >
-                  <div className="flex items-center py-2 lg:py-0">
-                    <FontAwesomeIcon icon={faBlog} className="mr-2" />
-                    <span>Blog</span>
-                  </div>
-                </RoughNotation>
-              </ActiveRoute>
-
-              <ActiveRoute href="/contact">
-                <RoughNotation
-                  color={theme === "dark" ? "#EC4899" : "#EC4899"}
-                  type="underline"
-                  strokeWidth={2}
-                  padding={[0, 2]}
-                >
-                  <div className="flex items-center py-2 lg:py-0">
-                    <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-                    <span>Contacto</span>
-                  </div>
-                </RoughNotation>
-              </ActiveRoute>
-            </div>
-          </div>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden absolute left-0 right-0 top-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-700"
+            >
+              <div className="px-4 pt-2 pb-3 space-y-1">
+                {menuItems.map((item) => (
+                  <div key={item.href} className="py-1">
+                    <MenuItem {...item} />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

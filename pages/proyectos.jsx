@@ -85,102 +85,99 @@ const Proyectos = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      {/* Encabezado */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          <RoughNotation
-            type="underline"
-            color="#3B82F6"
-            strokeWidth={2}
-            padding={[0, 2]}
-          >
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-teal-500 to-blue-600 dark:from-teal-900 dark:to-blue-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Mis Proyectos
-          </RoughNotation>
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300">
-          Una selección de proyectos que demuestran mis habilidades en desarrollo web, 
-          ciencia de datos y biotecnología.
-        </p>
+          </h1>
+          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            Una selección de proyectos que demuestran mis habilidades en desarrollo web, 
+            ciencia de datos y biotecnología.
+          </p>
+        </div>
       </div>
 
-      {/* Grid de proyectos */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {proyectos.map((proyecto) => (
-          <div
-            key={proyecto.id}
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-          >
-            {/* Imagen del proyecto */}
-            <div className="relative h-48 w-full">
-              <Image
-                src={proyecto.imagen}
-                alt={proyecto.titulo}
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            {/* Contenido del proyecto */}
-            <div className="p-6">
-              <div className="flex items-center mb-4">
-                <FontAwesomeIcon
-                  icon={proyecto.icono}
-                  className={`text-2xl mr-3 ${proyecto.colorClass}`}
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Grid de proyectos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {proyectos.map((proyecto) => (
+            <div
+              key={proyecto.id}
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            >
+              {/* Imagen del proyecto */}
+              <div className="relative h-48 w-full">
+                <Image
+                  src={proyecto.imagen}
+                  alt={proyecto.titulo}
+                  fill
+                  className="object-cover"
                 />
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  {proyecto.titulo}
-                </h3>
               </div>
 
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {proyecto.descripcion}
-              </p>
-
-              {/* Tecnologías */}
-              <div className="mb-4">
-                <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Tecnologías utilizadas:
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {proyecto.tecnologias.map((tech, index) => (
-                    <span
-                      key={index}
-                      className={`px-3 py-1 ${proyecto.bgClass} ${proyecto.textClass} rounded-full text-sm font-medium`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              {/* Contenido del proyecto */}
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <FontAwesomeIcon
+                    icon={proyecto.icono}
+                    className={`text-2xl mr-3 ${proyecto.colorClass}`}
+                  />
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    {proyecto.titulo}
+                  </h3>
                 </div>
-              </div>
 
-              {/* Enlaces */}
-              <div className="flex justify-end space-x-4">
-                <a
-                  href={proyecto.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                >
-                  <FontAwesomeIcon icon={faGithub} className="text-xl" />
-                </a>
-                {proyecto.demo && (
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  {proyecto.descripcion}
+                </p>
+
+                {/* Tecnologías */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    Tecnologías utilizadas:
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {proyecto.tecnologias.map((tech, index) => (
+                      <span
+                        key={index}
+                        className={`px-3 py-1 ${proyecto.bgClass} ${proyecto.textClass} rounded-full text-sm font-medium`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Enlaces */}
+                <div className="flex justify-end space-x-4">
                   <a
-                    href={proyecto.demo}
+                    href={proyecto.github}
                     target="_blank"
                     rel="noreferrer"
                     className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                   >
-                    <FontAwesomeIcon icon={faGlobe} className="text-xl" />
+                    <FontAwesomeIcon icon={faGithub} className="text-xl" />
                   </a>
-                )}
+                  {proyecto.demo && (
+                    <a
+                      href={proyecto.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    >
+                      <FontAwesomeIcon icon={faGlobe} className="text-xl" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Proyectos; 
+export default Proyectos;

@@ -57,10 +57,23 @@ const Curriculum = () => {
   };
   
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Sidebar - Información personal */}
-        <div className="lg:col-span-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-sky-300 to-indigo-400 dark:from-sky-800 dark:to-indigo-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Curriculum Vitae
+          </h1>
+          <p className="text-xl text-indigo-100 max-w-2xl mx-auto">
+            Mi trayectoria profesional en desarrollo, ciencia de datos y tecnología
+          </p>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Sidebar - Información personal */}
+          <div className="lg:col-span-4">
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
             <div className="p-6">
               <div className="flex flex-col items-center mb-8">
@@ -506,6 +519,7 @@ const Curriculum = () => {
               <p className="text-gray-600 dark:text-gray-300 mt-4">
                 Directora: Dra. Blanca Cecilia Salazar Álzate
               </p>
+            </div>
             </div>
           </div>
         </div>
