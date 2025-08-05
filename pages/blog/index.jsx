@@ -95,7 +95,7 @@ export default function Blog({ localPosts }) {
                 createdAt={post.date}
                 title={post.title}
                 desc={post.description}
-                slug={`posts/${post.slug}`}
+                slug={`/blog/posts/${post.slug}`}
                 tagList={post.tags || []}
                 readTime={post.readTime || "5 min"}
               />
@@ -119,8 +119,11 @@ export const getStaticProps = async () => {
       const fileContents = fs.readFileSync(filePath, "utf8");
       const { data } = matter(fileContents);
       
+      // Asegurarse de que el slug coincida exactamente con el nombre del archivo
+      const slug = filename.replace(/\.mdx$/, "");
+      
       return {
-        slug: filename.replace(/\.mdx$/, ""),
+        slug,
         title: data.title,
         date: data.date,
         description: data.description,

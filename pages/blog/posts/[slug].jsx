@@ -6,16 +6,15 @@ import { serialize } from "next-mdx-remote/serialize";
 import BlogPost from "../../../components/BlogPost";
 import { useRouter } from "next/router";
 
-// MDX components
+// Definimos los componentes que estarán disponibles en MDX
 const components = {
   BlogPost,
-  // Add any custom components you want to use in MDX here
+  // Puedes agregar más componentes aquí si los necesitas
 };
 
 export default function Post({ source, frontMatter }) {
   const router = useRouter();
 
-  // Show loading state if page is not yet generated
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
@@ -28,12 +27,11 @@ export default function Post({ source, frontMatter }) {
 }
 
 export async function getStaticPaths() {
-  // Get local post paths
   const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
   const filenames = fs.readdirSync(postsDirectory);
   
   const paths = filenames
-    .filter(filename => filename.endsWith(".mdx") && filename !== "template.mdx")
+    .filter(filename => filename.endsWith(".mdx") && filename !== "template.mdx" && filename !== "[slug].jsx")
     .map(filename => ({
       params: {
         slug: filename.replace(/\.mdx$/, ""),
@@ -47,17 +45,25 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { slug } = params;
-
-  // Get local post
-  const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-
   try {
+    const { slug } = params;
+    const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
+    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+
+    if (!fs.existsSync(fullPath)) {
+      return {
+        notFound: true,
+      };
+    }
+
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { content, data } = matter(fileContents);
+    
     const mdxSource = await serialize(content, {
       scope: data,
+      mdxOptions: {
+        development: process.env.NODE_ENV === 'development',
+      },
     });
 
     return {
@@ -67,6 +73,7 @@ export async function getStaticProps({ params }) {
       },
     };
   } catch (err) {
+    console.error("Error loading blog post:", err);
     return {
       notFound: true,
     };

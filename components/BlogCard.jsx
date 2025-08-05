@@ -19,11 +19,14 @@ export default function BlogCard({
     day: 'numeric'
   }).format(date);
 
+  // Asegurarse de que el slug tenga el formato correcto
+  const fullSlug = slug.startsWith('/') ? slug : `/${slug}`;
+
   return (
-    <Link href={`/blog/${slug}`} className="group">
-      <article className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] dark:shadow-gray-700/30">
+    <Link href={fullSlug} className="group h-full">
+      <article className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] dark:shadow-gray-700/30 h-full flex flex-col">
         {/* Image Container */}
-        <div className="relative w-full h-48 overflow-hidden">
+        <div className="relative w-full h-48">
           {img ? (
             <Image
               src={img}
@@ -49,7 +52,7 @@ export default function BlogCard({
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 flex flex-col flex-grow">
           {/* Meta info */}
           <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
             <span className="flex items-center">
@@ -63,17 +66,17 @@ export default function BlogCard({
           </div>
 
           {/* Title */}
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
             {title}
           </h2>
 
           {/* Description */}
-          <p className="text-gray-600 dark:text-gray-300 line-clamp-3">
+          <p className="text-gray-600 dark:text-gray-300 line-clamp-3 flex-grow">
             {desc}
           </p>
 
           {/* Read More */}
-          <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400 font-medium">
+          <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400 font-medium pt-4 border-t border-gray-100 dark:border-gray-700">
             Leer más
             <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />

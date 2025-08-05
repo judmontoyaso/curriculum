@@ -1,0 +1,246 @@
+---
+title: 'CI/CD con GitHub Actions: Despliegue Automático a EC2'
+date: '2025-06-01'
+image: '/blog/githubactions.png'
+description: 'Aprende a configurar un pipeline de CI/CD utilizando GitHub Actions para desplegar automáticamente tu aplicación en una instancia EC2 de AWS. Una guía práctica y completa para automatizar tus despliegues.'
+tags: ['DevOps', 'GitHub Actions', 'AWS', 'EC2', 'CI/CD']
+author: 'Juan Montoya'
+---
+
+import BlogPost from '../../../components/BlogPost';
+
+<BlogPost
+  title="CI/CD con GitHub Actions: Despliegue Automático a EC2"
+  date="01 de junio de 2025"
+  image="/blog/githubactions.png"
+  description="Aprende a configurar un pipeline de CI/CD utilizando GitHub Actions para desplegar automáticamente tu aplicación en una instancia EC2 de AWS. Una guía práctica y completa para automatizar tus despliegues."
+>
+
+## Introducción
+
+Automatizar el despliegue de una aplicación puede parecer un reto al principio, pero con las herramientas adecuadas, el proceso se vuelve eficiente, seguro y mucho más ágil. En este artículo, te muestro cómo configurar un pipeline de Integración Continua y Despliegue Continuo (CI/CD) utilizando GitHub Actions y una instancia EC2 de AWS, para que puedas actualizar tu aplicación automáticamente con cada push a la rama principal.
+
+La idea es clara: que el servidor se actualice solo, sin que tengas que conectarte por SSH cada vez que haces un cambio. Vamos a construir un flujo de trabajo robusto, mantenible y listo para producción.
+
+## Objetivo del pipeline
+
+Al final de este tutorial, vas a tener una solución funcional que realiza lo siguiente cada vez que actualices tu repositorio:
+
+<div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-6 my-6">
+  <ul className="space-y-2">
+    <li className="flex items-center">
+      <span className="bg-blue-500 p-1 rounded-full mr-3">
+        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+      </span>
+      Descarga automática del código en tu instancia EC2
+    </li>
+    <li className="flex items-center">
+      <span className="bg-blue-500 p-1 rounded-full mr-3">
+        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </span>
+      Ejecución de comandos para actualizar la app
+    </li>
+    <li className="flex items-center">
+      <span className="bg-blue-500 p-1 rounded-full mr-3">
+        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+      </span>
+      Reinicio del servicio para aplicar cambios
+    </li>
+  </ul>
+</div>
+
+Todo sin necesidad de tocar el servidor manualmente. Más productividad, menos errores humanos.
+
+## Requisitos previos
+
+<table>
+  <thead>
+    <tr>
+      <th>Requisito</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Repositorio GitHub</td>
+      <td>Con tu aplicación (Node.js, Python, Next.js, etc.)</td>
+    </tr>
+    <tr>
+      <td>Instancia EC2</td>
+      <td>En funcionamiento (Ubuntu o Amazon Linux)</td>
+    </tr>
+    <tr>
+      <td>Acceso SSH</td>
+      <td>Con tu clave privada (.pem) o similar</td>
+    </tr>
+    <tr>
+      <td>Usuario despliegue</td>
+      <td>Con permisos limitados, diferente a root</td>
+    </tr>
+    <tr>
+      <td>PM2 o Docker</td>
+      <td>Opcional, para ejecutar tu aplicación</td>
+    </tr>
+    <tr>
+      <td>Conocimientos</td>
+      <td>Básicos de terminal y Git</td>
+    </tr>
+  </tbody>
+</table>
+
+## Preparar tu instancia EC2
+
+Primero, conéctate por SSH:
+
+```bash
+ssh -i "tu_clave.pem" ubuntu@<IP_de_tu_EC2>
+```
+
+Una vez dentro, instala lo necesario y clona tu repositorio:
+
+```bash
+# Actualiza paquetes e instala Git
+sudo apt update && sudo apt install git -y
+```
+
+```bash
+# Clona tu aplicación
+git clone https://github.com/tu_usuario/tu_repo.git
+```
+
+```bash
+# Instala Node.js
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+```bash
+# Instala PM2 globalmente
+sudo npm install -g pm2
+```
+
+```bash
+# Entra al proyecto e instala dependencias
+cd tu_repo
+npm install
+```
+
+```bash
+# Inicia la app con PM2
+pm2 start app.js --name="mi_app"
+```
+
+## Configurar GitHub Actions
+
+El núcleo del CI/CD es la automatización. En este caso, vamos a usar GitHub Actions para que, cada vez que hagas un push a la rama main, se despliegue automáticamente tu aplicación en una instancia EC2. Así reduces fricción, errores humanos y aseguras que tu código más reciente esté en producción sin pasos manuales.
+
+### Paso a paso
+
+#### 1. Crear el archivo de workflow
+
+Primero, asegúrate de tener la carpeta `.github/workflows/` dentro de tu repositorio. Si no existe, créala. Dentro de esta carpeta, añade un archivo llamado `deploy.yml`. Este archivo define el flujo de despliegue automatizado.
+
+```yaml
+name: Despliegue a EC2
+
+on:
+  push:
+    branches:
+      - main
+```
+
+Este bloque indica que el workflow se ejecutará automáticamente cada vez que se haga un push a la rama main, es decir, a tu rama de producción.
+
+#### 2. Definir el job de despliegue
+
+```yaml
+jobs:
+  deploy:
+    name: Despliegue en producción
+    runs-on: ubuntu-latest
+```
+
+Aquí defines un job llamado deploy que se ejecutará en una máquina virtual proporcionada por GitHub, con Ubuntu como sistema operativo.
+
+#### 3. Agregar los pasos del job
+
+```yaml
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+```
+
+Este primer paso descarga el código fuente del repositorio dentro del entorno de GitHub Actions. Es esencial para que el workflow tenga acceso a los archivos que acabas de subir.
+
+#### 4. Conexión por SSH y ejecución remota en EC2
+
+```yaml
+      - name: Conectar por SSH y desplegar
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            cd /home/ubuntu/tu_repo
+            git pull origin main
+            npm install
+            pm2 restart mi_app
+```
+
+En este paso se usa la acción `appleboy/ssh-action`, que permite conectarse a tu instancia EC2 vía SSH. Las credenciales (host, usuario y clave privada) se almacenan como secrets en la configuración del repositorio. Una vez conectado al servidor, el script navega al directorio de tu proyecto, actualiza el código con `git pull`, instala las dependencias con `npm install` y reinicia tu app usando `pm2`.
+
+## Configurar los secretos en GitHub
+
+<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 my-6">
+  <ol className="list-decimal list-inside space-y-4">
+    <li>Abre tu repositorio en GitHub</li>
+    <li>Ve a Settings > Secrets and variables > Actions</li>
+    <li>Agrega estos secretos:</li>
+  </ol>
+  <ul className="list-disc list-inside ml-6 mt-2 space-y-2">
+    <li><code>EC2_HOST</code>: IP pública de tu instancia EC2</li>
+    <li><code>EC2_USER</code>: Usuario con permisos</li>
+    <li><code>EC2_KEY</code>: Contenido completo de tu archivo .pem</li>
+  </ul>
+</div>
+
+> 🔐 **Tip de seguridad**: Es recomendable crear un usuario dedicado solo para el despliegue, con permisos limitados, y sin acceso root.
+
+## Probar el pipeline
+
+Haz un cambio simple en tu proyecto y súbelo a la rama main:
+
+```bash
+git add .
+git commit -m "Test de despliegue CI/CD"
+git push origin main
+```
+
+Para verificar en EC2 (si estás usando PM2):
+
+```bash
+pm2 list
+```
+
+```bash
+pm2 logs mi_app
+```
+
+Tener un pipeline CI/CD en GitHub Actions que despliegue automáticamente a EC2 es una forma poderosa de mejorar la eficiencia, reducir errores y acelerar la entrega de valor. Este tipo de automatización no solo te ahorra tiempo, sino que también mejora la calidad de tus despliegues y fortalece las buenas prácticas de desarrollo.
+
+## Referencias
+
+* [AWS Prescriptive Guidance: Best practices for CI/CD pipelines](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cicd-pipelines/welcome.html)
+* [JetBrains: Best Practices for Successful CI/CD](https://www.jetbrains.com/teamcity/ci-cd-guide/ci-cd-best-practices/)
+* [Red Hat: What is CI/CD?](https://www.redhat.com/en/topics/devops/what-is-ci-cd)
+* [Gartner: Building an Effective CI/CD Pipeline](https://www.gartner.com/en/documents/3891965)
+
+</BlogPost>
