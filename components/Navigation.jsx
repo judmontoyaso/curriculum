@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import ThemeSwitch from "./ThemeSwitch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHamburger, faUserCircle, faFileAlt, faLaptopCode, faHistory, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faHamburger, faUserCircle, faFileAlt, faLaptopCode, faEnvelope, faBook } from "@fortawesome/free-solid-svg-icons";
 import { faHotdog } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import ActiveRoute from "./ActiveRoute";
 import { RoughNotation } from "react-rough-notation";
-import LikeButton from "./LikeButton";
+
 
 const Navigation = () => {
   const [active, setActive] = useState(false);
@@ -22,9 +22,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <ThemeSwitch />
-            <div className="ml-4">
-              <LikeButton />
-            </div>
+
           </div>
           
           <button
@@ -68,20 +66,7 @@ const Navigation = () => {
                 </RoughNotation>
               </ActiveRoute>
               
-              <ActiveRoute href="/timeline">
-                <RoughNotation
-                  color={theme === "dark" ? "#F59E0B" : "#F59E0B"}
-                  type="underline"
-                  strokeWidth={2}
-                  padding={[0, 2]}
-                >
-                  <div className="flex items-center py-2 lg:py-0">
-                    <FontAwesomeIcon icon={faHistory} className="mr-2" />
-                    <span>Timeline</span>
-                  </div>
-                </RoughNotation>
-              </ActiveRoute>
-              
+
               <ActiveRoute href="/project">
                 <RoughNotation
                   color={theme === "dark" ? "#84CC16" : "#84CC16"}
@@ -96,6 +81,20 @@ const Navigation = () => {
                 </RoughNotation>
               </ActiveRoute>
               
+              <ActiveRoute href="/libros">
+                <RoughNotation
+                  color={theme === "dark" ? "#8B5CF6" : "#8B5CF6"}
+                  type="underline"
+                  strokeWidth={2}
+                  padding={[0, 2]}
+                >
+                  <div className="flex items-center py-2 lg:py-0">
+                    <FontAwesomeIcon icon={faBook} className="mr-2" />
+                    <span>Libros</span>
+                  </div>
+                </RoughNotation>
+              </ActiveRoute>
+
               <ActiveRoute href="/contact">
                 <RoughNotation
                   color={theme === "dark" ? "#EC4899" : "#EC4899"}

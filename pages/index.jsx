@@ -13,10 +13,10 @@ export default function Home() {
       <About />
       
       {/* Botón para abrir el modal de habilidades */}
-      <div className="flex justify-center mt-8 mb-16">
+      <div className="flex justify-center mt-4 mb-8">
         <button
           onClick={() => setIsSkillsModalOpen(true)}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition-colors duration-300"
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md shadow-md transition-colors duration-300"
         >
           <FontAwesomeIcon icon={faCode} className="text-lg" />
           <span className="text-lg font-medium">Ver mi Stack Tecnológico</span>

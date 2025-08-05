@@ -1,7 +1,7 @@
 import React from "react";
 import { ProgresBar } from "../components/ProgresBar";
 import Image from "next/image";
-import profile from "/public/profile3.png";
+import profile from "/public/IMG-20250503-WA0007-fotor-20250512135928.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBattleNet,
@@ -53,7 +53,7 @@ const Curriculum = () => {
   
   const saveFile = () => {
     // Descargar el archivo CV desde la carpeta public
-    saveAs("/cv_Juan_Montoya.pdf", "CV_JuanMontoya.pdf");
+    saveAs("/Hoja_de_Vida.pdf", "CV_JuanMontoya.pdf");
   };
   
   return (
@@ -84,7 +84,7 @@ const Curriculum = () => {
                   </RoughNotation>
                 </h1>
                 <h2 className="text-lg text-gray-600 dark:text-gray-300 mt-2">
-                  Especialista en Analítica y Big Data
+                  Desarrollador Full Stack | Científico de Datos
                 </h2>
               </div>
               
@@ -171,7 +171,7 @@ const Curriculum = () => {
         
         {/* Contenido principal */}
         <div className="lg:col-span-8 space-y-8">
-          {/* Perfil */}
+                    {/* Perfil */}
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <FontAwesomeIcon icon={faCode} className="mr-3 text-blue-500" />
@@ -188,99 +188,6 @@ const Curriculum = () => {
             </p>
           </div>
 
-          {/* Habilidades principales */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <FontAwesomeIcon icon={faCode} className="mr-3 text-blue-500" />
-              Habilidades en desarrollo
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div>
-                <ProgresBar habilidad="Python" porcentaje="90" />
-              </div>
-              <div>
-                <ProgresBar habilidad="Next.js" porcentaje="90" />
-              </div>
-              <div>
-                <ProgresBar habilidad="React.js" porcentaje="85" />
-              </div>
-              <div>
-                <ProgresBar habilidad="ASP.NET" porcentaje="80" />
-              </div>
-              <div>
-                <ProgresBar habilidad="Power BI" porcentaje="85" />
-              </div>
-              <div>
-                <ProgresBar habilidad="SQL" porcentaje="80" />
-              </div>
-              <div>
-                <ProgresBar habilidad="Machine Learning" porcentaje="75" />
-              </div>
-            </div>
-            
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Herramientas
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {habilidadesPrincipales.map((habilidad) => (
-                  <span
-                    key={habilidad}
-                    className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium"
-                  >
-                    {habilidad}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* Habilidades en biotecnología */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <FontAwesomeIcon icon={faFlask} className="mr-3 text-green-500" />
-              Habilidades en biotecnología
-            </h3>
-            
-            <div className="flex flex-wrap gap-2">
-              {habilidadesBiotecnologia.map((habilidad) => (
-                <span
-                  key={habilidad}
-                  className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm font-medium"
-                >
-                  {habilidad}
-                </span>
-              ))}
-            </div>
-          </div>
-          
-          {/* Educación */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <FontAwesomeIcon icon={faGraduationCap} className="mr-3 text-purple-500" />
-              Educación
-            </h3>
-            
-            <div className="space-y-6">
-              <div className="border-l-4 border-purple-500 pl-4">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Especialización en Analítica y Big Data
-                </h4>
-                <p className="text-gray-600 dark:text-gray-300">I. U. Digital de Antioquia</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">2023</p>
-              </div>
-              
-              <div className="border-l-4 border-purple-500 pl-4">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Ingeniero Biológico
-                </h4>
-                <p className="text-gray-600 dark:text-gray-300">Universidad Nacional de Colombia</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">2019</p>
-              </div>
-            </div>
-          </div>
-          
           {/* Experiencia laboral */}
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
@@ -292,10 +199,10 @@ const Curriculum = () => {
               {/* Iluma Alliance */}
               <div className="border-l-4 border-amber-500 pl-4">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Bioinformatic Associate
+                  Ingeniero de datos - Desarrollador
                 </h4>
                 <p className="text-gray-600 dark:text-gray-300">Iluma Alliance</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Diciembre 2023 - Actualmente</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Diciembre 2023 - Abril 2025</p>
                 <div className="mt-4">
                   <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Logros:</h5>
                   <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
@@ -320,7 +227,7 @@ const Curriculum = () => {
               {/* Q10 S.A.S */}
               <div className="border-l-4 border-amber-500 pl-4">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Desarrollador
+                  Desarrollador Full Stack
                 </h4>
                 <p className="text-gray-600 dark:text-gray-300">Q10 S.A.S</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Noviembre 2021 - Diciembre 2023</p>
@@ -413,6 +320,166 @@ const Curriculum = () => {
                     <ContenedorHabilidadSolo Habilidad="NTC - ISO 9001" />
                     <ContenedorHabilidadSolo Habilidad="Gestión de calidad" />
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Educación */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              <FontAwesomeIcon icon={faGraduationCap} className="mr-3 text-purple-500" />
+              Educación
+            </h3>
+            
+            <div className="space-y-8">
+              {/* Educación Formal */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Educación Formal</h4>
+                <div className="space-y-6">
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      Especialización en Analítica y Big Data
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">Institución Universitaria Digital de Antioquia</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">2023</p>
+                  </div>
+                  
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      Ingeniero Biológico
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">Universidad Nacional de Colombia</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">2019</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Grupo de investigación PROBIOM. Facultad de Ciencias</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cursos y Certificaciones */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Cursos y Certificaciones</h4>
+                <div className="space-y-4">
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">
+                      Diplomado en Geomática y Big Data
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">I. U. Digital de Antioquia</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">2023</p>
+                  </div>
+
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">
+                      Formación en Programación (Misión TIC)
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">Universidad de Antioquia</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">2021</p>
+                  </div>
+
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">
+                      Formación en Desarrollo de Aplicaciones Web
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">Universidad de Antioquia</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">2021</p>
+                  </div>
+
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <p className="text-gray-600 dark:text-gray-300">Aprendizaje constante en Platzi y Coursera</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Competencias y Habilidades */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              <FontAwesomeIcon icon={faCode} className="mr-3 text-blue-500" />
+              Competencias y Habilidades
+            </h3>
+            
+            <div className="space-y-8">
+              {/* Tecnología y Desarrollo */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Tecnología y Desarrollo</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <ProgresBar habilidad="Python" porcentaje="90" />
+                  </div>
+                  <div>
+                    <ProgresBar habilidad="Next.js" porcentaje="90" />
+                  </div>
+                  <div>
+                    <ProgresBar habilidad="React.js" porcentaje="85" />
+                  </div>
+                  <div>
+                    <ProgresBar habilidad="ASP.NET" porcentaje="80" />
+                  </div>
+                </div>
+                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Desarrollo web con Python, Next.js, ASP.NET y JavaScript</li>
+                  <li>Desarrollo de APIs e integración de servicios REST</li>
+                  <li>Automatización de procesos con Power Automate y ETL pipelines</li>
+                </ul>
+              </div>
+
+              {/* Analítica y Ciencia de Datos */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Analítica y Ciencia de Datos</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <ProgresBar habilidad="Power BI" porcentaje="85" />
+                  </div>
+                  <div>
+                    <ProgresBar habilidad="SQL" porcentaje="80" />
+                  </div>
+                  <div>
+                    <ProgresBar habilidad="Machine Learning" porcentaje="75" />
+                  </div>
+                </div>
+                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Análisis de datos con Python, Pandas, Scikit-Learn</li>
+                  <li>Dashboards interactivos con Power BI, Python y JavaScript</li>
+                  <li>Modelado y gestión de bases de datos SQL y NoSQL</li>
+                </ul>
+              </div>
+
+              {/* Cloud & DevOps */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Cloud & DevOps</h4>
+                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Gestión de infraestructura en AWS (S3, Athena, Redshift)</li>
+                  <li>Prácticas ágiles con Scrum: planificación de sprints, seguimiento diario y entrega continua de valor</li>
+                  <li>Automatización de flujos de integración y despliegue continuo (CI/CD)</li>
+                  <li>Contenerización de aplicaciones con Docker y despliegue en entornos de producción</li>
+                </ul>
+              </div>
+
+              {/* Habilidades Personales */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Habilidades Personales</h4>
+                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Pensamiento analítico y resolución de problemas</li>
+                  <li>Autonomía, proactividad y enfoque en aprendizaje continuo</li>
+                  <li>Comunicación efectiva y colaboración en equipos multidisciplinarios</li>
+                </ul>
+              </div>
+
+              {/* Herramientas y Tecnologías */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  Herramientas y Tecnologías
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {habilidadesPrincipales.map((habilidad) => (
+                    <span
+                      key={habilidad}
+                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium"
+                    >
+                      {habilidad}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>

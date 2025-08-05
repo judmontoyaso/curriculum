@@ -1,92 +1,105 @@
 import React from "react";
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { RoughNotation } from "react-rough-notation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileAlt, faBook, faEnvelope, faRobot, faCloud, faChartLine } from "@fortawesome/free-solid-svg-icons";
+
+const QuickLink = ({ href, icon, text, color }) => (
+  <Link href={href}>
+    <div className={`bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-l-4 ${color}`}>
+      <div className="flex items-center space-x-3">
+        <FontAwesomeIcon icon={icon} className="text-xl" />
+        <span className="font-medium">{text}</span>
+      </div>
+    </div>
+  </Link>
+);
+
+import CompetenciasGrid from './CompetenciasGrid';
 
 const About = () => {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        {/* Columna de texto */}
-        <div className="md:col-span-7 space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-wide uppercase">
-              Especialista en Analítica y Big Data
-            </h2>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-              <RoughNotation
-                type="underline"
-                color="#3B82F6"
-                strokeWidth={2}
-                padding={[0, 2]}
-              >
-                Juan David
-              </RoughNotation>
-            </h1>
-          </div>
-          
-          <div className="space-y-4 text-gray-600 dark:text-gray-300">
-            <p className="text-lg leading-relaxed">
-              Soy un especialista en analítica y big data con experiencia en ciencia de datos y desarrollo web. 
-              Me especializo en análisis de datos con{" "}
-              <RoughNotation
-                type="highlight"
-                color="#F59E0B"
-                padding={[0, 2]}
-              >
-                Machine Learning
-              </RoughNotation>{" "}
-              y desarrollo de aplicaciones usando{" "}
-              <RoughNotation
-                type="highlight"
-                color="#10B981"
-                padding={[0, 2]}
-              >
-                Python, Next.js y .NET
-              </RoughNotation>.
-            </p>
-            <p className="text-lg leading-relaxed">
-              Actualmente me desempeño como{" "}
-              <RoughNotation
-                type="highlight"
-                color="#84CC16"
-                padding={[0, 2]}
-              >
-                Bioinformatic Associate
-              </RoughNotation>{" "}
-              en Iluma Alliance, donde lidero el desarrollo de plataformas web para visualización de reportes gráficos interactivos 
-              y participo en la creación de agentes IA para la generación de resúmenes de información.
-            </p>
-          </div>
-          
-          <div className="pt-4 flex space-x-4">
-            <a href="https://github.com/judmontoyaso" target="_blank" rel="noopener noreferrer" 
-               className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
-              <FaGithub size={24} />
-            </a>
-            <a href="https://linkedin.com/in/judmontoyaso" target="_blank" rel="noopener noreferrer" 
-               className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
-              <FaLinkedin size={24} />
-            </a>
-            <a href="https://twitter.com/judmontoyaso" target="_blank" rel="noopener noreferrer" 
-               className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
-              <FaTwitter size={24} />
-            </a>
-          </div>
-        </div>
-        
-        {/* Columna de imagen */}
-        <div className="md:col-span-5 flex justify-center">
-          <Link href="/curriculum">
-            <div className="relative w-64 h-64 rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900 dark:to-blue-800 opacity-20"></div>
-              <img
-                src="https://i.postimg.cc/3wvnSR27/profile-removebg-preview.png"
-                alt="Juan David"
-                className="w-full h-full object-cover object-center"
-              />
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+            <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+              {/* Foto y redes sociales */}
+              <div className="flex-shrink-0 space-y-4">
+                <div className="relative w-48 h-48 rounded-2xl overflow-hidden shadow-xl">
+                  <img
+                    src="/IMG-20250503-WA0007-fotor-20250512135928.jpg"
+                    alt="Juan David"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex justify-center space-x-4">
+                  <a href="https://github.com/judmontoyaso" target="_blank" rel="noopener noreferrer" 
+                     className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
+                    <FaGithub size={24} />
+                  </a>
+                  <a href="https://linkedin.com/in/juansolorzano" target="_blank" rel="noopener noreferrer" 
+                     className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
+                    <FaLinkedin size={24} />
+                  </a>
+                </div>
+              </div>
+
+              {/* Información */}
+              <div className="flex-grow space-y-4 text-center md:text-left">
+                <div>
+                  <h2 className="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-wide uppercase">
+                    Desarrollador Full Stack | Científico de Datos
+                  </h2>
+                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">
+                    Juan David
+                  </h1>
+                </div>
+
+                <div className="prose prose-lg dark:prose-invert">
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Soy un desarrollador full stack y científico de datos con más de 3 años de experiencia. 
+                    Me especializo en el desarrollo de soluciones de Machine Learning, visualización de datos y aplicaciones web usando Python, Next.js y C#.
+                  </p>
+                </div>
+
+                <div className="flex flex-col space-y-4">
+
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      { icon: "devicon-python-plain", text: "Python", isDevicon: true },
+                      { icon: "devicon-csharp-plain", text: "C#", isDevicon: true },
+                      { icon: "devicon-javascript-plain", text: "JavaScript", isDevicon: true },
+                      { icon: "devicon-docker-plain", text: "Docker", isDevicon: true },
+                      { icon: "devicon-mysql-plain", text: "SQL", isDevicon: true },
+                      { icon: faRobot, text: "Machine Learning", isDevicon: false },
+                      { icon: faCloud, text: "Cloud Architecture", isDevicon: false },
+                      { icon: faChartLine, text: "Data Visualization", isDevicon: false }
+                    ].map((tech, index) => (
+                      <div key={index} className="flex items-center space-x-2 bg-gray-50 dark:bg-gray-800 px-3 py-2 rounded-lg hover:shadow-md transition-shadow">
+                        {tech.isDevicon ? (
+                          <i className={`${tech.icon} text-xl text-gray-700 dark:text-gray-300`}></i>
+                        ) : (
+                          <FontAwesomeIcon icon={tech.icon} className="text-xl text-gray-700 dark:text-gray-300" />
+                        )}
+                        <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{tech.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
-          </Link>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              Actualmente estoy disponible para nuevas oportunidades donde pueda aplicar mi experiencia en desarrollo web y ciencia de datos. 
+              Me apasiona crear soluciones innovadoras combinando tecnologías web modernas con machine learning para resolver problemas complejos.
+            </p>
+          </div>
+
+          <CompetenciasGrid />
         </div>
       </div>
     </div>
