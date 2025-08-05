@@ -14,60 +14,60 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectCard = ({ proyecto }) => (
-  <div className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all duration-300 p-4 border border-gray-100 dark:border-gray-700">
-    <div className="flex items-center gap-2 mb-3">
-      <div className={`p-2 rounded-md ${proyecto.bgClass}`}>
+  <div className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all duration-300 p-6 border border-gray-100 dark:border-gray-700">
+    <div className="flex items-center gap-3 mb-4">
+      <div className={`p-2.5 rounded-md ${proyecto.bgClass}`}>
         <FontAwesomeIcon
           icon={proyecto.icono}
-          className={`text-lg ${proyecto.iconClass}`}
+          className={`text-xl ${proyecto.iconClass}`}
         />
       </div>
-      <h3 className="text-lg font-bold text-gray-900 dark:text-white line-clamp-1">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
         {proyecto.titulo}
       </h3>
     </div>
 
-    <div className="space-y-2.5">
+    <div className="space-y-4">
       {/* Rol */}
-      <div className="flex items-center">
-        <span className="font-bold text-gray-600 dark:text-gray-300 min-w-[50px]">
+      <div className="flex flex-col">
+        <span className="font-bold text-gray-600 dark:text-gray-300 mb-1">
           Rol:
         </span>
-        <span className="text-gray-700 dark:text-gray-300 ml-2 line-clamp-1">
+        <span className="text-gray-700 dark:text-gray-300">
           {proyecto.rol}
         </span>
       </div>
 
       {/* Reto */}
       <div>
-        <h4 className="font-bold text-gray-600 dark:text-gray-300 mb-1">
+        <h4 className="font-bold text-gray-600 dark:text-gray-300 mb-2">
           Reto:
         </h4>
-        <p className="text-gray-700 dark:text-gray-300 line-clamp-2">
+        <p className="text-gray-700 dark:text-gray-300">
           {proyecto.reto}
         </p>
       </div>
 
       {/* Solución */}
       <div>
-        <h4 className="font-bold text-gray-600 dark:text-gray-300 mb-1">
+        <h4 className="font-bold text-gray-600 dark:text-gray-300 mb-2">
           Solución:
         </h4>
-        <p className="text-gray-700 dark:text-gray-300 line-clamp-2">
+        <p className="text-gray-700 dark:text-gray-300">
           {proyecto.solucion}
         </p>
       </div>
 
       {/* Stack tecnológico */}
       <div>
-        <h4 className="font-bold text-gray-600 dark:text-gray-300 mb-1.5">
+        <h4 className="font-bold text-gray-600 dark:text-gray-300 mb-2">
           Stack:
         </h4>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-2">
           {proyecto.stack.map((tech, index) => (
             <span
               key={index}
-              className="px-2.5 py-1 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-md font-medium"
+              className="px-3 py-1.5 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-md text-sm font-medium"
             >
               {tech}
             </span>
