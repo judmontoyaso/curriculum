@@ -41,8 +41,8 @@ export default function BlogPost({
               className="rounded-full"
             />
             <div className="ml-3">
-              <p className="text-gray-900 dark:text-white font-medium">Juan Montoya</p>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">{date}</p>
+              <div className="text-gray-900 dark:text-white font-medium">Juan Montoya</div>
+              <div className="text-gray-600 dark:text-gray-400 text-sm">{date}</div>
             </div>
           </div>
           
@@ -62,9 +62,9 @@ export default function BlogPost({
             >
               <FontAwesomeIcon icon={faCopy} className="w-5 h-5" />
               {copySuccess && (
-                <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded">
+                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded">
                   ¡Copiado!
-                </span>
+                </div>
               )}
             </button>
           </div>

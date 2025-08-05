@@ -1,0 +1,173 @@
+---
+title: 'Cómo conecté Zendesk y SQL Server a Power BI para monitorear el rendimiento de soporte'
+date: '2025-07-15'
+image: '/blog/powerbi_zendesk.png'
+description: 'Descubre cómo implementé una solución de integración empresarial para monitorear el rendimiento del equipo de soporte, conectando Zendesk con Power BI y enriqueciendo los datos con SQL Server.'
+tags: ['Power BI', 'Zendesk', 'SQL Server', 'Integración', 'Business Intelligence']
+author: 'Juan Montoya'
+---
+
+import BlogPost from '../../../components/BlogPost';
+
+<BlogPost
+  title="Cómo conecté Zendesk y SQL Server a Power BI para monitorear el rendimiento de soporte"
+  date="15 de julio de 2025"
+  image="/blog/powerbi_zendesk.png"
+  description="Descubre cómo implementé una solución de integración empresarial para monitorear el rendimiento del equipo de soporte, conectando Zendesk con Power BI y enriqueciendo los datos con SQL Server."
+>
+
+## Introducción
+
+En mi equipo de analítica, uno de los desafíos más interesantes fue desarrollar un dashboard que integrara los tickets de Zendesk con información de SQL Server, para evaluar el rendimiento individual de los agentes de soporte: cuántos tickets atienden, su tiempo promedio de respuesta, el estado de los casos (abiertos, cerrados, en curso) y los tickets resueltos por día. Esta integración no solo ayudó al equipo de soporte a identificar cuellos de botella, sino que también permitió a los líderes tomar decisiones más informadas.
+
+## El límite de los 1.000 tickets y el conector personalizado
+
+El conector oficial de Zendesk para Power BI es útil... hasta que necesitas más de 1.000 tickets. En mi caso, la organización ya tenía más de 30.000 tickets acumulados y no había forma de acceder a todos sin una solución personalizada.
+
+Después de investigar en foros y documentaciones dispersas, opté por crear un script en M (Power Query) que implementara paginación recursiva. Fue mi primer reto: entender cómo hacer que Power BI hiciera múltiples llamadas a la API y concatenara los resultados sin bloquearse.
+
+La primera vez que lo corrí, Power BI se quedó congelado. ¿La causa? No había límite de seguridad, y la API se seguía llamando hasta el infinito por un error de URL mal armada en la paginación. Agregué logs de prueba, validaciones y verifiqué los headers uno por uno. Eventualmente, todo funcionó... y los 30.000 tickets estaban disponibles.
+
+### Ejemplo de código base en M para paginación en Zendesk:
+
+```powerquery
+let
+    BaseUrl = "https://tusubdominio.zendesk.com/api/v2/tickets.json?page=",
+    GetPage = (page as number) =>
+        let
+            Source = Json.Document(Web.Contents(BaseUrl & Number.ToText(page), [
+                Headers = [
+                    #"Authorization" = "Basic " & Binary.ToText(Text.ToBinary("usuario:token"), BinaryEncoding.Base64)
+                ]
+            ])),
+            Data = Source[tickets],
+            NextPage = if List.Count(Data) = 0 then null else GetPage(page + 1),
+            Combined = if NextPage = null then Data else List.Combine({Data, NextPage})
+        in
+            Combined,
+    Tickets = GetPage(1),
+    Table = Table.FromList(Tickets, Record.FieldValues, {"ticket"})
+in
+    Table
+```
+
+<div className="bg-yellow-50 dark:bg-yellow-900/30 border-l-4 border-yellow-500 p-4 my-6">
+  <div className="text-yellow-700 dark:text-yellow-300">
+    ⚠️ <strong>Nota:</strong> Este código es una base conceptual. Requiere ajustes según la estructura de tu JSON, validaciones de errores, y tiempo de espera entre llamadas para no saturar la API de Zendesk.
+  </div>
+</div>
+
+## Unir los tickets con datos maestros desde SQL Server
+
+Tener los tickets en bruto no era suficiente. Necesitábamos enriquecerlos con datos internos: nombre completo del agente, área a la que pertenece, cliente asignado y SLA esperado. Toda esa información vivía en SQL Server.
+
+La conexión a SQL Server desde Power BI es sencilla y confiable:
+
+1. Ve a Inicio > Obtener datos > SQL Server
+2. Introduce el nombre del servidor y la base de datos
+3. Usa autenticación básica o Windows (según configuración)
+4. Selecciona las tablas que necesitas (como agentes, clientes, productos) y cárgalas al modelo
+
+```sql
+SELECT agente_id, nombre_completo, area
+FROM agentes_soporte
+```
+
+### Relación de tablas en Power BI:
+
+<table>
+  <thead>
+    <tr>
+      <th>Tabla</th>
+      <th>Relación</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tickets (Zendesk)</td>
+      <td>agente_id</td>
+    </tr>
+    <tr>
+      <td>Agentes (SQL)</td>
+      <td>agente_id</td>
+    </tr>
+    <tr>
+      <td>Clientes (SQL)</td>
+      <td>cliente_id</td>
+    </tr>
+  </tbody>
+</table>
+
+## Métricas de rendimiento que construimos
+
+Con los datos integrados, diseñamos un conjunto de KPIs útiles para el equipo de soporte:
+
+<table>
+  <thead>
+    <tr>
+      <th>Indicador</th>
+      <th>Fórmula en Power BI (DAX)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tickets resueltos por día</td>
+      <td><code>COUNTROWS(FILTER(Tickets, Tickets[estado] = "cerrado"))</code></td>
+    </tr>
+    <tr>
+      <td>Tiempo promedio de respuesta</td>
+      <td><code>AVERAGE(Tickets[tiempo_respuesta_minutos])</code></td>
+    </tr>
+    <tr>
+      <td>Tickets abiertos actualmente</td>
+      <td><code>CALCULATE(COUNTROWS(Tickets), Tickets[estado] = "abierto")</code></td>
+    </tr>
+    <tr>
+      <td>SLA incumplido</td>
+      <td><code>COUNTROWS(FILTER(Tickets, Tickets[fuera_de_sla] = TRUE))</code></td>
+    </tr>
+  </tbody>
+</table>
+
+También se añadieron filtros por agente, fecha y tipo de cliente, permitiendo a los supervisores hacer comparaciones por turnos, días, semanas o clientes clave.
+
+## Ventajas de esta solución
+
+<div className="bg-green-50 dark:bg-green-900/30 rounded-lg p-6 my-6">
+  <ul className="space-y-3">
+    <li className="flex items-center">
+      <span className="bg-green-500 p-1 rounded-full mr-3">
+        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+      <div>Visibilidad real del trabajo por agente, útil para evaluaciones de desempeño</div>
+    </li>
+    <li className="flex items-center">
+      <span className="bg-green-500 p-1 rounded-full mr-3">
+        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+      <div>Alertas automáticas si algún agente supera cierto umbral de tickets abiertos</div>
+    </li>
+    <li className="flex items-center">
+      <span className="bg-green-500 p-1 rounded-full mr-3">
+        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+      <div>Integración completa entre plataformas sin necesidad de herramientas de terceros costosas</div>
+    </li>
+  </ul>
+</div>
+
+Esta solución me enseñó que a veces Power BI puede ir más allá de los conectores predeterminados, y que con algo de creatividad y scripting en Power Query, es posible construir integraciones robustas, útiles y escalables. En lugar de comprar una solución externa, desarrollamos algo propio que ahora forma parte del flujo diario de análisis del equipo de soporte.
+
+## Recursos útiles
+
+* [Ejemplo de bucles en M por Chris Webb](https://blog.crossjoin.co.uk/2016/03/23/loops-in-power-query-m-code/)
+* [Script adaptado de la comunidad de Power BI](https://community.powerbi.com/t5/Desktop/Power-Query-Loop-through-API-pages/td-p/1581945)
+* [Video explicativo de paginación en M](https://www.youtube.com/watch?v=8mFvGuX1Bls)
+
+</BlogPost>

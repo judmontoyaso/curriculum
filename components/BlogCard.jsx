@@ -12,11 +12,12 @@ export default function BlogCard({
   tagList = [],
   readTime = "5 min",
 }) {
-  const date = new Date(createdAt);
+  const date = new Date(createdAt + 'T12:00:00Z');
   const formattedDate = new Intl.DateTimeFormat('es-ES', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    timeZone: 'UTC'
   }).format(date);
 
   // Asegurarse de que el slug tenga el formato correcto
