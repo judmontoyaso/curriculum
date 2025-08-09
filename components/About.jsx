@@ -99,6 +99,34 @@ const About = () => {
               </p>
             </div>
 
+            {/* Video de Presentación */}
+            <div className="mt-12 pt-12 relative">
+              {/* Elementos decorativos - izquierda */}
+              <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-24 h-24 bg-gradient-to-br from-cyan-300/20 to-teal-400/20 rounded-full blur-xl"></div>
+              <div className="absolute left-8 top-1/3 w-8 h-8 bg-cyan-400/30 rounded-lg rotate-45"></div>
+              
+              {/* Elementos decorativos - derecha */}
+              <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-24 h-24 bg-gradient-to-bl from-teal-300/20 to-cyan-400/20 rounded-full blur-xl"></div>
+              <div className="absolute right-8 bottom-1/3 w-8 h-8 bg-teal-400/30 rounded-lg rotate-12"></div>
+              
+              {/* Líneas decorativas */}
+              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-transparent via-cyan-200/30 to-transparent"></div>
+              
+              {/* Contenedor del video con borde gradiente */}
+              <div className="relative max-w-xs mx-auto p-1 rounded-xl bg-gradient-to-br from-cyan-300/50 via-teal-300/50 to-cyan-300/50">
+                <div className="w-full rounded-xl overflow-hidden shadow-lg backdrop-blur-sm bg-white/90 dark:bg-gray-800/90">
+                  <video 
+                    className="w-full"
+                    controls
+                    playsInline
+                  >
+                    <source src="/videocv.mp4" type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                  </video>
+                </div>
+              </div>
+            </div>
+
             <div className="mt-8">
               <CompetenciasGrid />
             </div>
