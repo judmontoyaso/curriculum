@@ -166,7 +166,7 @@ const Contact = () => {
                     href="tel:+573015386556" 
                     className="text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400 transition-colors"
                   >
-                    +57 (300) 123-4567
+                    +57 (301) 538-6556
                   </a>
                 </div>
               </div>
@@ -188,9 +188,7 @@ const Contact = () => {
               
               {/* Redes sociales */}
               <div className="pt-8 border-t border-gray-200 dark:border-gray-700">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Sígueme en redes sociales
-                </h3>
+               
                 <div className="flex space-x-4">
                   <a 
                     href="https://github.com/judmontoyaso" 
