@@ -163,7 +163,7 @@ const Contact = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Teléfono</h3>
                   <a 
-                    href="tel:+573001234567" 
+                    href="tel:+573015386556" 
                     className="text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400 transition-colors"
                   >
                     +57 (300) 123-4567
@@ -204,7 +204,7 @@ const Contact = () => {
                     />
                   </a>
                   <a 
-                    href="https://linkedin.com/in/judmontoyaso" 
+                    href="https://linkedin.com/in/juansolorzano" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="bg-blue-100 dark:bg-blue-900 p-3 rounded-full hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
@@ -212,17 +212,6 @@ const Contact = () => {
                     <FontAwesomeIcon 
                       icon={faLinkedin} 
                       className="text-blue-700 dark:text-blue-300 text-xl" 
-                    />
-                  </a>
-                  <a 
-                    href="https://twitter.com/judmontoyaso" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="bg-blue-100 dark:bg-blue-900 p-3 rounded-full hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
-                  >
-                    <FontAwesomeIcon 
-                      icon={faTwitter} 
-                      className="text-blue-500 dark:text-blue-300 text-xl" 
                     />
                   </a>
                 </div>
