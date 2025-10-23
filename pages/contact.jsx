@@ -154,24 +154,6 @@ const Contact = () => {
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="bg-green-100 dark:bg-green-900 p-3 rounded-full">
-                  <FontAwesomeIcon 
-                    icon={faPhone} 
-                    className="text-green-500 dark:text-green-400 text-xl" 
-                  />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Teléfono</h3>
-                  <a 
-                    href="tel:+573015386556" 
-                    className="text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400 transition-colors"
-                  >
-                    +57 (301) 538-6556
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
                 <div className="bg-amber-100 dark:bg-amber-900 p-3 rounded-full">
                   <FontAwesomeIcon 
                     icon={faLocationDot} 

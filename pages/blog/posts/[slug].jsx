@@ -5,9 +5,11 @@ import path from 'path';
 import matter from 'gray-matter';
 import BlogPost from '../../../components/BlogPost';
 import ReadingProgress from '../../../components/ReadingProgress';
+import CodeBlock from '../../../components/CodeBlock';
 
 const components = {
   BlogPost,
+  CodeBlock,
 };
 
 export default function Post({ source, frontMatter }) {

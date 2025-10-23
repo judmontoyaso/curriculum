@@ -11,15 +11,12 @@ import {
 import {
   faCheckCircle,
   faEnvelope,
-  faFilePdf,
   faHome,
-  faMobileAlt,
   faGraduationCap,
   faBriefcase,
   faCode,
   faFlask,
 } from "@fortawesome/free-solid-svg-icons";
-import { saveAs } from "file-saver";
 import ContenedorHabilidad from "../components/ContenedorHabilidad";
 import ContenedorHabilidadSolo from "../components/ContenedorHabilidadSolo";
 import { RoughNotation } from "react-rough-notation";
@@ -115,10 +112,6 @@ const Curriculum = () => {
                     </a>
                   </div>
                   <div className="flex items-center text-gray-600 dark:text-gray-300">
-                    <FontAwesomeIcon icon={faMobileAlt} className="w-5 h-5 mr-3" />
-                    <span className="text-sm">301 538 6556</span>
-                  </div>
-                  <div className="flex items-center text-gray-600 dark:text-gray-300">
                     <FontAwesomeIcon icon={faHome} className="w-5 h-5 mr-3" />
                     <span className="text-sm">Medellín, Colombia</span>
                   </div>
@@ -166,17 +159,6 @@ const Curriculum = () => {
                     </a>
                   </div>
                 </div>
-              </div>
-              
-              {/* Botón de descarga CV */}
-              <div className="mb-8">
-                <button 
-                  onClick={saveFile}
-                  className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors flex items-center justify-center"
-                >
-                  <FontAwesomeIcon icon={faFilePdf} className="mr-2" />
-                  Descargar CV
-                </button>
               </div>
             </div>
           </div>
