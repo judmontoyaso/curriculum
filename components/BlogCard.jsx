@@ -38,22 +38,25 @@ export default function BlogCard({
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600" />
           )}
-          {/* Tags Overlay */}
-          <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
-            {tagList.map((tag, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 text-sm bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 rounded-full backdrop-blur-sm"
-              >
-                <FontAwesomeIcon icon={faTag} className="mr-2 text-blue-500 dark:text-blue-400" />
-                {tag}
-              </span>
-            ))}
-          </div>
         </div>
 
         {/* Content */}
         <div className="p-6 flex flex-col flex-grow">
+          {/* Tags - Ahora fuera de la imagen */}
+          {tagList.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {tagList.map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
+                >
+                  <FontAwesomeIcon icon={faTag} className="mr-1 text-blue-500 dark:text-blue-400" />
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
           {/* Meta info */}
           <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
             <span className="flex items-center">
