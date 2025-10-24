@@ -89,10 +89,20 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Columna Derecha: Tech Pulse Animation */}
-            <div className="order-1 lg:order-2 flex items-center justify-center">
-              <div className="w-full h-[400px] md:h-[500px] lg:h-[600px]">
+            {/* Columna Derecha: Tech Pulse Animation - Solo en desktop */}
+            <div className="order-1 lg:order-2 hidden lg:flex items-center justify-center">
+              <div className="w-full h-[600px]">
                 <TechPulse />
+              </div>
+            </div>
+            
+            {/* Icono simple para móvil */}
+            <div className="order-1 lg:order-2 lg:hidden flex items-center justify-center py-8">
+              <div className="relative">
+                <div className="w-32 h-32 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                  <FontAwesomeIcon icon={faCode} className="text-6xl text-purple-200 animate-pulse" />
+                </div>
+                <div className="absolute -inset-4 bg-purple-400/20 rounded-full blur-xl animate-pulse"></div>
               </div>
             </div>
           </div>
