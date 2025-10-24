@@ -116,7 +116,7 @@ export default function AvatarCarousel({ className = "" }) {
           isAnimating ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
         }`}>
           <p className="text-gray-800 dark:text-gray-200 text-xs md:text-sm font-medium text-center italic whitespace-nowrap">
-            "{avatars[currentAvatar].phrase}"
+            &ldquo;{avatars[currentAvatar].phrase}&rdquo;
           </p>
         </div>
 
