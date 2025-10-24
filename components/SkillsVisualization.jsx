@@ -7,26 +7,47 @@ const SkillsVisualization = ({ inModal = false }) => {
   const skillCategories = [
     { id: 'all', name: 'Todas' },
     { id: 'languages', name: 'Lenguajes' },
+    { id: 'ai', name: 'IA & Automation' },
     { id: 'frameworks', name: 'Frameworks' },
     { id: 'data', name: 'Analítica' },
     { id: 'tools', name: 'Herramientas' }
   ];
 
   const skills = [
-    { name: 'Python', level: 90, category: 'languages', icon: '🐍' },
+    { name: 'Python', level: 95, category: 'languages', icon: '🐍' },
     { name: 'JavaScript', level: 85, category: 'languages', icon: '🟨' },
-    { name: '.NET', level: 80, category: 'languages', icon: '🔷' },
-    { name: 'SQL', level: 85, category: 'languages', icon: '🗄️' },
+    { name: 'SQL', level: 90, category: 'languages', icon: '🗄️' },
+    { name: 'TypeScript', level: 80, category: 'languages', icon: '�' },
+    
+    // IA & Automatización
+    { name: 'OpenAI GPT', level: 95, category: 'ai', icon: '🤖' },
+    { name: 'LangChain', level: 90, category: 'ai', icon: '🔗' },
+    { name: 'AI Agents', level: 85, category: 'ai', icon: '🧠' },
+    { name: 'Prompt Engineering', level: 95, category: 'ai', icon: '✍️' },
+    { name: 'N8N Automation', level: 90, category: 'ai', icon: '⚡' },
+    { name: 'Zapier/Make', level: 85, category: 'ai', icon: '🔄' },
+    { name: 'AI Content Creation', level: 90, category: 'ai', icon: '🎨' },
+    { name: 'CrewAI', level: 80, category: 'ai', icon: '�' },
+    
+    // Frameworks
     { name: 'Next.js', level: 90, category: 'frameworks', icon: '⚛️' },
     { name: 'React', level: 90, category: 'frameworks', icon: '⚛️' },
     { name: 'FastAPI', level: 85, category: 'frameworks', icon: '⚡' },
-    { name: 'Pandas', level: 90, category: 'data', icon: '🐼' },
-    { name: 'Scikit-Learn', level: 85, category: 'data', icon: '🧠' },
-    { name: 'Machine Learning', level: 80, category: 'data', icon: '🤖' },
-    { name: 'Power BI', level: 90, category: 'data', icon: '📊' },
-    { name: 'Git', level: 85, category: 'tools', icon: '🔄' },
-    { name: 'AWS', level: 75, category: 'tools', icon: '☁️' },
-    { name: 'Docker', level: 80, category: 'tools', icon: '🐳' }
+    { name: '.NET', level: 75, category: 'frameworks', icon: '🔷' },
+    
+    // Data & Analytics
+    { name: 'Pandas', level: 95, category: 'data', icon: '🐼' },
+    { name: 'Power BI', level: 95, category: 'data', icon: '📊' },
+    { name: 'Scikit-Learn', level: 85, category: 'data', icon: '�' },
+    { name: 'ETL Pipelines', level: 90, category: 'data', icon: '🔄' },
+    { name: 'Data Visualization', level: 90, category: 'data', icon: '�' },
+    
+    // Tools
+    { name: 'Git/GitHub', level: 90, category: 'tools', icon: '�' },
+    { name: 'AWS', level: 80, category: 'tools', icon: '☁️' },
+    { name: 'Docker', level: 85, category: 'tools', icon: '🐳' },
+    { name: 'GitHub Actions', level: 85, category: 'tools', icon: '🚀' },
+    { name: 'VS Code', level: 95, category: 'tools', icon: '💻' }
   ];
 
   const filteredSkills = activeCategory === 'all' 

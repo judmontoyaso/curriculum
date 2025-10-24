@@ -64,3 +64,81 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500 dark:from-blue-400 dark:to-teal-300;
   }
 }
+
+/* Animaciones para el Avatar Carousel */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-30px) translateX(20px);
+    opacity: 1;
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-float-particle {
+  animation: float-particle 2s ease-in-out infinite;
+}
+
+/* Efecto Matrix para el Avatar */
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.matrix-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(6, 182, 212, 0.1) 2px,
+    rgba(6, 182, 212, 0.1) 4px
+  );
+  animation: matrix-fall 1s linear infinite;
+}
+
+/* Línea de escaneo */
+@keyframes scan {
+  0%, 100% {
+    top: 0%;
+  }
+  50% {
+    top: 100%;
+  }
+}
+
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(6, 182, 212, 0.8),
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  animation: scan 2s ease-in-out infinite;
+}

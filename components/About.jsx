@@ -5,6 +5,7 @@ import { RoughNotation } from "react-rough-notation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faBook, faEnvelope, faRobot, faCloud, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import RopeConnection from "./RopeConnection";
+import AvatarCarousel from "./AvatarCarousel";
 
 const QuickLink = ({ href, icon, text, color }) => (
   <Link href={href}>
@@ -28,50 +29,51 @@ const About = () => {
       <div className="max-w-7xl mx-auto">
         <div className="max-w-4xl mx-auto">
           <div className="space-y-0">
-            <div ref={firstCardRef} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+            {/* Contenedor sin marco visible */}
+            <div ref={firstCardRef} className="p-8">
               <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-                {/* Foto y redes sociales */}
-                <div className="flex-shrink-0 space-y-4">
-                  <div className="relative w-48 h-48 rounded-2xl overflow-hidden shadow-xl group">
-                    <img
-                      src="/IMG-20250503-WA0007-fotor-20250512135928.jpg"
-                      alt="Juan David"
-                      className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60 group-hover:opacity-0 transition-opacity duration-500"></div>
-                  </div>
-                  <div className="flex justify-center space-x-4">
-                    <a href="https://github.com/judmontoyaso" target="_blank" rel="noopener noreferrer" 
-                       className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
-                      <FaGithub size={24} />
-                    </a>
-                    <a href="https://linkedin.com/in/juansolorzano" target="_blank" rel="noopener noreferrer" 
-                       className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
-                      <FaLinkedin size={24} />
-                    </a>
+                {/* Avatar Carousel */}
+                <div className="flex-shrink-0">
+                  <div className="w-[280px] h-[480px] mb-8">
+                    <AvatarCarousel />
                   </div>
                 </div>
 
                 {/* Información */}
                 <div className="flex-grow space-y-4 text-center md:text-left">
-                  <div className="prose prose-lg dark:prose-invert">
-                    <p className="text-gray-600 dark:text-gray-300">
-                      Soy un desarrollador full stack y científico de datos con más de 3 años de experiencia. 
-                      Me especializo en el desarrollo de soluciones de Machine Learning, visualización de datos y aplicaciones web usando Python, Next.js y C#.
+                  <div className="max-w-none">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base mb-3">
+                      Desarrollador full stack y científico de datos especializado en{' '}
+                      <span className="bg-cyan-100 dark:bg-cyan-900/30 px-1 font-semibold text-cyan-800 dark:text-cyan-300">
+                        Inteligencia Artificial
+                      </span>
+                      ,{' '}
+                      <span className="bg-purple-100 dark:bg-purple-900/30 px-1 font-semibold text-purple-800 dark:text-purple-300">
+                        Automatización
+                      </span>
+                      {' '}y{' '}
+                      <span className="bg-amber-100 dark:bg-amber-900/30 px-1 font-semibold text-amber-800 dark:text-amber-300">
+                        Visualización de Datos
+                      </span>
+                      . Con más de 3 años transformando datos en soluciones inteligentes usando Python, Next.js, IA Generativa y herramientas de automatización.
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mt-3 leading-relaxed">
+                      Creador de agentes IA, pipelines de datos automatizados, dashboards interactivos y aplicaciones web modernas. 
+                      Apasionado por combinar desarrollo web, machine learning, visualización de datos y IA para crear soluciones innovadoras y escalables.
                     </p>
                   </div>
 
-                  <div className="flex flex-col space-y-4">
+                  <div className="flex flex-col">
                     <div className="flex flex-wrap gap-3">
                       {[
                         { icon: "devicon-python-plain", text: "Python", isDevicon: true },
-                        { icon: "devicon-csharp-plain", text: "C#", isDevicon: true },
                         { icon: "devicon-javascript-plain", text: "JavaScript", isDevicon: true },
-                        { icon: "devicon-docker-plain", text: "Docker", isDevicon: true },
+                        { icon: "devicon-csharp-plain", text: "C#", isDevicon: true },
                         { icon: "devicon-mysql-plain", text: "SQL", isDevicon: true },
-                        { icon: faRobot, text: "Machine Learning", isDevicon: false },
-                        { icon: faCloud, text: "Cloud Architecture", isDevicon: false },
-                        { icon: faChartLine, text: "Data Visualization", isDevicon: false }
+                        { icon: faRobot, text: "AI/LLMs", isDevicon: false },
+                        { icon: faChartLine, text: "Power BI", isDevicon: false },
+                        { icon: "devicon-docker-plain", text: "Docker", isDevicon: true },
+                        { icon: faCloud, text: "AWS/Cloud", isDevicon: false }
                       ].map((tech, index) => (
                         <div key={index} className="flex items-center space-x-2 bg-gray-50 dark:bg-gray-800 px-3 py-2 rounded-lg hover:shadow-md transition-shadow">
                           {tech.isDevicon ? (
@@ -88,15 +90,34 @@ const About = () => {
               </div>
             </div>
 
-            <div className="h-20 -mt-1">
-              <RopeConnection topElementRef={firstCardRef} bottomElementRef={secondCardRef} />
-            </div>
-
-            <div ref={secondCardRef} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 -mt-1">
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                Actualmente estoy disponible para nuevas oportunidades donde pueda aplicar mi experiencia en desarrollo web y ciencia de datos. 
-                Me apasiona crear soluciones innovadoras combinando tecnologías web modernas con machine learning para resolver problemas complejos.
+            {/* Segundo contenedor sin marco visible */}
+            <div ref={secondCardRef} className="p-8 pt-0">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                Actualmente especializado en desarrollar <span className="font-semibold text-cyan-600 dark:text-cyan-400">soluciones full-stack</span> combinadas con 
+                <span className="font-semibold text-purple-600 dark:text-purple-400"> agentes de IA</span> y 
+                <span className="font-semibold text-blue-600 dark:text-blue-400"> automatizaciones inteligentes</span>. 
+                Trabajo con tecnologías web modernas (Next.js, React), LLMs (GPT, Claude), análisis de datos (Pandas, SQL) y plataformas de automatización (N8N, Zapier).
               </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div className="bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 p-4 rounded-lg border border-cyan-200 dark:border-cyan-800">
+                  <div className="text-2xl mb-2">💻</div>
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Full Stack Dev</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Aplicaciones web modernas con Next.js, React, Python, .NET y APIs robustas</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                  <div className="text-2xl mb-2">🤖</div>
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">IA & Automation</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Agentes inteligentes, LLMs, workflows automatizados y content creation</p>
+                </div>
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <div className="text-2xl mb-2">📊</div>
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Data & Analytics</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">ETL, pipelines, ML, visualización con Power BI y análisis avanzado</p>
+                </div>
+              </div>
+              
+              {/* Línea inferior decorativa */}
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-300 dark:via-purple-600 to-transparent mt-6"></div>
             </div>
 
             {/* Video de Presentación */}

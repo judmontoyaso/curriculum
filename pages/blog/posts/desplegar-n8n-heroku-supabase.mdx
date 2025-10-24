@@ -20,9 +20,9 @@ import BlogPost from '../../../components/BlogPost';
 
 ## Introducción: N8N Self-Hosted en Heroku
 
-**N8N** es una poderosa herramienta de automatización de flujos de trabajo de código abierto que te permite conectar diferentes aplicaciones y servicios sin necesidad de escribir código. Es como tener tu propio **Zapier** o **Make.com**, pero con control total sobre tu infraestructura y datos.
+¿Te imaginas tener tu propia plataforma de automatización sin las limitaciones de las soluciones en la nube? **N8N** es una poderosa herramienta de código abierto que te permite crear flujos de trabajo automatizados conectando diferentes aplicaciones y servicios, todo esto sin escribir una sola línea de código. Piensa en ello como tener tu propio **Zapier** o **Make.com**, pero con la ventaja de mantener el control total sobre tu infraestructura y datos.
 
-En este **tutorial completo 2025**, aprenderás a **desplegar N8N en Heroku** utilizando **Supabase** como base de datos **PostgreSQL** para garantizar la persistencia de tus workflows y credenciales. Esta combinación te proporciona una **solución self-hosted escalable, económica ($7/mes)** y fácil de mantener.
+En esta guía práctica y completa para 2025, te mostraré paso a paso cómo **desplegar tu propio servidor N8N en Heroku**, utilizando **Supabase** como base de datos **PostgreSQL** para garantizar que todos tus workflows, credenciales y ejecuciones se almacenen de forma persistente y segura. Lo mejor de todo es que esta solución self-hosted es **escalable, económica (desde $7/mes)** y sorprendentemente fácil de mantener.
 
 ### Lo que aprenderás en esta guía
 
@@ -62,9 +62,9 @@ En este **tutorial completo 2025**, aprenderás a **desplegar N8N en Heroku** ut
 
 ---
 
-## ¿Por qué Desplegar N8N en Heroku con Supabase?
+## ¿Por qué Elegir la Combinación N8N + Heroku + Supabase?
 
-Esta combinación de **N8N + Heroku + Supabase** es una de las mejores alternativas para self-hosting en 2025:
+Si estás buscando una solución de self-hosting profesional y accesible, esta combinación de **N8N + Heroku + Supabase** se ha consolidado como una de las mejores alternativas en 2025. Pero, ¿qué la hace tan especial?
 
 <div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-6 my-6">
   <ul className="space-y-3">
@@ -174,26 +174,28 @@ heroku container:login
 
 ## Paso 1: Configurar PostgreSQL en Supabase para N8N
 
-Lo primero que necesitamos es configurar nuestra **base de datos PostgreSQL en Supabase**, donde N8N almacenará todos sus datos de forma persistente.
+El primer paso en nuestro camino es configurar la **base de datos PostgreSQL en Supabase**. Esta será el corazón de tu instalación N8N, almacenando de forma persistente todos los workflows, credenciales y datos de ejecución.
 
 ### 1.1 Crear el proyecto en Supabase
 
-1. Accede a [supabase.com](https://supabase.com) e inicia sesión
-2. Haz clic en **"New project"**
-3. Asigna un nombre a tu proyecto (ej: `n8n-production`)
-4. Define una contraseña segura para la base de datos
-5. Selecciona la región más cercana a tu ubicación
+Comencemos creando tu espacio de trabajo en Supabase:
 
-### Configurar Connection Pooling (Transaction Pooler)
+1. Dirígete a [supabase.com](https://supabase.com) y accede con tu cuenta
+2. Haz clic en el botón **"New project"**
+3. Asigna un nombre descriptivo a tu proyecto (por ejemplo: `n8n-production` o `mi-automatizacion`)
+4. Establece una contraseña robusta para la base de datos (guárdala en un lugar seguro, la necesitarás más adelante)
+5. Selecciona la región geográfica más cercana a tu ubicación para minimizar la latencia
+
+### 1.2 Activar Connection Pooling (Transaction Pooler)
 
 <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-6 my-6">
-  <div className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">⚠️ Importante: Conectividad IPv4 en Heroku</div>
+  <div className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">⚠️ Aspecto Crítico: Conectividad IPv4 en Heroku</div>
   <div className="text-yellow-700 dark:text-yellow-300">
-    Heroku tiene problemas de conectividad con URLs IPv6 y con conexiones directas de Supabase. Es <strong>crucial usar el Transaction Pooler</strong> con puerto <strong>6543</strong> para evitar errores <code>ENETUNREACH</code>.
+    Existe un detalle técnico importante que debes conocer: Heroku presenta limitaciones de conectividad con URLs IPv6 y conexiones directas de Supabase. Por esta razón, es <strong>absolutamente crucial usar el Transaction Pooler</strong> configurado en el puerto <strong>6543</strong>. Esto evitará que te enfrentes a frustrantes errores <code>ENETUNREACH</code> que impedirían que tu aplicación se conecte a la base de datos.
   </div>
 </div>
 
-Sigue estos pasos:
+Para configurar correctamente el Connection Pooling, sigue estos pasos con atención:
 
 1. En tu proyecto de Supabase, ve a **Database → Settings**
 2. Busca la sección **Connection Pooling**
@@ -243,30 +245,34 @@ postgresql://postgres.hmbzbjxghavlsnhhvmqt:[YOUR-PASSWORD]@aws-0-us-east-1.poole
 
 ## Paso 2: Crear Aplicación N8N en Heroku con Docker
 
-Ahora vamos a crear la aplicación en Heroku desde la línea de comandos usando **Heroku CLI**:
+Ahora que tenemos nuestra base de datos lista, es momento de preparar el hogar de tu servidor N8N en Heroku. Utilizaremos **Heroku CLI** para crear y configurar la aplicación directamente desde la línea de comandos:
 
 ```bash
-# Crea tu aplicación (el nombre debe ser único en Heroku)
+# Crea tu aplicación (recuerda que el nombre debe ser único en toda la plataforma Heroku)
 heroku create heroku-n8n
 ```
 
-Este comando crea una nueva aplicación y te proporciona una URL pública:
+Este sencillo comando realiza varias acciones importantes:
+- Crea una nueva aplicación en tu cuenta de Heroku
+- Te asigna una URL pública única donde estará disponible tu servidor N8N
+
+Al ejecutarlo, verás algo similar a:
 
 ```
 https://heroku-n8n.herokuapp.com
 ```
 
-> 💡 **Tip:** Si el nombre ya está tomado, Heroku generará uno aleatorio. Puedes cambiarlo después desde el dashboard.
+> 💡 **Consejo útil:** Si el nombre que elegiste ya está en uso por otro usuario, Heroku generará automáticamente un nombre aleatorio para ti. No te preocupes, siempre puedes cambiarlo posteriormente desde el dashboard de Heroku.
 
-### Configurar stack container para Docker
+### Configurar el Stack Container para Docker
 
-Importante: debemos configurar Heroku para que use **contenedores Docker** en lugar del buildpack tradicional:
+Este es un paso fundamental que muchos olvidan: debemos indicarle explícitamente a Heroku que nuestra aplicación utilizará **contenedores Docker** en lugar del sistema de buildpacks tradicional:
 
 ```bash
 heroku stack:set container -a heroku-n8n
 ```
 
-Este comando indica a Heroku que tu aplicación se desplegará usando **Docker container stack**.
+Con este comando, le estamos diciendo a Heroku: "Esta aplicación se desplegará usando el **Docker container stack**, no los buildpacks estándar". Este cambio es esencial para que todo funcione correctamente.
 
 <div className="my-8">
   <img 
@@ -281,11 +287,13 @@ Este comando indica a Heroku que tu aplicación se desplegará usando **Docker c
 
 ## Paso 3: Configurar Variables de Entorno para N8N
 
-Las **variables de entorno** son el corazón de la configuración de N8N. Aquí es donde conectamos nuestra aplicación con **Supabase PostgreSQL** y definimos el comportamiento del sistema.
+Llegamos a uno de los pasos más importantes del tutorial: la configuración de las **variables de entorno**. Estas variables son, literalmente, el cerebro de tu instalación N8N. A través de ellas conectaremos tu aplicación con **Supabase PostgreSQL** y definiremos cómo se comportará el sistema completo.
 
-### 3.1 Crear archivo .env local
+### 3.1 Crear archivo .env local (referencia)
 
-Primero, crea un archivo `.env` en tu directorio local con las siguientes **variables de entorno para N8N** (úsalo como referencia):
+Antes de configurar nada en Heroku, te recomiendo crear un archivo `.env` en tu directorio local. Este archivo te servirá como referencia y documentación de tu configuración. No te preocupes, no lo subiremos a ningún repositorio público (de hecho, deberías agregarlo a tu `.gitignore`).
+
+Crea el archivo con este contenido, reemplazando los valores de ejemplo con tus datos reales:
 
 ```bash
 DB_TYPE=postgresdb
@@ -464,27 +472,27 @@ GENERIC_TIMEZONE=America/Bogota
 
 ### 3.5 Subir variables a Heroku
 
-Tienes dos opciones para subir las variables de entorno a Heroku:
+Ahora viene el momento de trasladar toda esta configuración a Heroku. Te presento dos métodos para hacerlo; elige el que te resulte más cómodo:
 
-#### Opción A: Usando el plugin heroku-config (recomendado)
+#### Opción A: Usando el plugin heroku-config (método recomendado)
 
-Si tienes un archivo `.env` local, instala primero el plugin `heroku-config`:
+Si ya tienes tu archivo `.env` preparado localmente, esta es la forma más rápida y menos propensa a errores. Primero, instala el plugin oficial `heroku-config`:
 
 ```bash
 heroku plugins:install heroku-config
 ```
 
-Luego sube todas las variables del .env a Heroku:
+Una vez instalado, sube todas las variables de tu archivo `.env` a Heroku con un solo comando:
 
 ```bash
 heroku config:push -a heroku-n8n
 ```
 
-Deberías ver: `Successfully wrote settings to Heroku!`
+Si todo sale bien, deberías ver el mensaje: `Successfully wrote settings to Heroku!`
 
-#### Opción B: Configuración manual
+#### Opción B: Configuración manual (método tradicional)
 
-También puedes configurar todas las variables manualmente:
+Si prefieres tener control total sobre cada variable o no quieres usar plugins, puedes configurarlas manualmente una por una. Este método es más largo, pero igualmente válido:
 
 ```bash
 heroku config:set \
@@ -504,38 +512,7 @@ heroku config:set \
   -a heroku-n8n
 ```
 
-### 3.6 Variables opcionales: Autenticación básica N8N
 
-Para proteger tu instalación de N8N con usuario y contraseña:
-
-<div className="overflow-x-auto">
-<table>
-  <thead>
-    <tr>
-      <th>Variable</th>
-      <th>Ejemplo</th>
-      <th>Descripción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>N8N_BASIC_AUTH_ACTIVE</code></td>
-      <td><code>true</code></td>
-      <td>Activa autenticación básica</td>
-    </tr>
-    <tr>
-      <td><code>N8N_BASIC_AUTH_USER</code></td>
-      <td><code>admin</code></td>
-      <td>Usuario para acceder a N8N</td>
-    </tr>
-    <tr>
-      <td><code>N8N_BASIC_AUTH_PASSWORD</code></td>
-      <td><code>ContraseñaSegura123!</code></td>
-      <td>Contraseña de acceso</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 <div className="my-8">
   <img 
@@ -550,13 +527,11 @@ Para proteger tu instalación de N8N con usuario y contraseña:
 
 ## Paso 4: Crear Archivos Docker para N8N (Dockerfile + entrypoint.sh)
 
-Ahora vamos a crear los archivos necesarios para el despliegue en Heroku: **Dockerfile**, **entrypoint.sh** y **heroku.yml**.
+Ahora viene la parte donde preparamos los "planos de construcción" de tu servidor N8N. Vamos a crear tres archivos esenciales que Heroku utilizará para construir y ejecutar tu contenedor Docker: **Dockerfile**, **entrypoint.sh** y **heroku.yml**.
 
 ### 4.1 Crear el Dockerfile para N8N
 
-Crea un archivo llamado `Dockerfile` en la raíz de tu proyecto:
-
-Crea un archivo llamado `Dockerfile` en la raíz de tu proyecto:
+El Dockerfile es como una receta que le dice a Docker cómo construir tu contenedor. Crea un archivo llamado `Dockerfile` (sin extensión) en la raíz de tu proyecto con el siguiente contenido:
 
 ```dockerfile
 FROM n8nio/n8n:latest
@@ -567,17 +542,18 @@ RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 ```
 
-Este Dockerfile:
-1. Usa la imagen oficial de N8N como base
-2. Copia tu script `entrypoint.sh` personalizado
-3. Le da permisos de ejecución al script
-4. Define el script como punto de entrada del contenedor
+**¿Qué hace cada línea de este Dockerfile?**
+
+1. **FROM n8nio/n8n:latest** → Partimos de la imagen oficial más reciente de N8N como base
+2. **COPY entrypoint.sh /entrypoint.sh** → Copiamos nuestro script personalizado dentro del contenedor
+3. **RUN chmod +x /entrypoint.sh** → Le otorgamos permisos de ejecución al script
+4. **ENTRYPOINT ["/entrypoint.sh"]** → Definimos que este script sea el punto de entrada, es decir, lo primero que se ejecutará cuando el contenedor arranque
 
 ### 4.2 Crear el script entrypoint.sh
 
-El script `entrypoint.sh` es crucial para que N8N funcione correctamente en Heroku. Se encarga de parsear la `DATABASE_URL` y configurar todas las variables necesarias antes de iniciar N8N.
+Este script es la pieza clave que hace que todo funcione correctamente. El `entrypoint.sh` se ejecuta antes de que N8N inicie, y se encarga de dos tareas críticas: parsear la `DATABASE_URL` y configurar todas las variables de entorno que N8N necesita para conectarse a PostgreSQL.
 
-Crea un archivo llamado `entrypoint.sh`:
+Crea un archivo llamado `entrypoint.sh` con el siguiente contenido:
 
 ```bash
 #!/bin/sh
@@ -613,19 +589,25 @@ export DB_POSTGRESDB_PASSWORD=$N8N_DB_PASSWORD
 n8n
 ```
 
-> 💡 **Nota:** En Windows, los permisos de ejecución se configuran automáticamente al crear el archivo. En Linux/Mac, usa `chmod +x entrypoint.sh` si es necesario.
+> 💡 **Nota importante:** En Windows, los permisos de ejecución se configuran automáticamente al crear el archivo, no necesitas hacer nada adicional. En sistemas Linux o Mac, si creas el archivo localmente, es posible que debas ejecutar `chmod +x entrypoint.sh` para darle permisos de ejecución.
 
-### ¿Qué hace este script?
+### 4.3 Entendiendo el script: ¿Qué hace cada parte?
 
-1. **Detecta el puerto**: Heroku asigna dinámicamente un puerto a través de la variable `$PORT`
-2. **Parsea DATABASE_URL**: Extrae usuario, contraseña, host, puerto y nombre de base de datos usando una función robusta
-3. **Separa host y puerto**: Divide el `HOSTPORT` en componentes individuales
-4. **Exporta variables**: Configura todas las variables de entorno que N8N necesita
-5. **Inicia N8N**: Ejecuta el servidor con todas las variables configuradas
+Puede parecer complejo a primera vista, pero el script realiza una serie de pasos lógicos y bien definidos:
 
-### 4.3 Crear heroku.yml
+1. **Detecta el puerto dinámico**: Heroku no usa puertos fijos; cada vez que arranca tu aplicación, asigna un puerto aleatorio a través de la variable `$PORT`. El script detecta este valor y lo configura para N8N.
 
-Crea un archivo `heroku.yml` para indicar a Heroku cómo construir tu aplicación:
+2. **Parsea la DATABASE_URL**: Heroku proporciona la URL de conexión completa en un solo string. El script usa expresiones regulares avanzadas (sed) para separar este string en sus componentes: protocolo, usuario, contraseña, host, puerto y nombre de base de datos.
+
+3. **Separa host y puerto**: Extrae el host (ej: `aws-0-us-east-1.pooler.supabase.com`) y el puerto (`6543`) del valor `HOSTPORT`.
+
+4. **Exporta variables individuales**: Configura todas las variables de entorno específicas que N8N espera recibir, como `DB_POSTGRESDB_HOST`, `DB_POSTGRESDB_PORT`, etc.
+
+5. **Inicia N8N**: Finalmente, ejecuta el comando `n8n` para arrancar el servidor con toda la configuración correcta.
+
+### 4.4 Crear heroku.yml
+
+El último archivo que necesitamos es `heroku.yml`. Este archivo de configuración le indica a Heroku exactamente cómo debe construir tu aplicación. Créalo en la raíz de tu proyecto con este contenido:
 
 ```yaml
 build:
@@ -633,62 +615,82 @@ build:
     web: Dockerfile
 ```
 
-Este archivo le indica a Heroku que debe usar el `Dockerfile` para construir el contenedor web.
+Simple y directo: este archivo le dice a Heroku "Para construir el proceso web de esta aplicación, utiliza el `Dockerfile` que está en la raíz del proyecto".
 
 ## Paso 5: Desplegar en Heroku
 
-Una vez que configuraste el stack como container y tienes todos los archivos listos, el despliegue es muy simple usando Git.
+¡Llegó el momento de la verdad! Ya tienes el stack configurado como container y todos los archivos necesarios listos. Ahora viene la parte emocionante: desplegar tu servidor N8N a Heroku. El proceso es sorprendentemente simple gracias a Git.
 
-### Inicializar repositorio Git (si no lo has hecho)
+### 5.1 Inicializar repositorio Git (si aún no lo has hecho)
+
+Si tu directorio aún no es un repositorio Git, inicialízalo con:
 
 ```bash
 git init
 ```
 
-### Agregar el remote de Heroku
+### 5.2 Conectar con tu aplicación Heroku
+
+Vincula tu repositorio local con la aplicación que creaste en Heroku:
 
 ```bash
 heroku git:remote -a heroku-n8n
 ```
 
-### Hacer commit de todos los archivos
+Este comando agrega un "remote" llamado `heroku` a tu repositorio Git, apuntando a tu aplicación.
+
+### 5.3 Preparar los archivos para el despliegue
+
+Agrega todos los archivos al staging area de Git y crea un commit:
 
 ```bash
 git add .
-git commit -m "Configuración inicial de N8N con Supabase"
+git commit -m "Configuración inicial de N8N con Supabase PostgreSQL"
 ```
 
-### Desplegar a Heroku
+### 5.4 ¡Despliega a Heroku!
+
+Ahora sí, el comando mágico que pone todo en marcha:
 
 ```bash
 git push heroku master
 ```
 
-O si estás en la rama `main`:
+Si tu rama principal se llama `main` en lugar de `master`, usa:
 
 ```bash
 git push heroku main
 ```
 
-Este comando:
-1. Sube tu código a Heroku
-2. Detecta el `heroku.yml` y construye el contenedor Docker automáticamente
-3. Despliega la aplicación
-4. Inicia N8N con todas tus configuraciones
+**¿Qué sucede cuando ejecutas este comando?**
 
-### Verificar el despliegue
+Prepárate para ver una cascada de mensajes en tu terminal. Heroku está trabajando duro por ti:
 
-Monitorea los logs en tiempo real para asegurarte de que todo funciona correctamente:
+1. ⬆️ **Sube tu código** a los servidores de Heroku
+2. 📋 **Detecta el archivo heroku.yml** y reconoce que debe usar Docker
+3. 🐳 **Construye el contenedor** siguiendo las instrucciones de tu Dockerfile
+4. 📦 **Despliega la aplicación** en su infraestructura
+5. 🚀 **Inicia N8N** con todas tus configuraciones aplicadas
+
+El proceso completo puede tomar entre 2 y 5 minutos, dependiendo de la velocidad de tu conexión y la carga de los servidores de Heroku.
+
+### 5.5 Verificar que el despliegue fue exitoso
+
+Una vez que el push termine, es fundamental verificar que todo arrancó correctamente. Monitorea los logs en tiempo real con:
 
 ```bash
 heroku logs --tail -a heroku-n8n
 ```
 
-Para abrir la aplicación directamente en el navegador:
+Este comando te mostrará los logs en tiempo real. Mantén este terminal abierto mientras observas cómo N8N inicia.
+
+¿Quieres abrir tu nueva instalación de N8N directamente en el navegador? Usa:
 
 ```bash
 heroku open -a heroku-n8n
 ```
+
+Este comando abrirá automáticamente tu aplicación en tu navegador predeterminado.
 
 <div className="bg-green-50 dark:bg-green-900/30 rounded-lg p-6 my-6">
   <div className="font-semibold text-green-800 dark:text-green-200 mb-2">✅ Señales de éxito en los logs</div>
@@ -703,46 +705,70 @@ heroku open -a heroku-n8n
 
 ## Paso 6: Gestión de la Aplicación
 
-Una vez desplegada tu aplicación, aquí hay comandos útiles para gestionarla:
+¡Felicitaciones! Tu servidor N8N ya está en funcionamiento. Ahora te mostraré los comandos esenciales que necesitarás para gestionar tu aplicación en el día a día. Piensa en estos comandos como el panel de control de tu servidor.
 
-### Detener la aplicación completamente
+### Pausar la aplicación (ahorrar recursos)
+
+Si necesitas detener temporalmente tu servidor N8N sin eliminarlo (por ejemplo, para ahorrar horas de dyno cuando no lo estés usando):
 
 ```bash
 heroku ps:scale web=0 -a heroku-n8n
 ```
 
-Este comando detiene el contenedor sin eliminar la aplicación. Útil para ahorrar horas de dyno.
+Este comando escala tu aplicación a cero dynos, efectivamente deteniéndola. Tu configuración y datos permanecen intactos.
 
 ### Reactivar la aplicación
+
+Cuando necesites volver a usar tu servidor N8N, simplemente reactívalo:
 
 ```bash
 heroku ps:scale web=1 -a heroku-n8n
 ```
 
-### Reiniciar (aplicar cambios en variables de entorno)
+Esto vuelve a escalar a un dyno, reiniciando tu aplicación donde la dejaste.
 
-Si solo cambiaste variables de entorno y quieres aplicar los cambios:
+### Reiniciar (aplicar cambios de variables)
+
+¿Cambiaste alguna variable de entorno y necesitas que N8N la reconozca? Un simple reinicio es suficiente:
 
 ```bash
 heroku restart -a heroku-n8n
 ```
 
-### Redeploy completo
+Este es el equivalente a apagar y encender tu servidor. Los cambios en las variables de entorno se aplicarán inmediatamente.
 
-Si modificaste el `Dockerfile` o `entrypoint.sh`, necesitas reconstruir y redesplegar:
+### Redesplegar después de cambios en el código
+
+Si modificaste alguno de los archivos clave como el `Dockerfile` o `entrypoint.sh`, necesitarás reconstruir y redesplegar el contenedor completo. Hay dos formas de hacerlo:
+
+**Opción 1: Usando Git (recomendado)**
+
+```bash
+git add .
+git commit -m "Actualización de configuración Docker"
+git push heroku main
+```
+
+**Opción 2: Usando Heroku Container Registry**
 
 ```bash
 heroku container:push web -a heroku-n8n
 heroku container:release web -a heroku-n8n
 ```
 
-### Ver estado de la aplicación
+### Monitorear el estado de tu aplicación
+
+Para ver un resumen rápido del estado actual de tu aplicación:
 
 ```bash
 heroku ps -a heroku-n8n
 ```
 
-### Ver todas las variables de entorno configuradas
+Te mostrará información como el tipo de dyno que estás usando, cuánto tiempo lleva activo, y su estado (up, down, etc).
+
+### Consultar todas las variables de entorno
+
+¿Necesitas recordar qué variables tienes configuradas o verificar sus valores?
 
 ```bash
 heroku config -a heroku-n8n
@@ -750,15 +776,17 @@ heroku config -a heroku-n8n
 
 ## Paso 7: Verificación y Primeros Pasos
 
-### Acceder a tu instalación
+Es hora de probar tu nueva instalación y asegurarte de que todo funciona a la perfección. Este es el momento más emocionante: ¡ver tu servidor N8N en acción!
 
-Abre tu navegador y ve a:
+### 7.1 Acceder a tu instalación de N8N
+
+Abre tu navegador favorito y dirígete a la URL de tu aplicación:
 
 ```
 https://heroku-n8n.herokuapp.com
 ```
 
-Si configuraste autenticación básica, introduce tu usuario y contraseña.
+Si configuraste autenticación básica (las variables `N8N_BASIC_AUTH_*`), aparecerá una ventana emergente solicitando tu usuario y contraseña. Introduce las credenciales que definiste en las variables de entorno.
 
 <div className="my-8">
   <img 
@@ -771,25 +799,56 @@ Si configuraste autenticación básica, introduce tu usuario y contraseña.
   </div>
 </div>
 
-### Crear tu primer workflow
+### 7.2 Configuración inicial: crear tu cuenta de propietario
 
-1. **Crea una cuenta**: N8N te pedirá crear una cuenta de propietario la primera vez
-2. **Explora la interfaz**: Familiarízate con el editor visual de workflows
-3. **Prueba un workflow simple**: Por ejemplo, un webhook que responda con un mensaje
-4. **Verifica la persistencia**: Reinicia la app y comprueba que tus workflows siguen ahí
+La primera vez que accedas a tu instalación de N8N, el sistema te pedirá que crees una **cuenta de propietario**. Esta es tu cuenta principal de administrador. Completa los siguientes datos:
 
-### Probar la persistencia de datos
+1. **Tu nombre y apellido** (para personalizar la experiencia)
+2. **Correo electrónico** (úsalo para recuperar tu cuenta si olvidas la contraseña)
+3. **Contraseña robusta** (elige una que sea segura, con mayúsculas, números y símbolos)
 
-Para verificar que la conexión a Supabase funciona correctamente:
+Una vez creada la cuenta, tendrás acceso completo al editor de workflows de N8N.
+
+### 7.3 Explora la interfaz de N8N
+
+Tómate unos minutos para familiarizarte con el entorno:
+
+- **Panel izquierdo**: Aquí encontrarás todos los nodos disponibles (más de 200 integraciones)
+- **Canvas central**: El área de trabajo donde arrastras y conectas nodos para crear workflows
+- **Panel derecho**: Configuración del nodo seleccionado
+- **Menú superior**: Acceso a tus workflows guardados, credenciales y configuración
+
+### 7.4 Crea tu primer workflow de prueba
+
+Vamos a crear un workflow sencillo para verificar que todo funciona correctamente. Te sugiero este flujo básico:
+
+1. Haz clic en el botón **"+ Add first step"** o arrastra un nodo **Webhook** al canvas
+2. Configura el webhook para que escuche peticiones GET
+3. Añade un nodo **Set** para transformar datos
+4. Conecta los nodos arrastrando desde la salida del primero a la entrada del segundo
+5. Haz clic en **"Save"** para guardar tu workflow
+6. Activa el workflow con el toggle en la parte superior
+
+### 7.5 Verificar la persistencia de datos (prueba crucial)
+
+Este es el test definitivo para asegurarte de que la conexión con Supabase funciona correctamente:
 
 ```bash
-# Crea un workflow simple en N8N
-# Luego reinicia la aplicación
+# Paso 1: Crea y guarda un workflow en N8N (desde la interfaz web)
+
+# Paso 2: Reinicia la aplicación desde la terminal
 heroku restart -a heroku-n8n
 
-# Espera unos segundos y vuelve a acceder
-# Tus workflows deben seguir ahí
+# Paso 3: Espera aproximadamente 30 segundos para que el servidor vuelva a estar activo
+
+# Paso 4: Recarga la página de N8N en tu navegador
 ```
+
+**¿Qué debes ver?**
+
+✅ **Si la persistencia funciona correctamente**: Tu workflow seguirá ahí exactamente como lo dejaste, con todas sus configuraciones intactas.
+
+❌ **Si hay un problema**: El workflow habrá desaparecido, lo que indica que N8N no está guardando en la base de datos. En ese caso, revisa los logs con `heroku logs --tail -a heroku-n8n` para identificar errores de conexión a PostgreSQL.
 
 ## Solución de Problemas Comunes
 
