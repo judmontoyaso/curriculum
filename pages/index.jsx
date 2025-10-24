@@ -91,7 +91,7 @@ export default function Home() {
 
             {/* Columna Derecha: Tech Pulse Animation */}
             <div className="order-1 lg:order-2 flex items-center justify-center">
-              <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative overflow-hidden">
+              <div className="w-full h-[600px] relative overflow-hidden">
                 <TechPulse />
               </div>
             </div>

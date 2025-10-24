@@ -71,14 +71,11 @@ export default function AvatarCarousel({ className = "" }) {
         onClick={handleClick}
         onMouseEnter={handleHover}
       >
-        {/* Anillo de neón rotativo */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 opacity-0 group-hover:opacity-75 blur-xl transition-opacity duration-500 animate-spin-slow"></div>
-        
         {/* Círculo de fondo con gradiente */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 group-hover:scale-110 transition-transform duration-500"></div>
 
-        {/* Efecto Matrix de fondo */}
-        <div className="absolute inset-0 rounded-full overflow-hidden opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+        {/* Efecto Matrix de fondo - SOLO EN DESKTOP */}
+        <div className="hidden lg:block absolute inset-0 rounded-full overflow-hidden opacity-0 group-hover:opacity-30 transition-opacity duration-500">
           <div className="matrix-rain"></div>
         </div>
 
@@ -96,54 +93,45 @@ export default function AvatarCarousel({ className = "" }) {
           {/* Overlay con gradiente en hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-teal-900/40 via-transparent to-cyan-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           
-          {/* Efecto de escaneo */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          {/* Efecto de escaneo - SOLO EN DESKTOP */}
+          <div className="hidden lg:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             <div className="scan-line"></div>
           </div>
         </div>
+      </div>
 
-        {/* Etiqueta flotante con frase */}
-        <div className={`absolute -bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-300 ${
-          isAnimating ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
-        }`}>
-          <div className="bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg whitespace-nowrap">
-            {avatars[currentAvatar].label}
-          </div>
+      {/* Etiqueta flotante - fuera del contenedor principal */}
+      <div className={`absolute -bottom-12 left-1/2 transform -translate-x-1/2 transition-all duration-300 ${
+        isAnimating ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
+      }`}>
+        <div className="bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg whitespace-nowrap">
+          {avatars[currentAvatar].label}
         </div>
+      </div>
 
-        {/* Frase contextual */}
-        <div className={`absolute -bottom-16 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
-          isAnimating ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
-        }`}>
-          <p className="text-gray-800 dark:text-gray-200 text-xs md:text-sm font-medium text-center italic whitespace-nowrap">
-            &ldquo;{avatars[currentAvatar].phrase}&rdquo;
-          </p>
-        </div>
-
-        {/* Indicadores de avatar */}
-        <div className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 flex gap-2">
-          {avatars.map((_, index) => (
-            <button
-              key={index}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (!isAnimating) {
-                  setIsAnimating(true);
-                  setTimeout(() => {
-                    setCurrentAvatar(index);
-                    setIsAnimating(false);
-                  }, 300);
-                }
-              }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentAvatar === index 
-                  ? 'bg-cyan-500 scale-125 shadow-lg shadow-cyan-500/50' 
-                  : 'bg-gray-400 hover:bg-gray-300 scale-100'
-              }`}
-              aria-label={`Avatar ${index + 1}`}
-            />
-          ))}
-        </div>
+      {/* Indicadores de avatar - debajo de la etiqueta */}
+      <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {avatars.map((_, index) => (
+          <button
+            key={index}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!isAnimating) {
+                setIsAnimating(true);
+                setTimeout(() => {
+                  setCurrentAvatar(index);
+                  setIsAnimating(false);
+                }, 300);
+              }
+            }}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              currentAvatar === index 
+                ? 'bg-cyan-500 scale-125 shadow-lg shadow-cyan-500/50' 
+                : 'bg-gray-400 hover:bg-gray-300 scale-100'
+            }`}
+            aria-label={`Avatar ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );

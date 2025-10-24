@@ -25,22 +25,22 @@ const About = () => {
   const secondCardRef = useRef(null);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
+    <div className="bg-gray-50 dark:bg-gray-900 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-4xl mx-auto">
           <div className="space-y-0">
             {/* Contenedor sin marco visible */}
             <div ref={firstCardRef} className="p-8">
-              <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+              <div className="flex flex-col md:flex-row items-start md:items-start space-y-8 md:space-y-0 md:space-x-8">
                 {/* Avatar Carousel */}
-                <div className="flex-shrink-0">
-                  <div className="w-[280px] h-[480px] mb-8">
+                <div className="flex-shrink-0 mx-auto md:mx-0">
+                  <div className="w-[280px] h-[360px] relative">
                     <AvatarCarousel />
                   </div>
                 </div>
 
                 {/* Información */}
-                <div className="flex-grow space-y-4 text-center md:text-left">
+                <div className="flex-grow space-y-5 text-center md:text-left w-full">
                   <div className="max-w-none">
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base mb-3">
                       Desarrollador full stack y científico de datos especializado en{' '}
@@ -63,25 +63,31 @@ const About = () => {
                     </p>
                   </div>
 
-                  <div className="flex flex-col">
-                    <div className="flex flex-wrap gap-3">
+                  {/* Tecnologías con mejor diseño */}
+                  <div className="flex flex-col space-y-3">
+                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Stack Tecnológico</h4>
+                    <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                       {[
-                        { icon: "devicon-python-plain", text: "Python", isDevicon: true },
-                        { icon: "devicon-javascript-plain", text: "JavaScript", isDevicon: true },
-                        { icon: "devicon-csharp-plain", text: "C#", isDevicon: true },
-                        { icon: "devicon-mysql-plain", text: "SQL", isDevicon: true },
-                        { icon: faRobot, text: "AI/LLMs", isDevicon: false },
-                        { icon: faChartLine, text: "Power BI", isDevicon: false },
-                        { icon: "devicon-docker-plain", text: "Docker", isDevicon: true },
-                        { icon: faCloud, text: "AWS/Cloud", isDevicon: false }
+                        { icon: "devicon-python-plain", text: "Python", color: "from-blue-500 to-yellow-500", isDevicon: true },
+                        { icon: "devicon-javascript-plain", text: "JavaScript", color: "from-yellow-400 to-yellow-600", isDevicon: true },
+                        { icon: "devicon-csharp-plain", text: "C#", color: "from-purple-500 to-purple-700", isDevicon: true },
+                        { icon: "devicon-mysql-plain", text: "SQL", color: "from-blue-600 to-cyan-600", isDevicon: true },
+                        { icon: faRobot, text: "AI/LLMs", color: "from-pink-500 to-rose-600", isDevicon: false },
+                        { icon: faChartLine, text: "Power BI", color: "from-amber-500 to-orange-600", isDevicon: false },
+                        { icon: "devicon-docker-plain", text: "Docker", color: "from-blue-400 to-blue-600", isDevicon: true },
+                        { icon: faCloud, text: "AWS/Cloud", color: "from-orange-500 to-red-600", isDevicon: false }
                       ].map((tech, index) => (
-                        <div key={index} className="flex items-center space-x-2 bg-gray-50 dark:bg-gray-800 px-3 py-2 rounded-lg hover:shadow-md transition-shadow">
+                        <div 
+                          key={index} 
+                          className="group relative flex items-center space-x-2 bg-white dark:bg-gray-800 px-4 py-2.5 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 dark:border-gray-700"
+                        >
+                          <div className={`absolute inset-0 bg-gradient-to-r ${tech.color} opacity-0 group-hover:opacity-10 rounded-lg transition-opacity duration-300`}></div>
                           {tech.isDevicon ? (
-                            <i className={`${tech.icon} text-xl text-gray-700 dark:text-gray-300`}></i>
+                            <i className={`${tech.icon} text-2xl text-gray-700 dark:text-gray-300 group-hover:scale-110 transition-transform duration-300`}></i>
                           ) : (
-                            <FontAwesomeIcon icon={tech.icon} className="text-xl text-gray-700 dark:text-gray-300" />
+                            <FontAwesomeIcon icon={tech.icon} className="text-2xl text-gray-700 dark:text-gray-300 group-hover:scale-110 transition-transform duration-300" />
                           )}
-                          <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{tech.text}</span>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{tech.text}</span>
                         </div>
                       ))}
                     </div>
@@ -91,7 +97,7 @@ const About = () => {
             </div>
 
             {/* Segundo contenedor sin marco visible */}
-            <div ref={secondCardRef} className="p-8 pt-0">
+            <div ref={secondCardRef} className="p-8 pt-4 mt-8">
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
                 Actualmente especializado en desarrollar <span className="font-semibold text-cyan-600 dark:text-cyan-400">soluciones full-stack</span> combinadas con 
                 <span className="font-semibold text-purple-600 dark:text-purple-400"> agentes de IA</span> y 

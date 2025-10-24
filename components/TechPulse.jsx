@@ -13,13 +13,27 @@ export default function TechPulse() {
     let waves = [];
     let time = 0;
 
-    // Ajustar tamaño del canvas
+    // Ajustar tamaño del canvas - usando el padre directo
     const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      const parent = canvas.parentElement;
+      if (parent) {
+        const width = parent.clientWidth;
+        const height = parent.clientHeight;
+        canvas.width = width;
+        canvas.height = height;
+        
+        // Reinicializar partículas después de resize
+        particles = [];
+        const isMobile = width < 640;
+        const particleCount = isMobile ? 30 : 80; // Menos partículas en móvil
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
     };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    
+    // Detectar si es móvil
+    const isMobile = () => canvas.width < 640;
 
     // Clase para partículas
     class Particle {
@@ -88,20 +102,14 @@ export default function TechPulse() {
       }
     }
 
-    // Inicializar partículas
-    for (let i = 0; i < 80; i++) {
-      particles.push(new Particle());
-    }
-
-    // Crear ondas periódicamente
-    const createWave = () => {
-      const x = canvas.width / 2 + Math.sin(time * 0.02) * 100;
-      const y = canvas.height / 2 + Math.cos(time * 0.03) * 100;
-      waves.push(new Wave(x, y));
-    };
+    // Inicializar canvas
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
     // Dibujar líneas de conexión entre partículas cercanas
     const drawConnections = () => {
+      if (isMobile()) return; // Desactivar en móvil para mejor rendimiento
+      
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -158,6 +166,8 @@ export default function TechPulse() {
 
     // Dibujar código binario cayendo
     const drawBinaryRain = () => {
+      if (isMobile()) return; // Desactivar en móvil
+      
       ctx.font = '12px monospace';
       for (let i = 0; i < 10; i++) {
         const x = (i * canvas.width) / 10 + Math.sin(time * 0.02 + i) * 20;
@@ -175,8 +185,10 @@ export default function TechPulse() {
 
       // Dibujar efectos
       drawCenterPulse();
-      drawBinaryRain();
-      drawConnections();
+      if (!isMobile()) {
+        drawBinaryRain();
+        drawConnections();
+      }
 
       // Actualizar y dibujar partículas
       particles.forEach(particle => {
@@ -191,9 +203,12 @@ export default function TechPulse() {
         return !wave.isFinished();
       });
 
-      // Crear nuevas ondas
-      if (time % 90 === 0) { // Más lento (cada 90 frames en lugar de 60)
-        createWave();
+      // Crear nuevas ondas - menos frecuente en móvil
+      const waveInterval = isMobile() ? 120 : 90;
+      if (time % waveInterval === 0) {
+        const x = canvas.width / 2 + Math.sin(time * 0.02) * (isMobile() ? 50 : 100);
+        const y = canvas.height / 2 + Math.cos(time * 0.03) * (isMobile() ? 50 : 100);
+        waves.push(new Wave(x, y));
       }
 
       time++;
@@ -209,15 +224,21 @@ export default function TechPulse() {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <canvas
         ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-full"
-        style={{ background: 'transparent' }}
+        className="absolute top-0 left-0"
+        style={{ 
+          background: 'transparent',
+          width: '100%',
+          height: '100%',
+          maxWidth: '100%',
+          maxHeight: '100%'
+        }}
       />
       
       {/* Overlay con texto tecnológico */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl md:text-8xl font-bold text-purple-300/30 dark:text-purple-200/30 animate-pulse">
             {'</>'}
