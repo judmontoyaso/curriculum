@@ -209,10 +209,10 @@ export default function TechPulse() {
   }, []);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="absolute inset-0 overflow-hidden">
       <canvas
         ref={canvasRef}
-        className="w-full h-full"
+        className="absolute top-0 left-0 w-full h-full"
         style={{ background: 'transparent' }}
       />
       
