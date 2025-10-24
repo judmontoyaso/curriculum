@@ -238,15 +238,6 @@ La URL de conexión del Transaction Pooler tendrá este formato:
 postgresql://postgres.hmbzbjxghavlsnhhvmqt:[YOUR-PASSWORD]@aws-0-us-east-1.pooler.supabase.com:6543/postgres
 ```
 
-<div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-6 my-6">
-  <div className="font-semibold text-blue-800 dark:text-blue-200 mb-2">📌 Características del Transaction Pooler:</div>
-  <ul className="text-blue-700 dark:text-blue-300 space-y-2">
-    <li>• <strong>Puerto:</strong> 6543 (en lugar del 5432 estándar)</li>
-    <li>• <strong>Host:</strong> <code>aws-X-region.pooler.supabase.com</code> (no el host directo de la DB)</li>
-    <li>• <strong>Formato usuario:</strong> <code>postgres.PROJECT_REF</code></li>
-    <li>• <strong>IPv4:</strong> Compatible con Heroku (a diferencia de la conexión directa IPv6)</li>
-  </ul>
-</div>
 
 > 💡 **Nota:** Asegúrate de copiar la URL completa desde la sección "Connection Pooling" en Supabase, no desde "Connection String" que usa el puerto 5432 y el host directo `db.PROJECT_REF.supabase.com`.
 
@@ -1110,38 +1101,8 @@ Una pregunta común es: ¿Vale la pena el esfuerzo de self-hosting o debería us
   </ul>
 </div>
 
-### Veredicto Final
 
-<div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-lg p-6 my-6 border-2 border-blue-300 dark:border-blue-700">
-  <div className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">💡 Nuestra recomendación</div>
-  <div className="space-y-3 text-gray-800 dark:text-gray-200">
-    <div>
-      <strong>Comienza con Self-Hosted si:</strong>
-      <ul className="mt-2 ml-4 space-y-1 text-sm">
-        <li>• Tienes conocimientos técnicos básicos</li>
-        <li>• Quieres controlar costos a largo plazo</li>
-        <li>• Necesitas procesos sin límites de tiempo</li>
-        <li>• Tu proyecto puede crecer rápidamente</li>
-      </ul>
-    </div>
-    <div>
-      <strong>Elige N8N Cloud si:</strong>
-      <ul className="mt-2 ml-4 space-y-1 text-sm">
-        <li>• Prefieres simplicidad sobre control</li>
-        <li>• No tienes tiempo para configurar infraestructura</li>
-        <li>• Tu uso es predecible y moderado</li>
-        <li>• Valoras el soporte oficial</li>
-      </ul>
-    </div>
-  </div>
-  <div className="mt-4 pt-4 border-t border-blue-300 dark:border-blue-700 text-center">
-    <div className="text-sm italic text-gray-700 dark:text-gray-300">
-      La buena noticia: con self-hosting en Heroku, empiezas por solo <strong>$7/mes</strong> y puedes probar antes de comprometerte con planes más caros. Es una excelente manera de aprender y experimentar.
-    </div>
-  </div>
-</div>
-
-## Conclusión: Tu Servidor N8N Self-Hosted Está Listo
+## Tu Servidor N8N Self-Hosted Está Listo
 
 **Desplegar N8N en Heroku con Supabase** te proporciona una **plataforma de automatización self-hosted robusta, escalable y económica** por solo **$7/mes**. La combinación de estas tecnologías elimina la complejidad de gestionar infraestructura mientras mantienes control total sobre tus datos y workflows.
 
