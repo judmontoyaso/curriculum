@@ -74,8 +74,8 @@ export default function AvatarCarousel({ className = "" }) {
         {/* Círculo de fondo con gradiente */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 group-hover:scale-110 transition-transform duration-500"></div>
 
-        {/* Efecto Matrix de fondo - SOLO EN DESKTOP */}
-        <div className="hidden lg:block absolute inset-0 rounded-full overflow-hidden opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+        {/* Efecto Matrix de fondo */}
+        <div className="absolute inset-0 rounded-full overflow-hidden opacity-0 group-hover:opacity-30 transition-opacity duration-500">
           <div className="matrix-rain"></div>
         </div>
 
@@ -93,8 +93,8 @@ export default function AvatarCarousel({ className = "" }) {
           {/* Overlay con gradiente en hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-teal-900/40 via-transparent to-cyan-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           
-          {/* Efecto de escaneo - SOLO EN DESKTOP */}
-          <div className="hidden lg:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          {/* Efecto de escaneo */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             <div className="scan-line"></div>
           </div>
         </div>
