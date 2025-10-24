@@ -30,18 +30,18 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="space-y-0">
             {/* Contenedor sin marco visible */}
-            <div ref={firstCardRef} className="p-8">
-              <div className="flex flex-col md:flex-row items-start md:items-start space-y-8 md:space-y-0 md:space-x-8">
+            <div ref={firstCardRef} className="p-4 md:p-8">
+              <div className="flex flex-col md:flex-row items-center md:items-start space-y-24 md:space-y-0 md:space-x-8">
                 {/* Avatar Carousel */}
-                <div className="flex-shrink-0 mx-auto md:mx-0">
-                  <div className="w-[280px] h-[360px] relative">
+                <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:block mb-8 md:mb-0">
+                  <div className="w-[240px] h-[320px] sm:w-[280px] sm:h-[360px] relative">
                     <AvatarCarousel />
                   </div>
                 </div>
 
                 {/* Información */}
                 <div className="flex-grow space-y-5 text-center md:text-left w-full">
-                  <div className="max-w-none">
+                  <div className="max-w-none px-4 md:px-0">
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base mb-3">
                       Desarrollador full stack y científico de datos especializado en{' '}
                       <span className="bg-cyan-100 dark:bg-cyan-900/30 px-1 font-semibold text-cyan-800 dark:text-cyan-300">
@@ -64,7 +64,7 @@ const About = () => {
                   </div>
 
                   {/* Tecnologías con mejor diseño */}
-                  <div className="flex flex-col space-y-3">
+                  <div className="flex flex-col space-y-3 px-4 md:px-0">
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Stack Tecnológico</h4>
                     <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                       {[
