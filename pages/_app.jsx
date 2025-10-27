@@ -1,5 +1,7 @@
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
+import OpenToWorkBanner from "../components/OpenToWorkBanner";
+import { BannerProvider } from "../contexts/BannerContext";
 import "../styles/globals.css";
 import "../styles/poPoutEffect.css";
 import "../styles/timeline.css";
@@ -34,15 +36,18 @@ function MyApp({ Component, pageProps }) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
       </Head>
-      <ThemeProvider attribute="class" enableSystem={false}>
-        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-          <Navigation />
-          <main className="flex-grow">
-            <Component {...pageProps} />
-          </main>
-          <Footer />
-        </div>
-      </ThemeProvider>
+      <BannerProvider>
+        <ThemeProvider attribute="class" enableSystem={false}>
+          <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+            <OpenToWorkBanner />
+            <Navigation />
+            <main className="flex-grow">
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
+      </BannerProvider>
     </>
   );
 }

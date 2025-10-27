@@ -10,7 +10,7 @@ import os
 avatar_folder = "public/avatar"
 
 # Solo las nuevas imágenes
-images = ["chef.png", "programador.png", "tesoros.png"]
+images = ["Gemini_Generated_Image_7f9yti7f9yti7f9y.png"]
 
 print("🎨 Procesando nuevas imágenes...\n")
 
