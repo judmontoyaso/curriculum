@@ -27,7 +27,7 @@ export default function BlogCard({
     <Link href={fullSlug} className="group h-full">
       <article className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] dark:shadow-gray-700/30 h-full flex flex-col">
         {/* Image Container */}
-        <div className="relative w-full h-48">
+        <div className="relative w-full aspect-video">
           {img ? (
             <Image
               src={img}

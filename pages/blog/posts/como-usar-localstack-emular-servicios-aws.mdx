@@ -1,0 +1,599 @@
+---
+title: 'LocalStack: AWS en tu laptop sin pagar un peso'
+date: '2026-01-26'
+image: '/blog/localstack-aws.png'
+description: 'Cómo uso LocalStack para desarrollar con S3, Lambda y DynamoDB sin tocar AWS real. Setup, configuración y los errores que me costó resolver.'
+tags: ['AWS', 'LocalStack', 'Docker', 'DevOps', 'Cloud', 'Testing', 'Desarrollo Local', 'Python']
+author: 'Juan Montoya'
+keywords: 'localstack tutorial, localstack docker, emular aws local, localstack s3, localstack lambda, localstack dynamodb, desarrollo aws local, testing aws gratis, localstack español, aws sin costos, mock aws services, localstack python'
+canonical: 'https://tudominio.com/blog/posts/como-usar-localstack-emular-servicios-aws'
+---
+
+import BlogPost from '../../../components/BlogPost';
+import CodeBlock from '../../../components/CodeBlock';
+
+<BlogPost
+  title="LocalStack: AWS en tu laptop sin pagar un peso"
+  date="26 de enero de 2026"
+  image="/blog/localstack-aws.png"
+  description="Cómo uso LocalStack para desarrollar con S3, Lambda y DynamoDB sin tocar AWS real. Setup, configuración y los errores que me costó resolver."
+>
+
+## El problema
+
+Hace como un año me regañaron en el trabajo por dejar corriendo un servicio de AWS que estaba probando. Fueron como $50 dólares en un fin de semana. No es mucho, pero la vergüenza de tener que explicar que se me olvidó apagarlo... eso sí dolió.
+
+Desde entonces uso **LocalStack** para todo lo que es desarrollo y pruebas. Es un emulador de AWS que corre en Docker. Creas buckets, despliegas Lambdas, trabajas con DynamoDB, todo en tu máquina. Sin costos, sin internet, sin regaños.
+
+Lo uso porque:
+- No quiero pagar por pruebas
+- Puedo trabajar offline
+- Los tests corren instantáneo
+- Si rompo algo, reinicio el contenedor
+
+---
+
+## Requisitos
+
+- Docker Desktop instalado y corriendo
+- AWS CLI v2 (terminal o desktop)
+- Python 3.11+ con ambiente virtual
+- Cuenta en LocalStack (para Pro, opcional)
+
+---
+
+## Paso 1: Configurar Docker Compose
+
+Uso la versión Pro de LocalStack porque necesito persistencia y algunos servicios extra. Creo un `docker-compose.yml`:
+
+```yaml
+services:
+  localstack:
+    container_name: localstack
+    image: localstack/localstack-pro:latest
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN}
+      - DEBUG=1
+      - PERSISTENCE=1
+      - LS_STATE_DIR=/var/lib/localstack/state
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - LOCALSTACK_HOSTNAME=localhost
+      - ENABLE_PLATFORM=1
+    volumes:
+      - ./localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - .env
+    networks:
+      - localstack-network
+
+networks:
+  localstack-network:
+    driver: bridge
+```
+
+**Puntos importantes:**
+- `LOCALSTACK_AUTH_TOKEN`: Tu API key de LocalStack Pro
+- `PERSISTENCE=1`: Mantiene los datos entre reinicios
+- `LS_STATE_DIR`: Carpeta donde guarda el estado
+- El volumen `./localstack-data` persiste todo en tu proyecto
+
+---
+
+## Paso 2: Configurar variables de entorno
+
+Crea un archivo `.env` en la raíz del proyecto:
+
+```bash
+LOCALSTACK_AUTH_TOKEN=tu_api_key_aqui
+```
+
+**Importante:** Agrega `.env` a tu `.gitignore` para no subir tu API key.
+
+Si usas la versión Community (gratuita), no necesitas el token. Cambia la imagen a `localstack/localstack:latest`.
+
+---
+
+## Paso 3: Levantar LocalStack
+
+```powershell
+docker-compose up -d
+```
+
+![Docker Compose levantando LocalStack](/blog/localstack/docker%20compose%20up%20local%20stack.png)
+
+Espera unos segundos y verifica que esté listo:
+
+```powershell
+curl http://localhost:4566/_localstack/health
+```
+
+![LocalStack listo](/blog/localstack/local%20stack%20ready.png)
+
+![Estado de servicios en LocalStack](/blog/localstack/system%20status%20de%20servicios%20en%20localstack.png)
+
+---
+
+## Paso 4: Configurar AWS CLI
+
+Si tu navegador no puede acceder a localhost del Docker, habilita el acceso en la red local de Docker Desktop.
+
+Configura AWS CLI con credenciales de prueba:
+
+```powershell
+aws configure
+# AWS Access Key ID: test
+# AWS Secret Access Key: test
+# Default region: us-east-1
+# Default output format: json
+```
+
+Para apuntar al endpoint de LocalStack:
+
+```powershell
+aws s3 ls --endpoint-url=http://localhost:4566
+```
+
+---
+
+## Paso 5: Usar ambiente virtual y wrappers
+
+Siempre uso un ambiente virtual para aislar las dependencias del proyecto. Esto evita conflictos con otros proyectos y mantiene todo limpio.
+
+**En Windows (PowerShell):**
+
+```powershell
+# Crear ambiente virtual
+python -m venv .venv
+
+# Activar
+.\.venv\Scripts\Activate.ps1
+
+# Verás (.venv) al inicio del prompt
+```
+
+**En Linux/Mac:**
+
+```bash
+# Crear ambiente virtual
+python3 -m venv .venv
+
+# Activar
+source .venv/bin/activate
+```
+
+**Tip:** Agrega `.venv/` a tu `.gitignore`.
+
+Ahora instala los wrappers que simplifican todo:
+
+```powershell
+pip install awscli-local terraform-local boto3
+```
+
+- `awscli-local`: Wrapper de AWS CLI que apunta a LocalStack
+- `terraform-local`: Wrapper de Terraform que apunta a LocalStack
+- `boto3`: SDK de Python para AWS
+
+Ahora usas `awslocal` en lugar de `aws --endpoint-url=...`:
+
+```powershell
+awslocal s3 ls
+awslocal dynamodb list-tables
+```
+
+Para desactivar el ambiente virtual cuando termines:
+
+```powershell
+deactivate
+```
+
+---
+
+## Paso 6: Probar S3 y persistencia
+
+```powershell
+# Crear bucket
+awslocal s3 mb s3://mi-bucket-test
+
+# Subir archivo
+echo '{"test": true}' > archivo.json
+awslocal s3 cp archivo.json s3://mi-bucket-test/
+
+# Listar
+awslocal s3 ls s3://mi-bucket-test/
+```
+
+![Listando bucket S3](/blog/localstack/s3%20list%20bucket%20desde%20un%20notebook.png)
+
+**Validar persistencia:** Reinicia Docker y verifica que el bucket siga existiendo:
+
+```powershell
+docker-compose down
+docker-compose up -d
+awslocal s3 ls
+```
+
+Si configuraste `PERSISTENCE=1` y `LS_STATE_DIR`, tus datos persisten.
+
+---
+
+## Paso 7: Crear estructura del proyecto con Terraform
+
+```
+localstack-demo/
+├── docker-compose.yml
+├── .env
+├── terraform/
+│   ├── main.tf
+│   └── provider.tf
+├── lambdas/
+│   └── procesar/
+│       ├── index.py
+│       └── requirements.txt
+└── build/
+    └── function.zip
+```
+
+---
+
+## Paso 8: Provider de Terraform (crítico)
+
+`terraform/provider.tf`:
+
+```hcl
+provider "aws" {
+  access_key                  = "test"
+  secret_key                  = "test"
+  region                      = "us-east-1"
+
+  s3_use_path_style           = true
+  skip_credentials_validation = true
+  skip_metadata_api_check     = true
+  skip_requesting_account_id  = true
+
+  endpoints {
+    s3       = "http://localhost:4566"
+    lambda   = "http://localhost:4566"
+    dynamodb = "http://localhost:4566"
+    sqs      = "http://localhost:4566"
+    iam      = "http://localhost:4566"
+  }
+}
+```
+
+Este provider apunta todos los servicios a LocalStack. Sin esto, Terraform intentaría conectar a AWS real.
+
+---
+
+## Paso 9: Código Lambda
+
+`lambdas/procesar/index.py`:
+
+```python
+import json
+
+def handler(event, context):
+    name = event.get("name", "mundo")
+
+    return {
+        "statusCode": 200,
+        "body": json.dumps({
+            "message": f"Hola, {name}"
+        })
+    }
+```
+
+Empaqueta (importante: desde la raíz del zip, no dentro de una carpeta):
+
+```powershell
+cd lambdas/procesar
+Compress-Archive -Path index.py -DestinationPath ../../build/function.zip -Force
+```
+
+Valida la estructura:
+
+```powershell
+tar -tf build/function.zip
+```
+
+Debe mostrar:
+
+```
+index.py
+```
+
+---
+
+## Paso 10: Infraestructura
+
+`terraform/main.tf`:
+
+```hcl
+resource "aws_s3_bucket" "uploads" {
+  bucket = "mi-bucket-uploads"
+}
+
+resource "aws_dynamodb_table" "usuarios" {
+  name         = "Usuarios"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "userId"
+
+  attribute {
+    name = "userId"
+    type = "S"
+  }
+}
+
+resource "aws_sqs_queue" "cola" {
+  name = "cola-notificaciones"
+}
+
+resource "aws_lambda_function" "procesar" {
+  function_name    = "procesar-eventos"
+  filename         = "${path.module}/../build/function.zip"
+  source_code_hash = filebase64sha256("${path.module}/../build/function.zip")
+
+  role    = "arn:aws:iam::000000000000:role/lambda-role"
+  handler = "index.handler"
+  runtime = "python3.11"
+}
+```
+
+**Nota:** Uso `${path.module}` para que las rutas funcionen tanto en local como en CI/CD.
+
+---
+
+## Paso 11: Ejecutar Terraform
+
+```powershell
+cd terraform
+tflocal init
+```
+
+![Terraform init](/blog/localstack/tflocal%20init.png)
+
+```powershell
+tflocal plan
+```
+
+Debes ver:
+
+```
++ create aws_s3_bucket
++ create aws_dynamodb_table
++ create aws_sqs_queue
++ create aws_lambda_function
+```
+
+```powershell
+tflocal apply
+# Confirma: yes
+```
+
+---
+
+## Paso 12: Verificar recursos creados
+
+```powershell
+# S3
+awslocal s3 ls
+
+# DynamoDB
+awslocal dynamodb list-tables
+```
+
+![Crear tabla en DynamoDB](/blog/localstack/crear%20tabla%20en%20dynamo%20desde%20awslocal%20cli.png)
+
+![Tabla creada en DynamoDB](/blog/localstack/tabla%20creada%20en%20dynamo.png)
+
+```powershell
+# SQS
+awslocal sqs list-queues
+
+# Lambda
+awslocal lambda list-functions
+```
+
+---
+
+## Paso 13: Invocar Lambda
+
+```powershell
+echo '{"name": "Juan"}' > payload.json
+
+awslocal lambda invoke `
+  --function-name procesar-eventos `
+  --cli-binary-format raw-in-base64-out `
+  --payload file://payload.json `
+  output.json
+
+Get-Content output.json
+```
+
+![Invocar Lambda](/blog/localstack/invocar%20lambda%20function%20desde%20aws%20local%20cli.png)
+
+Respuesta esperada:
+
+```json
+{"statusCode": 200, "body": "{\"message\": \"Hola, Juan\"}"}
+```
+
+![Payload de Lambda en LocalStack Web](/blog/localstack/payload%20lambda%20function%20en%20localstack%20web.png)
+
+---
+
+## CI/CD con GitHub Actions
+
+Para integrar con CI/CD, crea `.github/workflows/ci.yml`:
+
+```yaml
+name: localstack-ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test-localstack:
+    runs-on: ubuntu-latest
+
+    services:
+      localstack:
+        image: localstack/localstack:latest
+        ports:
+          - 4566:4566
+        env:
+          SERVICES: s3,sqs,dynamodb,lambda,iam
+          DEBUG: 1
+          LAMBDA_EXECUTOR: local
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install tools
+        run: |
+          pip install terraform-local awscli-local
+          sudo apt-get update
+          sudo apt-get install -y zip
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Package Lambda
+        run: |
+          mkdir -p build
+          cd lambdas/procesar
+          zip -r ../../build/function.zip .
+
+      - name: Terraform Init
+        run: |
+          cd terraform
+          tflocal init
+
+      - name: Terraform Apply
+        run: |
+          cd terraform
+          tflocal apply -auto-approve
+
+      - name: Invoke Lambda Test
+        run: |
+          echo '{"ci": true}' > payload.json
+          awslocal lambda invoke \
+            --function-name procesar-eventos \
+            --cli-binary-format raw-in-base64-out \
+            --payload file://payload.json \
+            output.json
+          cat output.json
+```
+
+**Puntos clave:**
+- `LAMBDA_EXECUTOR: local`: Ejecuta Lambdas sin Docker anidado
+- `--cli-binary-format raw-in-base64-out`: Evita errores de base64 en el payload
+- `${path.module}` en Terraform: Rutas relativas correctas desde cualquier directorio
+
+![GitHub Actions completado](/blog/localstack/check%20completo%20de%20github%20actions.png)
+
+---
+
+## Servicios disponibles
+
+LocalStack emula más de 80 servicios de AWS:
+
+**Compute:** Lambda, EC2, ECS, EKS, Batch
+
+**Storage:** S3, EFS
+
+**Databases:** DynamoDB, RDS, DocumentDB, ElastiCache, Redshift
+
+**Messaging:** SQS, SNS, EventBridge, Kinesis
+
+**API & Networking:** API Gateway, CloudFront, Route 53, ELB
+
+**Security:** IAM, KMS, Secrets Manager, Cognito
+
+**DevOps:** CloudFormation, CloudWatch, X-Ray
+
+La lista completa está en [docs.localstack.cloud/aws/services](https://docs.localstack.cloud/aws/services/).
+
+---
+
+## Community vs Pro
+
+**Community (gratis):**
+- S3, DynamoDB, SQS, SNS, Lambda, API Gateway
+- Sin persistencia por defecto
+- Suficiente para el 90% de los casos
+
+**Pro ($35/mes):**
+- Persistencia de datos
+- IAM con políticas reales
+- RDS, ECS, Cognito completo
+- Interfaz web
+- Soporte
+
+Yo uso Pro porque necesito persistencia y la interfaz web es útil para debug.
+
+---
+
+## Problemas comunes
+
+**Connection refused:** LocalStack tarda en arrancar. Espera o usa:
+
+```powershell
+pip install localstack-client
+localstack wait -t 60
+```
+
+**Lambda no encuentra dependencias:** Empaqueta todo junto:
+
+```powershell
+pip install -r requirements.txt -t ./package/
+cd package && zip -r ../function.zip .
+cd .. && zip -g function.zip index.py
+```
+
+**Error de base64 en invoke:** Agrega `--cli-binary-format raw-in-base64-out`
+
+**Docker not available en CI:** Usa `LAMBDA_EXECUTOR: local`
+
+---
+
+## En resumen
+
+LocalStack me ahorra dinero y tiempo. El setup toma 15 minutos y el mismo código funciona en local y producción.
+
+El flujo completo:
+1. Docker Compose con LocalStack
+2. Ambiente virtual con wrappers (`awslocal`, `tflocal`)
+3. Terraform para infraestructura
+4. GitHub Actions para CI/CD
+
+Si trabajas con AWS y no usas LocalStack, pruébalo.
+
+## Links
+
+- [Docs de LocalStack](https://docs.localstack.cloud/)
+- [GitHub](https://github.com/localstack/localstack)
+- [Servicios disponibles](https://docs.localstack.cloud/aws/services/)
+- [Terraform con LocalStack](https://docs.localstack.cloud/user-guide/integrations/terraform/)
+
+---
+
+<div className="mt-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+  <p className="font-semibold mb-2">¿Usas LocalStack?</p>
+  <p>Cuéntame qué servicios emulas o si tienes algún tip.</p>
+</div>
+
+</BlogPost>

@@ -72,12 +72,12 @@ export default function BlogPost({
 
         {/* Featured image */}
         {image && (
-          <div className="relative w-full h-[400px] mb-8">
+          <div className="relative w-full aspect-video mb-8">
             <Image
               src={image}
               alt={title}
               fill
-              className="object-cover rounded-lg"
+              className="object-contain rounded-lg"
             />
           </div>
         )}
@@ -89,7 +89,7 @@ export default function BlogPost({
       </header>
 
       {/* Main content */}
-      <div className="prose prose-lg dark:prose-invert max-w-none">
+      <div className="prose prose-lg dark:prose-invert max-w-none prose-img:mx-auto prose-img:max-w-full prose-img:h-auto prose-img:rounded-lg">
         {children}
       </div>
     </article>
