@@ -33,3 +33,4 @@ yarn-error.log*
 # vercel
 .vercel
 pages/blog/posts/como-usar-requestly-interceptar-modificar-peticiones-http.mdx
+jada-errores-agentes-ia.md

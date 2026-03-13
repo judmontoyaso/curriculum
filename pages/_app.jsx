@@ -1,6 +1,5 @@
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
-import OpenToWorkBanner from "../components/OpenToWorkBanner";
 import { BannerProvider } from "../contexts/BannerContext";
 import "../styles/globals.css";
 import "../styles/poPoutEffect.css";
@@ -39,7 +38,6 @@ function MyApp({ Component, pageProps }) {
       <BannerProvider>
         <ThemeProvider attribute="class" enableSystem={false}>
           <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-            <OpenToWorkBanner />
             <Navigation />
             <main className="flex-grow">
               <Component {...pageProps} />

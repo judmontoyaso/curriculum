@@ -1,0 +1,86 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="80" x2="1360" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F9FA"/>
+      <stop offset="1" stop-color="#EEF2F7"/>
+    </linearGradient>
+    <radialGradient id="orbLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(280 180) rotate(48) scale(380 380)">
+      <stop stop-color="#8B5CF6" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1240 720) rotate(48) scale(420 420)">
+      <stop stop-color="#22C55E" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#22C55E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="terminalGlow" x1="310" y1="170" x2="1290" y2="730" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0A0A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <filter id="shadow" x="180" y="80" width="1240" height="700" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="30" flood-color="#000000" flood-opacity="0.24"/>
+    </filter>
+    <pattern id="scanlines" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="3" fill="rgba(255,255,255,0)"/>
+      <rect y="3" width="6" height="3" fill="#FFFFFF" fill-opacity="0.035"/>
+    </pattern>
+    <filter id="textGlow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0.12  0 0 1 0 0  0 0 0 1 0"/>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="280" cy="180" r="380" fill="url(#orbLeft)"/>
+  <circle cx="1240" cy="720" r="420" fill="url(#orbRight)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="250" y="126" width="1100" height="590" rx="18" fill="url(#terminalGlow)" stroke="#2D2D2D" stroke-width="2"/>
+    <rect x="250" y="126" width="1100" height="58" rx="18" fill="#1E1E1E"/>
+    <path d="M250 166C250 156.954 257.954 149 267 149H1333C1342.05 149 1350 156.954 1350 166V184H250V166Z" fill="#1E1E1E"/>
+    <circle cx="294" cy="155" r="8" fill="#FF5F56"/>
+    <circle cx="322" cy="155" r="8" fill="#FFBD2E"/>
+    <circle cx="350" cy="155" r="8" fill="#27C93F"/>
+    <text x="800" y="161" text-anchor="middle" fill="#8D8D8D" font-family="'JetBrains Mono', monospace" font-size="20">root@vps:~ /opt/jada</text>
+
+    <rect x="270" y="202" width="1060" height="494" rx="10" fill="#0C0C0C"/>
+    <rect x="270" y="202" width="1060" height="494" rx="10" fill="url(#scanlines)" opacity="0.8"/>
+
+    <g filter="url(#textGlow)">
+    <text x="334" y="286" fill="#18F218" font-family="'JetBrains Mono', monospace" font-size="35" xml:space="preserve">
+     ██╗ █████╗ ██████╗  █████╗
+    </text>
+    <text x="334" y="328" fill="#18F218" font-family="'JetBrains Mono', monospace" font-size="35" xml:space="preserve">
+     ██║██╔══██╗██╔══██╗██╔══██╗
+    </text>
+    <text x="334" y="370" fill="#18F218" font-family="'JetBrains Mono', monospace" font-size="35" xml:space="preserve">
+     ██║███████║██║  ██║███████║
+    </text>
+    <text x="334" y="412" fill="#18F218" font-family="'JetBrains Mono', monospace" font-size="35" xml:space="preserve">
+██   ██║██╔══██║██║  ██║██╔══██║
+    </text>
+    <text x="334" y="454" fill="#18F218" font-family="'JetBrains Mono', monospace" font-size="35" xml:space="preserve">
+╚█████╔╝██║  ██║██████╔╝██║  ██║
+    </text>
+    <text x="334" y="496" fill="#18F218" font-family="'JetBrains Mono', monospace" font-size="35" xml:space="preserve">
+ ╚════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝
+    </text>
+
+    <text x="334" y="580" fill="#12C912" font-family="'JetBrains Mono', monospace" font-size="26">
+      5 Errores de arquitectura que cometí construyendo un agente ReAct
+    </text>
+    <text x="334" y="620" fill="#12C912" font-family="'JetBrains Mono', monospace" font-size="26">
+      desde cero. Publicado por Juan David Montoya — Medellín,
+    </text>
+    <text x="334" y="660" fill="#12C912" font-family="'JetBrains Mono', monospace" font-size="26">
+      Colombia.
+    </text>
+    <rect x="482" y="638" width="14" height="30" fill="#18F218"/>
+    </g>
+  </g>
+
+  <text x="800" y="794" text-anchor="middle" fill="#6B7280" font-family="Roboto, Arial, sans-serif" font-size="22">Baja para empezar el artículo</text>
+  <line x1="655" y1="812" x2="945" y2="812" stroke="#7C3AED" stroke-width="3" stroke-linecap="round"/>
+  <rect x="787" y="830" width="26" height="40" rx="13" stroke="#6B7280" stroke-width="2"/>
+  <rect x="798" y="840" width="4" height="9" rx="2" fill="#6B7280"/>
+</svg>

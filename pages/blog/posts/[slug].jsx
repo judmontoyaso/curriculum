@@ -6,10 +6,16 @@ import matter from 'gray-matter';
 import BlogPost from '../../../components/BlogPost';
 import ReadingProgress from '../../../components/ReadingProgress';
 import CodeBlock from '../../../components/CodeBlock';
+import JadaTerminalHero from '../../../components/JadaTerminalHero';
+
+const SLUG_ALIASES = {
+  'jada-errores-agentes-ia': 'jada-errores-clasicos-agentes-ia',
+};
 
 const components = {
   BlogPost,
   CodeBlock,
+  JadaTerminalHero,
 };
 
 export default function Post({ source, frontMatter }) {
@@ -25,10 +31,11 @@ export default function Post({ source, frontMatter }) {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
+  const resolvedSlug = SLUG_ALIASES[slug] || slug;
 
   // Get local post
   const postsDirectory = path.join(process.cwd(), "pages/blog/posts");
-  const fullPath = path.join(postsDirectory, slug + ".mdx");
+  const fullPath = path.join(postsDirectory, resolvedSlug + ".mdx");
 
   try {
     const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -61,6 +68,14 @@ export async function getStaticPaths() {
           slug: fileName.replace(/\.mdx$/, '')
         }
       }));
+
+    Object.keys(SLUG_ALIASES).forEach((slugAlias) => {
+      paths.push({
+        params: {
+          slug: slugAlias,
+        }
+      });
+    });
 
     return {
       paths,
