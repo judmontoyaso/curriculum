@@ -12,7 +12,7 @@ const ASCII_ART = String.raw`
 
 export default function JadaTerminalHero() {
   const terminalText = useMemo(
-    () => '5 Errores de arquitectura que cometí construyendo un agente ReAct desde cero.',
+    () => '4 Errores de arquitectura que cometí construyendo un agente ReAct desde cero.',
     []
   );
   const [asciiVisible, setAsciiVisible] = useState('');

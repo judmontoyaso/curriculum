@@ -67,13 +67,10 @@
     </text>
 
     <text x="334" y="580" fill="#12C912" font-family="'JetBrains Mono', monospace" font-size="26">
-      5 Errores de arquitectura que cometí construyendo un agente ReAct
+      4 Errores de arquitectura que cometí construyendo un agente ReAct
     </text>
     <text x="334" y="620" fill="#12C912" font-family="'JetBrains Mono', monospace" font-size="26">
-      desde cero. Publicado por Juan David Montoya — Medellín,
-    </text>
-    <text x="334" y="660" fill="#12C912" font-family="'JetBrains Mono', monospace" font-size="26">
-      Colombia.
+      desde cero.
     </text>
     <rect x="482" y="638" width="14" height="30" fill="#18F218"/>
     </g>
