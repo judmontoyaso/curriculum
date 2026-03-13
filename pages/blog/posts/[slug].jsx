@@ -40,7 +40,10 @@ export async function getStaticProps({ params }) {
   try {
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
-    const mdxSource = await serialize(content);
+    const mdxSource = await serialize(content, {
+      // Blog posts are authored locally and use JSX props/comments inside MDX.
+      blockJS: false,
+    });
 
     return {
       props: {

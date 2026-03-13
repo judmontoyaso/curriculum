@@ -34,7 +34,7 @@
     "next": "14.1.0",
     "next-connect": "^1.0.0",
     "next-graphql-server": "^0.10.0",
-    "next-mdx-remote": "^5.0.0",
+    "next-mdx-remote": "^6.0.0",
     "next-themes": "^0.2.1",
     "nextjs-cors": "^2.1.2",
     "rc-progress": "^3.1.4",
