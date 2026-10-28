@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Juan David Montoya</title>
-        <meta name="description" content="Portfolio y CV de Juan David Montoya - Especialista en Analítica y Big Data" />
+        <meta name="description" content="Juan David Montoya, Data & AI Engineer. Datos e IA para el sector inmobiliario: pipelines, producto interno, geoanalítica e IA aplicada." />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

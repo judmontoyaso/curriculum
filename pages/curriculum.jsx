@@ -23,18 +23,20 @@ import { RoughNotation } from "react-rough-notation";
 
 const Curriculum = () => {
   const habilidadesPrincipales = [
-    "NextJs",
     "Python",
-    "ASP.NET",
-    "Power BI",
     "SQL",
-    "ReactJs",
-    "C#",
-    "JavaScript",
-    "HTML5/CSS3",
-    "Machine Learning",
-    "AWS",
+    "Apache Airflow",
+    "MySQL",
     "FastAPI",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Power BI",
+    "deck.gl",
+    "LLMs",
+    "AWS",
+    "Docker",
+    "ASP.NET",
   ];
   
   const habilidadesBiotecnologia = [
@@ -62,7 +64,7 @@ const Curriculum = () => {
             Curriculum Vitae
           </h1>
           <p className="text-xl text-indigo-100 max-w-2xl mx-auto">
-            Mi trayectoria profesional en desarrollo, ciencia de datos y tecnología
+            Mi trayectoria en ingeniería de datos, producto interno e IA aplicada
           </p>
         </div>
       </div>
@@ -94,7 +96,7 @@ const Curriculum = () => {
                   </RoughNotation>
                 </h1>
                 <h2 className="text-lg text-gray-600 dark:text-gray-300 mt-2">
-                  Desarrollador Full Stack | Científico de Datos
+                  Data & AI Engineer
                 </h2>
               </div>
               
@@ -173,13 +175,14 @@ const Curriculum = () => {
               Perfil
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
-              Soy un profesional enfocado en resultados, con experiencia en ciencia de datos y desarrollo web. 
-              Me especializo en análisis de datos con Machine Learning y desarrollo de aplicaciones usando Python, 
-              Next.js o .NET. He trabajado en proyectos de desarrollo, IA, ETL, y visualización, y me gusta optimizar 
-              procesos con automatización.
+              Hago que los datos de una empresa se puedan usar sin tener que pedírselos a nadie. Hoy lidero la ingeniería
+              de datos y la plataforma interna de una inmobiliaria de Medellín, desde la fuente hasta la pantalla: pipelines
+              en Apache Airflow, aplicaciones en FastAPI y Next.js, geoanalítica e IA aplicada.
             </p>
             <p className="mt-4 text-gray-600 dark:text-gray-300">
-              Siempre estoy buscando formas de innovar y aportar al equipo, mientras sigo aprendiendo sobre analítica y Big Data.
+              Lo que más me interesa es la cifra correcta, y casi siempre el trabajo de verdad está en descubrir por qué no
+              sale igual en todas partes. Vengo de la ingeniería biológica y la bioinformática, y de ahí me quedó la costumbre
+              de desconfiar de un número hasta saber de dónde salió.
             </p>
           </div>
 
@@ -191,10 +194,40 @@ const Curriculum = () => {
             </h3>
             
             <div className="space-y-8">
+              {/* Alberto Álvarez Inmobiliaria */}
+              <div className="border-l-4 border-amber-500 pl-4">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  Ingeniero de Datos
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300">Alberto Álvarez Inmobiliaria</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Marzo 2026 - Actualidad</p>
+                <div className="mt-4">
+                  <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Logros:</h5>
+                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                    <li>Diseñé y construí de punta a punta la plataforma interna de datos de la compañía en FastAPI y Next.js, con Entra ID y control de acceso por rol que falla cerrado. Pasó de un prototipo en marzo a unos 30 módulos en producción en siete meses, con más de 670 commits.</li>
+                    <li>Más de 20 pipelines en Apache Airflow con carga incremental y manejo de borrados en origen (unos 105.000 registros reconciliados en 35 segundos, por encima del tope de 10.000 de la API), y tablas materializadas que bajaron una consulta de 1,2 s a 0,07 s.</li>
+                    <li>Observabilidad y gobierno: tablero con la última corrida exitosa de cada pipeline, auditoría diaria de cambios de esquema en la base y CI/CD que valida los DAGs y despliega solo desde la rama principal.</li>
+                    <li>Geoanalítica inmobiliaria: mapas en deck.gl que cruzan la cartera con información territorial y de transporte, y con la demanda del CRM por barrio.</li>
+                    <li>IA aplicada: consultas en lenguaje natural con lista blanca de columnas por Habeas Data, actas automáticas de reuniones y reportes diarios en Jira redactados con IA a partir de notas sueltas.</li>
+                    <li>Transferencia técnica a 6 analistas, con talleres para que monten sus propios módulos, revisión de sus pull requests y entornos de desarrollo estandarizados.</li>
+                  </ul>
+                </div>
+                <div className="mt-4">
+                  <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Habilidades:</h5>
+                  <div className="flex flex-wrap gap-2">
+                    <ContenedorHabilidadSolo Habilidad="Apache Airflow" />
+                    <ContenedorHabilidadSolo Habilidad="Python" />
+                    <ContenedorHabilidadSolo Habilidad="SQL" />
+                    <ContenedorHabilidadSolo Habilidad="FastAPI" />
+                    <ContenedorHabilidadSolo Habilidad="Análisis geoespacial" />
+                  </div>
+                </div>
+              </div>
+
               {/* Iluma Alliance */}
               <div className="border-l-4 border-amber-500 pl-4">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Ingeniero de datos - Desarrollador
+                  Bioinformatics Associate · Ingeniería de datos
                 </h4>
                 <p className="text-gray-600 dark:text-gray-300">Iluma Alliance</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Diciembre 2023 - Abril 2025</p>
@@ -214,7 +247,7 @@ const Curriculum = () => {
                     <ContenedorHabilidadSolo Habilidad="Next.js" />
                     <ContenedorHabilidadSolo Habilidad="FastAPI" />
                     <ContenedorHabilidadSolo Habilidad="AWS" />
-                    <ContenedorHabilidadSolo Habilidad="Machine Learning" />
+                    <ContenedorHabilidadSolo Habilidad="Redis" />
                   </div>
                 </div>
               </div>
@@ -395,69 +428,73 @@ const Curriculum = () => {
             </h3>
             
             <div className="space-y-8">
-              {/* Tecnología y Desarrollo */}
+              {/* Ingeniería de datos */}
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Tecnología y Desarrollo</h4>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Ingeniería de datos</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <ProgresBar habilidad="Python" porcentaje="90" />
                   </div>
                   <div>
+                    <ProgresBar habilidad="SQL" porcentaje="90" />
+                  </div>
+                  <div>
+                    <ProgresBar habilidad="Apache Airflow" porcentaje="85" />
+                  </div>
+                  <div>
+                    <ProgresBar habilidad="Power BI" porcentaje="85" />
+                  </div>
+                </div>
+                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Pipelines incrementales con Apache Airflow, con manejo de borrados en origen</li>
+                  <li>Modelado de datos en MySQL y tablas materializadas para consultas rápidas</li>
+                  <li>Observabilidad de pipelines y auditoría diaria de cambios de esquema</li>
+                </ul>
+              </div>
+
+              {/* Producto y geoanalítica */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Producto y geoanalítica</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
                     <ProgresBar habilidad="Next.js" porcentaje="90" />
+                  </div>
+                  <div>
+                    <ProgresBar habilidad="FastAPI" porcentaje="85" />
                   </div>
                   <div>
                     <ProgresBar habilidad="React.js" porcentaje="85" />
                   </div>
                   <div>
-                    <ProgresBar habilidad="ASP.NET" porcentaje="80" />
+                    <ProgresBar habilidad="deck.gl / Mapbox" porcentaje="75" />
                   </div>
                 </div>
                 <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>Desarrollo web con Python, Next.js, ASP.NET y JavaScript</li>
-                  <li>Desarrollo de APIs e integración de servicios REST</li>
-                  <li>Automatización de procesos con Power Automate y ETL pipelines</li>
+                  <li>Aplicaciones internas con FastAPI y Next.js, Entra ID y permisos por rol</li>
+                  <li>Integración de APIs: CRM, nómina, Jira y Microsoft Graph</li>
+                  <li>Mapas con deck.gl y Mapbox sobre información territorial</li>
                 </ul>
               </div>
 
-              {/* Analítica y Ciencia de Datos */}
+              {/* IA aplicada */}
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Analítica y Ciencia de Datos</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <ProgresBar habilidad="Power BI" porcentaje="85" />
-                  </div>
-                  <div>
-                    <ProgresBar habilidad="SQL" porcentaje="80" />
-                  </div>
-                  <div>
-                    <ProgresBar habilidad="Machine Learning" porcentaje="75" />
-                  </div>
-                </div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">IA aplicada</h4>
                 <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>Análisis de datos con Python, Pandas, Scikit-Learn</li>
-                  <li>Dashboards interactivos con Power BI, Python y JavaScript</li>
-                  <li>Modelado y gestión de bases de datos SQL y NoSQL</li>
+                  <li>Consultas en lenguaje natural (Text-to-SQL) con lista blanca de columnas y protección de datos personales</li>
+                  <li>RAG, transcripción y actas automáticas de reuniones</li>
+                  <li>Agentes de voz con reglas de seguridad en código, fuera del modelo</li>
+                  <li>Desarrollo diario con agentes de código y memoria escrita del proyecto</li>
                 </ul>
               </div>
 
-              {/* Cloud & DevOps */}
+              {/* Cloud y equipo */}
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Cloud & DevOps</h4>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Cloud y equipo</h4>
                 <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>Gestión de infraestructura en AWS (S3, Athena, Redshift)</li>
-                  <li>Prácticas ágiles con Scrum: planificación de sprints, seguimiento diario y entrega continua de valor</li>
-                  <li>Automatización de flujos de integración y despliegue continuo (CI/CD)</li>
-                  <li>Contenerización de aplicaciones con Docker y despliegue en entornos de producción</li>
-                </ul>
-              </div>
-
-              {/* Habilidades Personales */}
-              <div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Habilidades Personales</h4>
-                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>Pensamiento analítico y resolución de problemas</li>
-                  <li>Autonomía, proactividad y enfoque en aprendizaje continuo</li>
-                  <li>Comunicación efectiva y colaboración en equipos multidisciplinarios</li>
+                  <li>AWS (S3, Lambda, Athena, Redshift, RDS), Docker, Linux y Nginx</li>
+                  <li>CI/CD que valida y despliega solo desde la rama principal</li>
+                  <li>Scrum: planeación de sprints, dailies y retrospectivas</li>
+                  <li>Transferencia técnica a analistas con talleres y revisión de código</li>
                 </ul>
               </div>
 

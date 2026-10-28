@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCode, faDatabase, faLayerGroup, faRobot, faTools } from '@fortawesome/free-solid-svg-icons';
+
+const categoryIcons = {
+  languages: faCode,
+  data: faDatabase,
+  frameworks: faLayerGroup,
+  ai: faRobot,
+  tools: faTools
+};
 
 const SkillsVisualization = ({ inModal = false }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -7,47 +17,43 @@ const SkillsVisualization = ({ inModal = false }) => {
   const skillCategories = [
     { id: 'all', name: 'Todas' },
     { id: 'languages', name: 'Lenguajes' },
-    { id: 'ai', name: 'IA & Automation' },
+    { id: 'data', name: 'Datos' },
     { id: 'frameworks', name: 'Frameworks' },
-    { id: 'data', name: 'Analítica' },
-    { id: 'tools', name: 'Herramientas' }
+    { id: 'ai', name: 'IA aplicada' },
+    { id: 'tools', name: 'Infraestructura' }
   ];
 
   const skills = [
-    { name: 'Python', level: 95, category: 'languages', icon: '🐍' },
-    { name: 'JavaScript', level: 85, category: 'languages', icon: '🟨' },
-    { name: 'SQL', level: 90, category: 'languages', icon: '🗄️' },
-    { name: 'TypeScript', level: 80, category: 'languages', icon: '�' },
-    
-    // IA & Automatización
-    { name: 'OpenAI GPT', level: 95, category: 'ai', icon: '🤖' },
-    { name: 'LangChain', level: 90, category: 'ai', icon: '🔗' },
-    { name: 'AI Agents', level: 85, category: 'ai', icon: '🧠' },
-    { name: 'Prompt Engineering', level: 95, category: 'ai', icon: '✍️' },
-    { name: 'N8N Automation', level: 90, category: 'ai', icon: '⚡' },
-    { name: 'Zapier/Make', level: 85, category: 'ai', icon: '🔄' },
-    { name: 'AI Content Creation', level: 90, category: 'ai', icon: '🎨' },
-    { name: 'CrewAI', level: 80, category: 'ai', icon: '�' },
-    
+    { name: 'Python', level: 95, category: 'languages' },
+    { name: 'SQL', level: 90, category: 'languages' },
+    { name: 'TypeScript', level: 80, category: 'languages' },
+    { name: 'JavaScript', level: 85, category: 'languages' },
+
+    // Datos
+    { name: 'Apache Airflow', level: 85, category: 'data' },
+    { name: 'MySQL', level: 90, category: 'data' },
+    { name: 'Modelado de datos', level: 85, category: 'data' },
+    { name: 'Power BI', level: 90, category: 'data' },
+    { name: 'Pandas', level: 90, category: 'data' },
+
     // Frameworks
-    { name: 'Next.js', level: 90, category: 'frameworks', icon: '⚛️' },
-    { name: 'React', level: 90, category: 'frameworks', icon: '⚛️' },
-    { name: 'FastAPI', level: 85, category: 'frameworks', icon: '⚡' },
-    { name: '.NET', level: 75, category: 'frameworks', icon: '🔷' },
-    
-    // Data & Analytics
-    { name: 'Pandas', level: 95, category: 'data', icon: '🐼' },
-    { name: 'Power BI', level: 95, category: 'data', icon: '📊' },
-    { name: 'Scikit-Learn', level: 85, category: 'data', icon: '�' },
-    { name: 'ETL Pipelines', level: 90, category: 'data', icon: '🔄' },
-    { name: 'Data Visualization', level: 90, category: 'data', icon: '�' },
-    
-    // Tools
-    { name: 'Git/GitHub', level: 90, category: 'tools', icon: '�' },
-    { name: 'AWS', level: 80, category: 'tools', icon: '☁️' },
-    { name: 'Docker', level: 85, category: 'tools', icon: '🐳' },
-    { name: 'GitHub Actions', level: 85, category: 'tools', icon: '🚀' },
-    { name: 'VS Code', level: 95, category: 'tools', icon: '💻' }
+    { name: 'FastAPI', level: 85, category: 'frameworks' },
+    { name: 'Next.js', level: 90, category: 'frameworks' },
+    { name: 'React', level: 90, category: 'frameworks' },
+    { name: 'deck.gl / Mapbox', level: 75, category: 'frameworks' },
+
+    // IA aplicada
+    { name: 'LLMs (OpenAI, Claude, DeepSeek)', level: 90, category: 'ai' },
+    { name: 'Text-to-SQL', level: 85, category: 'ai' },
+    { name: 'RAG', level: 85, category: 'ai' },
+    { name: 'Agentes de IA', level: 85, category: 'ai' },
+    { name: 'Agentes de voz', level: 75, category: 'ai' },
+
+    // Infraestructura
+    { name: 'AWS', level: 80, category: 'tools' },
+    { name: 'Docker', level: 85, category: 'tools' },
+    { name: 'Linux / Nginx', level: 80, category: 'tools' },
+    { name: 'Git y CI/CD', level: 85, category: 'tools' }
   ];
 
   const filteredSkills = activeCategory === 'all' 
@@ -97,7 +103,7 @@ const SkillsVisualization = ({ inModal = false }) => {
           >
             <div className="p-6">
               <div className="flex items-center mb-4">
-                <span className="text-2xl mr-3">{skill.icon}</span>
+                <FontAwesomeIcon icon={categoryIcons[skill.category]} className="text-xl mr-3 text-blue-500" />
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                   {skill.name}
                 </h3>

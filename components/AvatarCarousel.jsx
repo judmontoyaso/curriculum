@@ -3,39 +3,39 @@ import { useState } from 'react';
 const avatars = [
   { 
     src: '/avatar/original.png', 
-    alt: 'Juan David - Developer', 
-    label: '👨‍💻 Developer',
-    phrase: 'Transformando datos en decisiones'
+    alt: 'Juan David - Data & AI Engineer',
+    label: 'Data & AI Engineer',
+    phrase: 'Que la misma cifra salga igual en todos lados'
   },
-  { 
-    src: '/avatar/programador.png', 
-    alt: 'Juan David - AI Architect', 
-    label: '🤖 AI Architect',
-    phrase: 'Construyendo el futuro con IA'
+  {
+    src: '/avatar/programador.png',
+    alt: 'Juan David - Producto interno',
+    label: 'Producto interno',
+    phrase: 'Desde la fuente hasta la pantalla'
   },
-  { 
-    src: '/avatar/pirata.png', 
-    alt: 'Juan David - Automation Expert', 
-    label: '⚡ Automation Expert',
-    phrase: 'Automatizo para liberar potencial'
+  {
+    src: '/avatar/pirata.png',
+    alt: 'Juan David - Ingeniería de datos',
+    label: 'Ingeniería de datos',
+    phrase: 'Pipelines que avisan cuando dejan de correr'
   },
-  { 
-    src: '/avatar/astronauta.png', 
-    alt: 'Juan David - Cloud Engineer', 
-    label: '🚀 Cloud Engineer',
-    phrase: 'Escalando soluciones en la nube'
+  {
+    src: '/avatar/astronauta.png',
+    alt: 'Juan David - Plataforma',
+    label: 'Plataforma',
+    phrase: 'Arquitectura pragmática antes que de moda'
   },
-  { 
-    src: '/avatar/chef.png', 
-    alt: 'Juan David - Data Chef', 
-    label: '👨‍🍳 Data Chef',
-    phrase: 'Cocinando insights con datos'
+  {
+    src: '/avatar/chef.png',
+    alt: 'Juan David - IA aplicada',
+    label: 'IA aplicada',
+    phrase: 'IA con límites puestos en código'
   },
-  { 
-    src: '/avatar/tesoros.png', 
-    alt: 'Juan David - Innovation Hunter', 
-    label: '🗺️ Innovation Hunter',
-    phrase: 'Descubriendo oportunidades ocultas'
+  {
+    src: '/avatar/tesoros.png',
+    alt: 'Juan David - Geoanalítica',
+    label: 'Geoanalítica',
+    phrase: 'Oportunidades escondidas en el mapa'
   }
 ];
 

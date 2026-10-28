@@ -244,7 +244,7 @@ export default function TechPulse() {
             {'</>'}
           </div>
           <div className="text-sm md:text-base text-blue-300/50 dark:text-blue-200/50 font-mono mt-2">
-            AI • Data • Automation
+            Data • IA • Real Estate
           </div>
         </div>
       </div>

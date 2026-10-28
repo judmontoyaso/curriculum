@@ -193,6 +193,50 @@ const VideoCard = ({ video }) => (
 const Project = () => {
   const proyectosEmpresariales = [
     {
+      id: 8,
+      titulo: "Plataforma interna de datos para una inmobiliaria",
+      rol: "Ingeniero de Datos / Desarrollador",
+      reto: "Que cada área consultara sus cifras sin pedírselas a nadie, y que salieran iguales en todas partes.",
+      solucion: "Plataforma en FastAPI y Next.js con Entra ID y permisos por rol que fallan cerrados. Pasó de un prototipo en marzo a unos 30 módulos en producción en siete meses.",
+      stack: ["FastAPI", "Next.js", "TypeScript", "MySQL", "Entra ID", "Nginx"],
+      icono: faCode,
+      bgClass: "bg-sky-50 dark:bg-sky-900/30",
+      iconClass: "text-sky-600 dark:text-sky-400"
+    },
+    {
+      id: 9,
+      titulo: "Pipelines y observabilidad de datos",
+      rol: "Ingeniero de Datos",
+      reto: "Juntar CRM, nómina, ERP inmobiliario, contabilidad y Jira en una sola base, y enterarse cuando algo deja de correr.",
+      solucion: "Más de 20 pipelines en Apache Airflow con carga incremental y manejo de borrados en origen, un tablero con la última corrida exitosa de cada uno y auditoría diaria de cambios de esquema.",
+      stack: ["Apache Airflow", "Python", "MySQL", "Docker", "CI/CD"],
+      icono: faServer,
+      bgClass: "bg-emerald-50 dark:bg-emerald-900/30",
+      iconClass: "text-emerald-600 dark:text-emerald-400"
+    },
+    {
+      id: 10,
+      titulo: "Geoanalítica inmobiliaria",
+      rol: "Ingeniero de Datos / Desarrollador",
+      reto: "Encontrar en la cartera los inmuebles con potencial de renovación urbana.",
+      solucion: "Mapas en deck.gl que cruzan la cartera con información territorial y de transporte, con detección de lotes vecinos que se pueden englobar.",
+      stack: ["deck.gl", "Mapbox", "Python", "FastAPI", "Geocodificación"],
+      icono: faGlobe,
+      bgClass: "bg-amber-50 dark:bg-amber-900/30",
+      iconClass: "text-amber-600 dark:text-amber-400"
+    },
+    {
+      id: 11,
+      titulo: "IA aplicada con límites",
+      rol: "Ingeniero de Datos / IA",
+      reto: "Preguntarle a la base en lenguaje natural sin exponer datos personales.",
+      solucion: "Text-to-SQL con lista blanca de tablas y columnas, LIMIT forzado y reglas de negocio en el prompt. Además, actas automáticas de reuniones que cuestan unos veinte centavos de dólar cada una.",
+      stack: ["OpenAI", "DeepSeek", "Deepgram", "FastAPI", "MySQL"],
+      icono: faRobot,
+      bgClass: "bg-rose-50 dark:bg-rose-900/30",
+      iconClass: "text-rose-600 dark:text-rose-400"
+    },
+    {
       id: 1,
       titulo: "Plataforma de visualización de reportes científicos",
       rol: "Ingeniero de Datos / Desarrollador Full Stack",
@@ -272,6 +316,18 @@ const Project = () => {
   ];
 
   const githubProjects = [
+    {
+      name: "agent_postop",
+      description: "Agente de voz para seguimiento postoperatorio (TechSphere Challenge 2026). Las alarmas críticas salen de reglas en código que el modelo no puede desactivar, y el audio se retiene 20 ms para que nunca diga una dosis inventada.",
+      url: "https://github.com/judmontoyaso/agent_postop",
+      topics: ["python", "fastapi", "voice-agent", "rag", "deepgram"]
+    },
+    {
+      name: "jada",
+      description: "Agente de IA personal con un coordinador que enruta cada tarea a su grupo de herramientas y razona en ciclos ReAct. Matrix como interfaz y OpenAI como modelo.",
+      url: "https://github.com/judmontoyaso/jada",
+      topics: ["python", "agentic-ai", "openai", "matrix"]
+    },
     {
       name: "curriculum",
       description: "Portafolio web profesional desarrollado con Next.js, React y Tailwind CSS. Incluye blog técnico, visualizaciones interactivas y diseño responsive.",

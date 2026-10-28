@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { RoughNotation } from "react-rough-notation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileAlt, faBook, faEnvelope, faRobot, faCloud, faChartLine } from "@fortawesome/free-solid-svg-icons";
+import { faFileAlt, faBook, faEnvelope, faRobot, faCloud, faChartLine, faDatabase, faCode } from "@fortawesome/free-solid-svg-icons";
 import RopeConnection from "./RopeConnection";
 import AvatarCarousel from "./AvatarCarousel";
 
@@ -43,23 +43,24 @@ const About = () => {
                 <div className="flex-grow space-y-5 text-center md:text-left w-full">
                   <div className="max-w-none px-4 md:px-0">
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base mb-3">
-                      Desarrollador full stack y científico de datos especializado en{' '}
+                      Hago que los datos de una empresa se puedan usar sin tener que pedírselos a nadie. Hoy lo hago en una
+                      inmobiliaria de Medellín, donde construí desde cero su{' '}
                       <span className="bg-cyan-100 dark:bg-cyan-900/30 px-1 font-semibold text-cyan-800 dark:text-cyan-300">
-                        Inteligencia Artificial
+                        plataforma interna de datos
                       </span>
-                      ,{' '}
+                      : unos 30 módulos sobre FastAPI y Next.js, alimentados por más de 20{' '}
                       <span className="bg-purple-100 dark:bg-purple-900/30 px-1 font-semibold text-purple-800 dark:text-purple-300">
-                        Automatización
+                        pipelines en Apache Airflow
                       </span>
-                      {' '}y{' '}
+                      {' '}y con{' '}
                       <span className="bg-amber-100 dark:bg-amber-900/30 px-1 font-semibold text-amber-800 dark:text-amber-300">
-                        Visualización de Datos
+                        IA aplicada
                       </span>
-                      . Con más de 3 años transformando datos en soluciones inteligentes usando Python, Next.js, IA Generativa y herramientas de automatización.
+                      {' '}donde de verdad aporta.
                     </p>
                     <p className="text-gray-600 dark:text-gray-300 text-sm mt-3 leading-relaxed">
-                      Creador de agentes IA, pipelines de datos automatizados, dashboards interactivos y aplicaciones web modernas. 
-                      Apasionado por combinar desarrollo web, machine learning, visualización de datos y IA para crear soluciones innovadoras y escalables.
+                      Lo que más me interesa no es la herramienta sino la cifra correcta. Un indicador tiene que salir igual en
+                      todas partes, y casi siempre el trabajo de verdad está en descubrir por qué no sale.
                     </p>
                   </div>
 
@@ -69,13 +70,14 @@ const About = () => {
                     <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                       {[
                         { icon: "devicon-python-plain", text: "Python", color: "from-blue-500 to-yellow-500", isDevicon: true },
-                        { icon: "devicon-javascript-plain", text: "JavaScript", color: "from-yellow-400 to-yellow-600", isDevicon: true },
-                        { icon: "devicon-csharp-plain", text: "C#", color: "from-purple-500 to-purple-700", isDevicon: true },
                         { icon: "devicon-mysql-plain", text: "SQL", color: "from-blue-600 to-cyan-600", isDevicon: true },
-                        { icon: faRobot, text: "AI/LLMs", color: "from-pink-500 to-rose-600", isDevicon: false },
+                        { icon: "devicon-apacheairflow-plain", text: "Airflow", color: "from-teal-500 to-cyan-600", isDevicon: true },
+                        { icon: "devicon-fastapi-plain", text: "FastAPI", color: "from-emerald-500 to-teal-600", isDevicon: true },
+                        { icon: "devicon-nextjs-plain", text: "Next.js", color: "from-gray-600 to-gray-800", isDevicon: true },
+                        { icon: faRobot, text: "LLMs", color: "from-pink-500 to-rose-600", isDevicon: false },
                         { icon: faChartLine, text: "Power BI", color: "from-amber-500 to-orange-600", isDevicon: false },
                         { icon: "devicon-docker-plain", text: "Docker", color: "from-blue-400 to-blue-600", isDevicon: true },
-                        { icon: faCloud, text: "AWS/Cloud", color: "from-orange-500 to-red-600", isDevicon: false }
+                        { icon: faCloud, text: "AWS", color: "from-orange-500 to-red-600", isDevicon: false }
                       ].map((tech, index) => (
                         <div 
                           key={index} 
@@ -99,26 +101,30 @@ const About = () => {
             {/* Segundo contenedor sin marco visible */}
             <div ref={secondCardRef} className="p-8 pt-4 mt-8">
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
-                Actualmente especializado en desarrollar <span className="font-semibold text-cyan-600 dark:text-cyan-400">soluciones full-stack</span> combinadas con 
-                <span className="font-semibold text-purple-600 dark:text-purple-400"> agentes de IA</span> y 
-                <span className="font-semibold text-blue-600 dark:text-blue-400"> automatizaciones inteligentes</span>. 
-                Trabajo con tecnologías web modernas (Next.js, React), LLMs (GPT, Claude), análisis de datos (Pandas, SQL) y plataformas de automatización (N8N, Zapier).
+                El sector inmobiliario me dio un terreno que poca gente de datos pisa: crucé la cartera con información
+                territorial y de transporte para encontrar{' '}
+                <span className="font-semibold text-cyan-600 dark:text-cyan-400">oportunidades de renovación urbana</span>.
+                Con la IA trabajo donde aporta y con{' '}
+                <span className="font-semibold text-purple-600 dark:text-purple-400">límites puestos en código</span>, y programo
+                a diario con{' '}
+                <span className="font-semibold text-blue-600 dark:text-blue-400">agentes de código</span> a los que les dejo una
+                memoria escrita para que no tropiecen dos veces con la misma piedra.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                 <div className="bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 p-4 rounded-lg border border-cyan-200 dark:border-cyan-800">
-                  <div className="text-2xl mb-2">💻</div>
-                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Full Stack Dev</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Aplicaciones web modernas con Next.js, React, Python, .NET y APIs robustas</p>
+                  <FontAwesomeIcon icon={faDatabase} className="text-2xl mb-2 text-cyan-600 dark:text-cyan-400" />
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Ingeniería de datos</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Pipelines incrementales en Airflow, modelado en MySQL, monitoreo de cada corrida y auditoría de esquema</p>
                 </div>
                 <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
-                  <div className="text-2xl mb-2">🤖</div>
-                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">IA & Automation</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Agentes inteligentes, LLMs, workflows automatizados y content creation</p>
+                  <FontAwesomeIcon icon={faCode} className="text-2xl mb-2 text-purple-600 dark:text-purple-400" />
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Producto interno</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Aplicaciones con FastAPI y Next.js, autenticación corporativa, permisos por rol y mapas con deck.gl</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-                  <div className="text-2xl mb-2">📊</div>
-                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">Data & Analytics</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">ETL, pipelines, ML, visualización con Power BI y análisis avanzado</p>
+                  <FontAwesomeIcon icon={faRobot} className="text-2xl mb-2 text-blue-600 dark:text-blue-400" />
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">IA aplicada</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Text-to-SQL sin datos personales, RAG, actas automáticas y agentes de voz con reglas de seguridad en código</p>
                 </div>
               </div>
               

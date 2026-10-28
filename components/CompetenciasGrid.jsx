@@ -12,25 +12,23 @@ import {
   faRobot,
   faUsers,
   faCogs,
-  faTools,
-  faLightbulb
+  faTools
 } from '@fortawesome/free-solid-svg-icons';
 
 const CompetenciaCard = ({ title, skills, icon, color, index }) => {
   const skillIcons = {
-    "Desarrollo web": faCode,
-    "Desarrollo de APIs": faServer,
-    "Automatización": faCogs,
-    "Análisis de datos": faChartLine,
-    "Dashboards": faDatabase,
-    "Modelado": faRobot,
-    "Gestión de infraestructura": faCloud,
-    "Prácticas ágiles": faUsers,
-    "Automatización de flujos": faTools,
-    "Contenerización": faCloud,
-    "Pensamiento analítico": faBrain,
-    "Autonomía": faLightbulb,
-    "Comunicación efectiva": faUsers
+    "Pipelines": faServer,
+    "Modelado": faDatabase,
+    "Observabilidad": faChartLine,
+    "Aplicaciones": faCode,
+    "Integración": faCogs,
+    "Mapas": faChartLine,
+    "Consultas": faDatabase,
+    "RAG": faBrain,
+    "Agentes": faRobot,
+    "AWS": faCloud,
+    "CI/CD": faTools,
+    "Transferencia": faUsers
   };
 
   return (
@@ -81,44 +79,43 @@ const CompetenciaCard = ({ title, skills, icon, color, index }) => {
 const CompetenciasGrid = () => {
   const competencias = [
     {
-      title: "Tecnología y Desarrollo",
-      icon: faCode,
+      title: "Ingeniería de datos",
+      icon: faDatabase,
       color: "border-l-8 border-blue-500",
       skills: [
-        "Desarrollo web con Python, Next.js, ASP.NET y JavaScript",
-        "Desarrollo de APIs e integración de servicios REST",
-        "Automatización de procesos con Power Automate y ETL pipelines"
+        "Pipelines incrementales con Apache Airflow, con manejo de borrados en origen",
+        "Modelado de datos en MySQL y tablas materializadas para consultas rápidas",
+        "Observabilidad: última corrida exitosa de cada pipeline y auditoría diaria de esquema"
       ]
     },
     {
-      title: "Analítica y Ciencia de Datos",
-      icon: faChartLine,
+      title: "Producto y geoanalítica",
+      icon: faCode,
       color: "border-l-8 border-green-500",
       skills: [
-        "Análisis de datos con Python, Pandas, Scikit-Learn",
-        "Dashboards interactivos con Power BI, Python y JavaScript",
-        "Modelado y gestión de bases de datos SQL y NoSQL"
+        "Aplicaciones internas con FastAPI y Next.js, Entra ID y permisos por rol",
+        "Integración de APIs: CRM, nómina, Jira y Microsoft Graph",
+        "Mapas con deck.gl y Mapbox sobre información territorial"
       ]
     },
     {
-      title: "Cloud & DevOps",
-      icon: faCloud,
+      title: "IA aplicada",
+      icon: faRobot,
       color: "border-l-8 border-purple-500",
       skills: [
-        "Gestión de infraestructura en AWS (S3, Athena, Redshift)",
-        "Prácticas ágiles con Scrum y entrega continua de valor",
-        "Automatización de flujos CI/CD",
-        "Contenerización con Docker y despliegue en producción"
+        "Consultas en lenguaje natural con lista blanca de columnas y protección de datos personales",
+        "RAG, transcripción y actas automáticas de reuniones",
+        "Agentes de voz con reglas de seguridad en código, fuera del modelo"
       ]
     },
     {
-      title: "Habilidades Personales",
-      icon: faBrain,
+      title: "Cloud y equipo",
+      icon: faCloud,
       color: "border-l-8 border-pink-500",
       skills: [
-        "Pensamiento analítico y resolución de problemas",
-        "Autonomía, proactividad y aprendizaje continuo",
-        "Comunicación efectiva y colaboración en equipo"
+        "AWS (S3, Lambda, Athena, Redshift, RDS), Docker, Linux y Nginx",
+        "CI/CD que valida y despliega solo desde la rama principal",
+        "Transferencia técnica a analistas con talleres y revisión de código"
       ]
     }
   ];

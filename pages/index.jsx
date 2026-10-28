@@ -4,7 +4,16 @@ import SkillsVisualization from "../components/SkillsVisualization";
 import Modal from "../components/Modal";
 import TechPulse from '../components/TechPulse';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCode } from "@fortawesome/free-solid-svg-icons";
+import { faCode, faBolt } from "@fortawesome/free-solid-svg-icons";
+
+const especialidades = [
+  "Pipelines de datos con Apache Airflow y SQL",
+  "Plataformas internas con FastAPI y Next.js",
+  "Geoanalítica inmobiliaria con deck.gl y Mapbox",
+  "IA aplicada: Text-to-SQL, RAG y agentes de voz",
+  "Observabilidad y gobierno de datos",
+  "Desarrollo con agentes de código",
+];
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Home() {
@@ -22,10 +31,10 @@ export default function Home() {
                 Juan David Montoya
               </h1>
               <p className="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto lg:mx-0 mb-3">
-                Ingeniero de Datos & AI Specialist
+                Data & AI Engineer
               </p>
               <p className="text-base md:text-lg text-purple-200/90 max-w-3xl mx-auto lg:mx-0 mb-6">
-                Transformando datos en inteligencia | Automatización & Agentes IA | Cloud Solutions
+                Datos e IA para el sector inmobiliario: pipelines, producto interno y geoanalítica
               </p>
 
               {/* Botones de redes sociales */}
@@ -44,7 +53,7 @@ export default function Home() {
               
               {/* Tags de tecnologías principales */}
               <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6">
-                {["Python", "AI/ML", "Power BI", "SQL", "Next.js", "Automation"].map((tech, index) => (
+                {["Python", "SQL", "Apache Airflow", "FastAPI", "Next.js", "LLMs"].map((tech, index) => (
                   <span
                     key={index}
                     className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium hover:bg-white/30 transition-colors shadow-lg"
@@ -54,37 +63,19 @@ export default function Home() {
                 ))}
               </div>
 
-              {/* Especialidades en IA, Desarrollo y Automatización */}
+              {/* Especialidades */}
               <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 max-w-2xl mx-auto lg:mx-0">
                 <h3 className="text-white font-semibold text-sm mb-2 flex items-center gap-2">
-                  <span className="text-lg">⚡</span>
-                  Especializado en:
+                  <FontAwesomeIcon icon={faBolt} className="text-purple-300" />
+                  En qué trabajo:
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-purple-100 text-sm">
-                  <div className="flex items-start gap-2">
-                    <span className="text-purple-300">▪</span>
-                    <span>Desarrollo Full Stack (Next.js, React, Python)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-purple-300">▪</span>
-                    <span>Visualización de Datos (Power BI, Dashboards)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-purple-300">▪</span>
-                    <span>Desarrollo de Agentes IA (LLMs, CrewAI)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-purple-300">▪</span>
-                    <span>Automatización (N8N, Zapier, APIs)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-purple-300">▪</span>
-                    <span>ETL & Data Pipelines (Python, SQL, Cloud)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-purple-300">▪</span>
-                    <span>Machine Learning & IA Generativa</span>
-                  </div>
+                  {especialidades.map((item) => (
+                    <div key={item} className="flex items-start gap-2">
+                      <span className="text-purple-300">▪</span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

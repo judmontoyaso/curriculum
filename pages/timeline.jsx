@@ -42,10 +42,10 @@ const Timeline = () => {
             className="vertical-timeline-element--work"
             contentStyle={{ background: '#3b82f6', color: '#fff' }}
             contentArrowStyle={{ borderRight: '7px solid #3b82f6' }}
-            date="Diciembre 2023 - Presente"
+            date="Diciembre 2023 - Abril 2025"
             iconStyle={{ background: '#3b82f6', color: '#fff' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
-            title="Bioinformatic Associate"
+            title="Bioinformatics Associate"
             subtitle="Iluma Alliance"
           >
             <p>
